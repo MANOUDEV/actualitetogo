@@ -107,8 +107,18 @@ contact.use(VueSweetalert2);
 contact.use(store);
 
 contact.mount('#contact')
-  
+ 
+//Importation du Composant de contact à afficher sur la page d'accueil
 
+import ChangeProgramF from './components/frontoffice/home_page/changeProgram.vue'
+
+const changeProgram = createApp(ChangeProgramF)
+
+changeProgram.use(VueSweetalert2);
+
+changeProgram.use(store);
+
+changeProgram.mount('#changeProgram')  
 //Gestion de tous les composants administrateurs
 
 import * as adminRouter from './router/adminRouter';
