@@ -60,7 +60,16 @@ import tagsAdminModule from './modules/backoffice/admin/tags'
 
 import newsLetterAdminModule from './modules/backoffice/admin/newsLetter'
 
-import  publicationAdminModule from './modules/backoffice/admin/publications/publication'
+import  publicationAdminModule from './modules/backoffice/admin/publications/publication' 
+
+import  storeAlertInfosAnnonceAdminModule from './modules/backoffice/admin/publications/create/alertInfosAnnonce/storeAlertInfosAnnonce'
+  
+import  storePublicitesFirstAdminModule from './modules/backoffice/admin/publications/create/publicites/storePublicitesFirst'
+
+import  storePublicitesTwoAdminModule from './modules/backoffice/admin/publications/create/publicites/storePublicitesTwo'
+ 
+import  storePublicitesThreeAdminModule from './modules/backoffice/admin/publications/create/publicites/storePublicitesThree'
+ 
   
 //Importation des modules gérant les données de la partie des publicateurs
 
@@ -113,6 +122,10 @@ const store = createStore({
         categoryAdmin: categoryAdminModule,
         authorsAdmin: authorsAdminModule,
         publicationAdmin: publicationAdminModule,  
+        storeAlertInfosAnnonceAdmin: storeAlertInfosAnnonceAdminModule,  
+        storePublicitesFirstAdmin: storePublicitesFirstAdminModule, 
+        storePublicitesTwoAdmin: storePublicitesTwoAdminModule, 
+        storePublicitesThreeAdmin: storePublicitesThreeAdminModule,
         tagsAdmin: tagsAdminModule,
         newsLetterAdmin: newsLetterAdminModule,
 

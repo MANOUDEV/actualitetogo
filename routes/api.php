@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\Api\Web\Frontoffice\IncludesController; 
+use App\Http\Controllers\Api\Web\Frontoffice\IncludesController;
 
 use App\Http\Controllers\Api\Web\Authentication\RegisterController;
 use App\Http\Controllers\Api\Web\Authentication\ForgotPasswordController;
@@ -17,7 +17,10 @@ use App\Http\Controllers\Api\Web\Backoffice\Admin\TypePublicationController;
 use App\Http\Controllers\Api\Web\Backoffice\Admin\CategoryController;
 use App\Http\Controllers\Api\Web\Backoffice\Admin\TagsAdminController;
 use App\Http\Controllers\Api\Web\Backoffice\Admin\AuthorsAdminController;
-use App\Http\Controllers\Api\Web\Backoffice\Admin\Publications\PublicationController; 
+use App\Http\Controllers\Api\Web\Backoffice\Admin\Publications\PublicationController;
+use App\Http\Controllers\Api\Web\Backoffice\Admin\Publications\Create\AlertInfosAnnonce\StoreAlertInfosAnnonceController;
+use App\Http\Controllers\Api\Web\Backoffice\Admin\Publications\Create\Publicites\PublicitesStoreFirstController;
+use App\Http\Controllers\Api\Web\Backoffice\Admin\Publications\Create\Publicites\PublicitesStoreThreeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -73,7 +76,7 @@ Route::get('/frontoffice/footer/articles_populars', [IncludesController::class, 
 //Gestion d'envoi de message sans connexion de l'utilisateur
 
 Route::post('/home/contact', [IncludesController::class, 'submitContact']);
-  
+
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
 
     //Gestion du système de mot de passe oublié
@@ -225,5 +228,20 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
 
         Route::get('/backoffice/admin/publications/create/{slug}/type_publications', [PublicationController::class, 'publicationCreateBySlugType'])->middleware('auth:api');
 
-         
+        //Gestion des annonces et alert_infos
+
+        Route::post('/backoffice/admin/publications/create/{slug}/store_info_alert_annonce', [StoreAlertInfosAnnonceController::class, 'storeInfoAlertAnnonce'])->middleware('auth:api');
+
+        Route::put('/backoffice/admin/publications/create/{slug}/{publication_slug}/update_info_alert_annonce', [StoreAlertInfosAnnonceController::class, 'updateInfoAlertAnnonce'])->middleware('auth:api');
+
+        //Gestion des publicités
+
+        Route::post('/backoffice/admin/publications/create/{slug}/store_publicites_first', [PublicitesStoreFirstController::class, 'storePublicitesFirst'])->middleware('auth:api');
+
+        Route::put('/backoffice/admin/publications/create/{slug}/{publication_slug}/update_publicites_first', [PublicitesStoreFirstController::class, 'updatePublicitesFirst'])->middleware('auth:api');
+
+        Route::put('/backoffice/admin/publications/create/{slug}/{publication_slug}/store_publicites_three', [PublicitesStoreThreeController::class, 'storePublicitesThree'])->middleware('auth:api');
+
+        Route::put('/backoffice/admin/publications/create/{slug}/{publication_slug}/update_publicites_three', [PublicitesStoreThreeController::class, 'updatePublicitesThree'])->middleware('auth:api');
+
 });

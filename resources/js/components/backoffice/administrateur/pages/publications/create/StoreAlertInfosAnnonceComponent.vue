@@ -1,188 +1,140 @@
 <template>
-    <!-- =======================Author list START -->
-    <section class="py-4">
-        <div class="container">
-            <div  v-if="dataReady == 0" >
-                <br/><br/><br/><br/><br/><br/><br/>
-                <div class="d-flex justify-content-center">
-                    <img src="https://actualitetogo.com/assets/images/logo.png"  style="width: 150px;" alt="empty">
-                </div>
-                <div class="d-flex justify-content-center mt-3">
-                    <div class="spinner-border text-success" style="color: #006633" role="status">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                </div>
-                <br/><br/><br/><br/><br/><br/><br/>
-            </div>
-            <div v-else-if="dataReady== 1">
-                <div v-if="empty == 0">
-                    <!-- Author list title START -->
-                    <div class="row pb-4 mb-2" v-if="publicationCreateBySlugTypeShowData">
-                        <div class="col-12">
-                    
-                            <div class="d-sm-flex justify-content-sm-between align-items-center">
-                                <h1 class="mb-2 mb-sm-0 h2">
-                                    <router-link  :to="{name: 'admin.publications.create'}"  >
-                                        <div class="btn btn-primary-soft  btn-round mb-0 " style="font-size: 25px">
-                                            <i  class="bi bi-arrow-left-short"></i>
-                                        </div>
-                                    </router-link>
-                                    {{publicationCreateBySlugTypeShowData.typePublication.name}}
-                                </h1>    
-                            </div>
+    <div class="row">
+        <div class="col-12">
+            <!-- Chart START -->
+            <div class="card border">
+                <!-- Card body -->
+                <div class="card-body">
+
+                    <div v-if="publicationStoreInfoAlertAnnonceCreateMessage">
+                        <div class="alert alert-danger"  role="alert">
+                            {{ publicationStoreInfoAlertAnnonceCreateMessage }}
                         </div>
                     </div>
 
-                    <div class="row g-4" v-if="publicationCreateBySlugTypeShowData.typePublication.id === 2 || publicationCreateBySlugTypeShowData.typePublication.id === 3 "> 
-                        <StoreAlertInfosAnnonceComponent  :publicationCreate="publicationCreateBySlugTypeShowData" />
-                    </div> 
-
-                    <div class="row g-4" v-else-if="publicationCreateBySlugTypeShowData.typePublication.id === 5" >
-                        <StorePublicitesComponent :publicationCreate="publicationCreateBySlugTypeShowData" />
-                    </div>
-                    
-                    <div class="row g-4" v-else >
-
-                        <section class="overflow-hidden">
-                            <div class="container">
+                    <form>
+                        <div class="row" v-if="alreadyCreate == false">
+                            <div class="col-lg-12 mb-5">
                                 <div class="row">
-                                    <div class="col-md-9 text-center mx-auto my-0 my-md-5 py-0 py-lg-5 position-relative z-index-9">
-                                        <!-- SVG shape START -->
-                                        <figure class="position-absolute top-50 start-50 translate-middle opacity-7 z-index-n9">
-                                        <svg width="650" height="379" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"  viewBox="0 0 510 297">
-                                            <g>
-                                            <path class="fill-primary opacity-1" d="M121,147.4c0,6-4.8,10.8-10.8,10.8H47.6c-6,0-10.8-4.8-10.8-10.8v-11.5c0-6,4.8-10.8,10.8-10.8h62.6
-                                            c6,0,10.8,4.8,10.8,10.8V147.4z"/>
-                                            <path class="fill-primary opacity-1" d="M179.4,90.2c0,6-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8V78.7c0-6,4.8-10.8,10.8-10.8h62.6
-                                            c6,0,10.8,4.8,10.8,10.8V90.2z"/>
-                                            <path class="fill-primary opacity-1" d="M459.1,26.3c0,6-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8V14.8c0-6,4.8-10.8,10.8-10.8h62.6
-                                            c6,0,10.8,4.8,10.8,10.8V26.3z"/>
-                                            <path class="fill-primary opacity-1" d="M422.1,66.9c0,6-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8V55.3c0-6,4.8-10.8,10.8-10.8h62.6
-                                            c6,0,10.8,4.8,10.8,10.8V66.9z"/>
-                                            <path class="fill-primary opacity-1" d="M275.8,282.6c0,5.9-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8v-11.5c0-6,4.8-10.8,10.8-10.8h62.6
-                                            c6,0,10.8,4.8,10.8,10.8V282.6z"/>
-                                            <path class="fill-primary opacity-1" d="M87.7,42.9c0,5.9-4.8,10.8-10.8,10.8H14.3c-6,0-10.8-4.8-10.8-10.8V31.4c0-6,4.8-10.8,10.8-10.8h62.6
-                                            c6,0,10.8,4.8,10.8,10.8V42.9z"/>
-                                            <path class="fill-primary opacity-1" d="M505.9,123.4c0,6-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8v-11.5c0-6,4.8-10.8,10.8-10.8h62.6
-                                            c6,0,10.8,4.8,10.8,10.8V123.4z"/>
-                                            <path class="fill-primary opacity-1" d="M482.5,204.9c0,5.9-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8v-11.5c0-6,4.8-10.8,10.8-10.8h62.6
-                                            c5.9,0,10.8,4.8,10.8,10.8V204.9z"/>
-                                            <path class="fill-primary opacity-1" d="M408.3,258.8c0,5.9-4.8,10.8-10.8,10.8H335c-6,0-10.8-4.8-10.8-10.8v-11.5c0-6,4.8-10.8,10.8-10.8h62.6
-                                            c6,0,10.8,4.8,10.8,10.8V258.8z"/>
-                                            <path class="fill-primary opacity-1" d="M147,252.5c0,5.9-4.8,10.8-10.8,10.8H73.6c-6,0-10.8-4.8-10.8-10.8V241c0-5.9,4.8-10.8,10.8-10.8h62.6
-                                            c6,0,10.8,4.8,10.8,10.8V252.5z"/>
-                                            </g>
-                                        </svg>
-                                        </figure>
-                                        <!-- SVG shape START -->
-                                        <!-- Content -->
-                                        <h1 class="display-1 text-primary">Indisponible</h1>
-                                        <h5>Le formulaire pour ce type de publication n'est pas encore disponible pour le moment.Merci de bien vouloir patienter un moment.</h5>
-                                        <router-link :to="{name: 'admin.publications.create' }"   class="btn btn-danger-soft mt-3"><i class="fas fa-long-arrow-alt-left me-3"></i>Voir les types de publications.</router-link>
+                                    <div class="col-lg-12 mb-3" v-if="publicationStoreInfoAlertAnnonceCreateErrors.title">
+                                        <label class="form-label" >Titre de la publication</label>
+                                        <QuillEditor theme="snow" v-model:content="title" contentType="html" />
+                                        <div v-for="errorname in publicationStoreInfoAlertAnnonceCreateErrors.title" :key="errorname" class="invalid-feedback">
+                                            {{ errorname }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-3" v-else>
+                                        <label class="form-label" >Titre de la publication</label>
+                                        <QuillEditor theme="snow" v-model:content="title" contentType="html" />
 
                                     </div>
                                 </div>
                             </div>
-                        </section>
 
-                    </div>
+                            <div class="col-lg-4 mt-3">
+                                <label class="form-label" >Statut de publication</label>
+                                <select class="form-select" @change="handleSelectionSearchByStatus($event)" v-model="status" name="status" id="status">
+                                    <option value="1" >Publier à l'instant</option>
+                                    <option value="0" >Enregistrer comme brouillon</option>
+                                    <option value="2" >Programmer la publication</option>
+                                    <option value="3" >Mettre en attente de validation</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 mt-3" v-if="show_date_publish">
+                                <div class="mb-3" >
+                                    <label class="form-label">Choisir une de date de début</label>
+                                    <div class="input-group">
+                                        <input type="datetime-local" class="form-control" v-model="date_publish" />
+                                    </div>
 
-                </div>
-
-                <div  v-else-if="empty == 1">
-                    <section class="overflow-hidden">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-9 text-center mx-auto my-0 my-md-5 py-0 py-lg-5 position-relative z-index-9">
-                                    <!-- SVG shape START -->
-                                    <figure class="position-absolute top-50 start-50 translate-middle opacity-7 z-index-n9">
-                                    <svg width="650" height="379" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"  viewBox="0 0 510 297">
-                                        <g>
-                                        <path class="fill-primary opacity-1" d="M121,147.4c0,6-4.8,10.8-10.8,10.8H47.6c-6,0-10.8-4.8-10.8-10.8v-11.5c0-6,4.8-10.8,10.8-10.8h62.6
-                                        c6,0,10.8,4.8,10.8,10.8V147.4z"/>
-                                        <path class="fill-primary opacity-1" d="M179.4,90.2c0,6-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8V78.7c0-6,4.8-10.8,10.8-10.8h62.6
-                                        c6,0,10.8,4.8,10.8,10.8V90.2z"/>
-                                        <path class="fill-primary opacity-1" d="M459.1,26.3c0,6-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8V14.8c0-6,4.8-10.8,10.8-10.8h62.6
-                                        c6,0,10.8,4.8,10.8,10.8V26.3z"/>
-                                        <path class="fill-primary opacity-1" d="M422.1,66.9c0,6-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8V55.3c0-6,4.8-10.8,10.8-10.8h62.6
-                                        c6,0,10.8,4.8,10.8,10.8V66.9z"/>
-                                        <path class="fill-primary opacity-1" d="M275.8,282.6c0,5.9-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8v-11.5c0-6,4.8-10.8,10.8-10.8h62.6
-                                        c6,0,10.8,4.8,10.8,10.8V282.6z"/>
-                                        <path class="fill-primary opacity-1" d="M87.7,42.9c0,5.9-4.8,10.8-10.8,10.8H14.3c-6,0-10.8-4.8-10.8-10.8V31.4c0-6,4.8-10.8,10.8-10.8h62.6
-                                        c6,0,10.8,4.8,10.8,10.8V42.9z"/>
-                                        <path class="fill-primary opacity-1" d="M505.9,123.4c0,6-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8v-11.5c0-6,4.8-10.8,10.8-10.8h62.6
-                                        c6,0,10.8,4.8,10.8,10.8V123.4z"/>
-                                        <path class="fill-primary opacity-1" d="M482.5,204.9c0,5.9-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8v-11.5c0-6,4.8-10.8,10.8-10.8h62.6
-                                        c5.9,0,10.8,4.8,10.8,10.8V204.9z"/>
-                                        <path class="fill-primary opacity-1" d="M408.3,258.8c0,5.9-4.8,10.8-10.8,10.8H335c-6,0-10.8-4.8-10.8-10.8v-11.5c0-6,4.8-10.8,10.8-10.8h62.6
-                                        c6,0,10.8,4.8,10.8,10.8V258.8z"/>
-                                        <path class="fill-primary opacity-1" d="M147,252.5c0,5.9-4.8,10.8-10.8,10.8H73.6c-6,0-10.8-4.8-10.8-10.8V241c0-5.9,4.8-10.8,10.8-10.8h62.6
-                                        c6,0,10.8,4.8,10.8,10.8V252.5z"/>
-                                        </g>
-                                    </svg>
-                                    </figure>
-                                    <!-- SVG shape START -->
-                                    <!-- Content -->
-                                    <h1 class="display-1 text-primary">Erreur</h1>
-                                    <h5>{{ publicationCreateBySlugTypeShowMessage  }}</h5>
-                                    <router-link :to="{name: 'admin.publications.create' }"   class="btn btn-danger-soft mt-3"><i class="fas fa-long-arrow-alt-left me-3"></i>Voir les types de publications.</router-link>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mt-3" v-if="show_date_publish_end">
+                                <div class="mb-3" >
+                                    <label class="form-label">Choisir une de date de fin</label>
+                                    <div class="input-group">
+                                        <input type="datetime-local" class="form-control" v-model="date_publish_end" />
+                                    </div>
 
                                 </div>
                             </div>
                         </div>
-                    </section>
-                </div>
+                        <div class="row" v-else>
+                            <div class="col-lg-12 mb-5">
+                                <div class="row">
+                                    <div class="col-lg-12 mb-3" v-if="publicationUpdateInfoAlertAnnonceCreateErrors.title">
+                                        <label class="form-label" >Titre de la publication</label>
+                                        <QuillEditor theme="snow" v-model:content="title" contentType="html" />
+                                        <div v-for="errorname in publicationUpdateInfoAlertAnnonceCreateErrors.title" :key="errorname" class="invalid-feedback">
+                                            {{ errorname }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-3" v-else>
+                                        <label class="form-label" >Titre de la publication</label>
+                                        <QuillEditor theme="snow" v-model:content="title" contentType="html" />
 
-            </div>
-            <div v-else-if="dataReady== 2"> <accessUnAuthorizedAdmin></accessUnAuthorizedAdmin> </div>
-            <div v-else-if="dataReady== 3 || dataReady == 4">
-                <section class="overflow-hidden">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-9 text-center mx-auto my-0 my-md-5 py-0 py-lg-5 position-relative z-index-9">
-                                <!-- SVG shape START -->
-                                <figure class="position-absolute top-50 start-50 translate-middle opacity-7 z-index-n9">
-                                <svg width="650" height="379" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"  viewBox="0 0 510 297">
-                                    <g>
-                                    <path class="fill-primary opacity-1" d="M121,147.4c0,6-4.8,10.8-10.8,10.8H47.6c-6,0-10.8-4.8-10.8-10.8v-11.5c0-6,4.8-10.8,10.8-10.8h62.6
-                                    c6,0,10.8,4.8,10.8,10.8V147.4z"/>
-                                    <path class="fill-primary opacity-1" d="M179.4,90.2c0,6-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8V78.7c0-6,4.8-10.8,10.8-10.8h62.6
-                                    c6,0,10.8,4.8,10.8,10.8V90.2z"/>
-                                    <path class="fill-primary opacity-1" d="M459.1,26.3c0,6-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8V14.8c0-6,4.8-10.8,10.8-10.8h62.6
-                                    c6,0,10.8,4.8,10.8,10.8V26.3z"/>
-                                    <path class="fill-primary opacity-1" d="M422.1,66.9c0,6-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8V55.3c0-6,4.8-10.8,10.8-10.8h62.6
-                                    c6,0,10.8,4.8,10.8,10.8V66.9z"/>
-                                    <path class="fill-primary opacity-1" d="M275.8,282.6c0,5.9-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8v-11.5c0-6,4.8-10.8,10.8-10.8h62.6
-                                    c6,0,10.8,4.8,10.8,10.8V282.6z"/>
-                                    <path class="fill-primary opacity-1" d="M87.7,42.9c0,5.9-4.8,10.8-10.8,10.8H14.3c-6,0-10.8-4.8-10.8-10.8V31.4c0-6,4.8-10.8,10.8-10.8h62.6
-                                    c6,0,10.8,4.8,10.8,10.8V42.9z"/>
-                                    <path class="fill-primary opacity-1" d="M505.9,123.4c0,6-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8v-11.5c0-6,4.8-10.8,10.8-10.8h62.6
-                                    c6,0,10.8,4.8,10.8,10.8V123.4z"/>
-                                    <path class="fill-primary opacity-1" d="M482.5,204.9c0,5.9-4.8,10.8-10.8,10.8h-62.6c-6,0-10.8-4.8-10.8-10.8v-11.5c0-6,4.8-10.8,10.8-10.8h62.6
-                                    c5.9,0,10.8,4.8,10.8,10.8V204.9z"/>
-                                    <path class="fill-primary opacity-1" d="M408.3,258.8c0,5.9-4.8,10.8-10.8,10.8H335c-6,0-10.8-4.8-10.8-10.8v-11.5c0-6,4.8-10.8,10.8-10.8h62.6
-                                    c6,0,10.8,4.8,10.8,10.8V258.8z"/>
-                                    <path class="fill-primary opacity-1" d="M147,252.5c0,5.9-4.8,10.8-10.8,10.8H73.6c-6,0-10.8-4.8-10.8-10.8V241c0-5.9,4.8-10.8,10.8-10.8h62.6
-                                    c6,0,10.8,4.8,10.8,10.8V252.5z"/>
-                                    </g>
-                                </svg>
-                                </figure>
-                                <!-- SVG shape START -->
-                                <!-- Content -->
-                                <h1 class="display-1 text-primary">Session expiré! </h1>
-                                <h5>Votre delai de connexion est expiré, connectez vous pour acceder à cette page.</h5>
-                                <span style="cursor: pointer"  @click="authModalClick('LIST')" class="btn btn-danger-soft mt-3"><i class="fas fa-long-arrow-alt-left me-3"></i>Se connecter</span>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div class="col-lg-4 mt-3">
+                                <label class="form-label" >Statut de publication</label>
+                                <select class="form-select" @change="handleSelectionSearchByStatus($event)" v-model="status" name="status" id="status">
+                                    <option value="1" >Publier à l'instant</option>
+                                    <option value="0" >Enregistrer comme brouillon</option>
+                                    <option value="2" >Programmer la publication</option>
+                                    <option value="3" >Mettre en attente de validation</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 mt-3" v-if="show_date_publish">
+                                <div class="mb-3" >
+                                    <label class="form-label">Choisir une de date de début</label>
+                                    <div class="input-group">
+                                        <input type="datetime-local" class="form-control" v-model="date_publish" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mt-3" v-if="show_date_publish_end">
+                                <div class="mb-3" >
+                                    <label class="form-label">Choisir une de date de fin</label>
+                                    <div class="input-group">
+                                        <input type="datetime-local" class="form-control" v-model="date_publish_end" />
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-            </div>
+                        <div v-if="alreadyCreate === false">
+                            <div class="d-flex justify-content-end mt-4" v-if="loadingPublicationStoreInfoAlertAnnonceCreate == false">
+                                <button type="button" @click="cancelFirst" class="btn btn-danger border-0 me-2">Annuler</button>
+                                <button type="submit"  @click="publicationStoreInfoAlertAnnonce" class="btn btn-primary">Enregistrer</button>
+                            </div>
+                            <div class="d-flex justify-content-end mt-4" v-else>
+                                <button type="button" disabled class="btn btn-success border-0 me-2">
+                                    <i  style="color: #fff" class="fa fa-spinner fa-spin fa-1x fa-fw"></i>
+                                    <span class="sr-only">Loading...</span>En cours de sauvegarde...</button>
+                            </div>
+                        </div>
+                        <div v-else>
+                            <div class="d-flex justify-content-end mt-4" v-if="loadingPublicationUpdateInfoAlertAnnonceCreate == false">
+                                <button type="button" @click="cancelFirst" class="btn btn-danger border-0 me-2">Annuler</button>
+                                <button type="submit"  @click="publicationUpdateInfoAlertAnnonce" class="btn btn-primary">Modifier</button>
+                            </div>
+                            <div class="d-flex justify-content-end mt-4" v-else>
+                                <button type="button" disabled class="btn btn-success border-0 me-2">
+                                    <i  style="color: #fff" class="fa fa-spinner fa-spin fa-1x fa-fw"></i>
+                                    <span class="sr-only">Loading...</span>Modification en cours...</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> 
         </div>
-    </section>
+    </div>
 
-
-    <div class="modal fade" id="authFormModalpublicationCreateBySlugTypeShow" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    
+    <div class="modal fade" id="authFormModalpublicationStoreInfoAlertAnnonceCreate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
 
 
@@ -192,7 +144,7 @@
                     <h5 class="modal-title" v-if="authSectionStepModal == 1">Se connecter</h5>
                     <h5 class="modal-title" v-else-if="authSectionStepModal == 2">Modifier le mot de passe</h5>
                     <h5 class="modal-title" v-else-if="authSectionStepModal == 3">S'inscrire</h5>
-                    <button type="button" class="btn-close" @click="authFormModalpublicationCreateBySlugTypeShowClose" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" @click="authFormModalpublicationStoreInfoAlertAnnonceCreateClose" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div v-if="authSectionStepModal == 1" style="margin-bottom: -15px">
@@ -406,27 +358,38 @@
             </div>
         </div>
     </div>
-    <manageFilesPubStore/>
 </template>
-<script >
+
+<script>
 import { mapGetters, mapActions} from "vuex";
 import moment from 'moment'
-import StoreAlertInfosAnnonceComponent from './create/StoreAlertInfosAnnonceComponent.vue';
-import manageFilesPubStore from './create/manageFiles/nanagePublicitesFiles.vue';  
-import StorePublicitesComponent from './create/StorePublicitesComponent.vue';  
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
+  
 export default {
+
     components: {
-        StoreAlertInfosAnnonceComponent, StorePublicitesComponent, manageFilesPubStore  
+        QuillEditor 
     },
+
+    props: {
+        publicationCreate: null,
+    },
+
     data () {
         return {
-            dataReady: 0,
             meRoleName: null,
             publicationCreateBySlugTypeShowData: {},
             publicationCreateBySlugTypeShowMessage: null,
             meProfileUserName: null,
             meProfileRoleName: null,
-            authSectionModal: 'LIST',
+            authSectionModal: 'CREATEALERTINFOS',
+            publicationStoreInfoAlertAnnonceCreateData: {},
+            publicationStoreInfoAlertAnnonceCreateMessage: null,
+            publicationStoreInfoAlertAnnonceCreateErrors: { }, 
+            publicationUpdateInfoAlertAnnonceCreateData: {},
+            publicationUpdateInfoAlertAnnonceCreateMessage: null,
+            publicationUpdateInfoAlertAnnonceCreateErrors: { },  
             username: null,
             email:null,
             password: null,
@@ -450,9 +413,24 @@ export default {
             name: null,
             slug: null,
             loadingCreate: false,
+            status: 1,
+            title: null, 
+            date_publish: null,
+            date_publish_end: null,
+            show_date_publish: false,
+            show_date_publish_end: true,
             showPsw: false,
             showPswC: false,
-
+            loadingPublicationStoreInfoAlertAnnonceCreate: false,
+            loadingPublicationUpdateInfoAlertAnnonceCreate: false,
+            alreadyCreate: false, 
+            config: {
+                events: {
+                    initialized: function () {
+                    console.log('initialized')
+                    }
+                }
+            }, 
         }
     },
     computed: {
@@ -464,10 +442,20 @@ export default {
         ...mapGetters('publicationAdmin',{
             getterInfosPublicationCreateBySlugTypeShowStatus:'getInfosPublicationCreateBySlugTypeShowStatus',
             getterInfosPublicationCreateBySlugTypeShowMessage:'getInfosPublicationCreateBySlugTypeShowMessage',
-            getterInfosPublicationCreateBySlugTypeShowData:'getInfosPublicationCreateBySlugTypeShowData',
-
+            getterInfosPublicationCreateBySlugTypeShowData:'getInfosPublicationCreateBySlugTypeShowData', 
         }),
 
+        ...mapGetters('storeAlertInfosAnnonceAdmin',{ 
+            getterInfosPublicationStoreInfoAlertAnnonceStatus:'getInfosPublicationStoreInfoAlertAnnonceStatus',
+            getterInfosPublicationStoreInfoAlertAnnonceMessage:'getInfosPublicationStoreInfoAlertAnnonceMessage',
+            getterInfosPublicationStoreInfoAlertAnnonceData:'getInfosPublicationStoreInfoAlertAnnonceData',
+            getterInfosPublicationStoreInfoAlertAnnonceErrors:'getInfosPublicationStoreInfoAlertAnnonceErrors', 
+            getterInfosPublicationUpdateInfoAlertAnnonceStatus:'getInfosPublicationUpdateInfoAlertAnnonceStatus',
+            getterInfosPublicationUpdateInfoAlertAnnonceMessage:'getInfosPublicationUpdateInfoAlertAnnonceMessage',
+            getterInfosPublicationUpdateInfoAlertAnnonceData:'getInfosPublicationUpdateInfoAlertAnnonceData',
+            getterInfosPublicationUpdateInfoAlertAnnonceErrors:'getInfosPublicationUpdateInfoAlertAnnonceErrors', 
+        }),
+        
         ...mapGetters('login',{
             getterLoginStatus:'getLoginStatus',
             getterLoginMessage:'getLoginMessage',
@@ -520,13 +508,47 @@ export default {
           actionsGetMeRole:'getMeRole'
         }),
 
-
+ 
         ...mapActions("publicationAdmin",{
-          actionsPublicationCreateBySlugTypeShowDataRequest:'publicationCreateBySlugTypeShowDataRequest',
-
+          actionsPublicationCreateBySlugTypeShowDataRequest:'publicationCreateBySlugTypeShowDataRequest', 
         }),
 
+        ...mapActions("storeAlertInfosAnnonceAdmin",{ 
+          actionsPublicationStoreInfoAlertAnnonceDataRequest:'publicationStoreInfoAlertAnnonceDataRequest', 
+          actionsPublicationUpdateInfoAlertAnnonceDataRequest:'publicationUpdateInfoAlertAnnonceDataRequest', 
+        }),
 
+        async handleSelectionSearchByStatus(event ){
+
+            this.status = event.target.value
+
+            if(this.status == 2){
+
+                this.show_date_publish = true
+
+                this.show_date_publish_end = true
+
+                const date = new Date()
+
+                this.date_publish = date.toISOString().slice(0, 16)
+            }else{
+
+                this.show_date_publish = false
+
+                if(this.status == 0 || this.status ==3 ){
+
+                    this.show_date_publish_end = false
+
+                }else{
+
+                    this.show_date_publish_end = true
+
+                }
+
+            }
+
+
+        },
 
         showPassword(){
             var x = document.getElementById("psw-input");
@@ -550,7 +572,7 @@ export default {
             }
         },
 
-        authFormModalpublicationCreateBySlugTypeShowClose(){
+        authFormModalpublicationStoreInfoAlertAnnonceCreateClose(){
             this.errorForgotPasswordFirst = null
             this.errorsForgotPasswordFirst = []
             this.errorForgotPasswordTwo = null
@@ -559,7 +581,7 @@ export default {
             this.errorsForgotPasswordThree = []
             this.errorLogin = false
             this.errorsLogin = []
-            $('#authFormModalpublicationCreateBySlugTypeShow').modal('hide');
+            $('#authFormModalpublicationStoreInfoAlertAnnonceCreate').modal('hide');
         },
 
 
@@ -580,7 +602,19 @@ export default {
 
             this.authSectionModal= action_auth
 
-            $('#authFormModalpublicationCreateBySlugTypeShow').modal('show');
+            if(this.authSectionModal == "CREATEALERTINFOS"){
+
+                this.loadingPublicationStoreInfoAlertAnnonceCreate = false
+
+            }else if(this.authSectionModal == "UPDATEALERTINFOS"){
+
+                this.loadingPublicationUpdateInfoAlertAnnonceCreate = false
+
+            }
+
+            $('#authFormModalpublicationStoreInfoAlertAnnonceCreate').modal('show');
+
+            
         },
 
         PreviousForgotPasswordStep(){
@@ -876,13 +910,23 @@ export default {
 
 
 
-                     if(this.authSectionModal== 'LIST'){
+                    if(this.authSectionModal== 'CREATEALERTINFOS'){ 
+                        
+                        this.authFormModalpublicationStoreInfoAlertAnnonceCreateClose()
 
-                        $('#authFormModalpublicationCreateBySlugTypeShow').modal('hide');
+                        this.loadingPublicationStoreInfoAlertAnnonceCreate = true
 
-                        this.getResults()
+                        this.publicationStoreInfoAlertAnnonceCreate()
 
+                    }else if(this.authSectionModal== 'UPDATEALERTINFOS'){ 
+                        
+                        this.authFormModalpublicationUpdateInfoAlertAnnonceCreateClose()
+
+                        this.loadingPublicationUpdateInfoAlertAnnonceCreate = true
+
+                        this.publicationUpdateInfoAlertAnnonceCreate()
                     }
+
 
                 }else{
 
@@ -907,13 +951,21 @@ export default {
                         title: this.getterLoginMessage
                     })
 
+                    if(this.authSectionModal== 'CREATEALERTINFOS'){ 
+                        
+                        this.authFormModalpublicationStoreInfoAlertAnnonceCreateClose()
 
-                     if(this.authSectionModal== 'LIST'){
+                        this.loadingPublicationStoreInfoAlertAnnonceCreate = true
 
-                        $('#authFormModalpublicationCreateBySlugTypeShow').modal('hide');
+                        this.publicationStoreInfoAlertAnnonceCreate()
 
-                        this.getResults()
+                    }else if(this.authSectionModal== 'UPDATEALERTINFOS'){ 
+                        
+                        this.authFormModalpublicationUpdateInfoAlertAnnonceCreateClose()
 
+                        this.loadingPublicationUpdateInfoAlertAnnonceCreate = true
+
+                        this.publicationUpdateInfoAlertAnnonceCreate()
                     }
                 }
 
@@ -987,13 +1039,25 @@ export default {
             }
         },
 
-        async show(){
+        
+        cancelFirst(){
+            this.title = null,
+            this.status = 1,
+            this.date_publish = null
+            this.show_date_publish = false
+            this.show_date_publish_end = true
+            this.alreadyCreate = false;
+        },
+
+        async publicationStoreInfoAlertAnnonce(){
+
+            this.loadingPublicationStoreInfoAlertAnnonceCreate = true
+
+            this.authSectionModal= 'CREATEALERTINFOS'
 
             if(localStorage.getItem('access_token') && localStorage.getItem('nbRsp')){
 
                 await this.actionsGetMeRole();
-
-                this.authSectionModal= 'LIST'
 
                 if(this.gettersRoleStatus === 'success'){
 
@@ -1001,81 +1065,211 @@ export default {
 
                     if((this.meRoleName == localStorage.getItem('nbRsp')) && (localStorage.getItem('nbRsp') === '&nbtsd!?')){
 
-                        this.getResults()
+                        this.publicationStoreInfoAlertAnnonceCreate()
 
                     }else{
 
-                        this.dataReady= 2
+                        this.authModalClick('CREATEALERTINFOS')
 
                     }
 
                 }else if(this.gettersRoleStatus === 'failed'){
 
-                    this.dataReady = 3;
+                    this.authModalClick('CREATEALERTINFOS')
                 }
 
             }else{
 
-                this.dataReady = 4;
+                this.authModalClick('CREATEALERTINFOS')
 
             }
 
         },
 
+        async publicationStoreInfoAlertAnnonceCreate(){
 
-        async getResults(page = 1){
+            this.loadingPublicationStoreInfoAlertAnnonceCreate = true
 
-            this.loading = true
+            this.authSectionModal= 'CREATEALERTINFOS'
 
-            this.authSectionModal= 'LIST'
+            this.publicationStoreInfoAlertAnnonceCreateMessage =  null
+            this.publicationStoreInfoAlertAnnonceCreateErrors = []
 
-            await this.actionsPublicationCreateBySlugTypeShowDataRequest({slug : this.$route.params.slug});
+            if(this.status == 1){
+                const date = new Date()
 
-            if( this.getterInfosPublicationCreateBySlugTypeShowStatus ==="success"){
+                this.date_publish = date.toISOString().slice(0, 16)
+            }
 
-                this.publicationCreateBySlugTypeShowData = this.getterInfosPublicationCreateBySlugTypeShowData
+            await this.actionsPublicationStoreInfoAlertAnnonceDataRequest({ slug : this.$route.params.slug, title : this.title, status : this.status, date_publish : this.date_publish,  date_publish_end : this.date_publish_end  });
 
-                this.categories = this.getterInfosPublicationCreateBySlugTypeShowData.categories
+            if( this.getterInfosPublicationStoreInfoAlertAnnonceStatus ==="success"){
 
-                this.tags = this.getterInfosPublicationCreateBySlugTypeShowData.tags
+                this.publicationStoreInfoAlertAnnonceCreateData = this.getterInfosPublicationStoreInfoAlertAnnonceData
 
-                this.empty = 0
+                this.publicationStoreInfoAlertAnnonceCreateMessage =  null
+                this.publicationStoreInfoAlertAnnonceCreateErrors = []
+                 
 
-                this.dataReady = 1
+                const Toast = this.$swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', this.$swal.stopTimer)
+                        toast.addEventListener('mouseleave', this.$swal.resumeTimer)
+                    }
+                })
 
-            }else if( this.getterInfosPublicationCreateBySlugTypeShowStatus ==="empty"){
+                Toast.fire({
+                    icon: 'success',
+                    title: this.getterInfosPublicationStoreInfoAlertAnnonceMessage
+                })
 
-                this.publicationCreateBySlugTypeShowMessage = this.getterInfosPublicationCreateBySlugTypeShowMessage
+                this.loadingPublicationStoreInfoAlertAnnonceCreate = false
 
-                this.publicationCreateBySlugTypeShowData = this.getterInfosPublicationCreateBySlugTypeShowData
+                this.publicationStoreInfoAlertAnnonceCreateMessage =  null
+                this.publicationStoreInfoAlertAnnonceCreateErrors = []
 
-                this.empty = 1
+                this.publicationStoreInfoAlertAnnonceCreateData = this.getterInfosPublicationStoreInfoAlertAnnonceData
 
-                this.dataReady = 1
+                this.alreadyCreate = true;
 
-            }else if(this.getterInfosPublicationCreateBySlugTypeShowStatus === 'failed'){
+            }else if( this.getterInfosPublicationStoreInfoAlertAnnonceStatus ==="empty"){
 
-                this.dataReady = 3;
+                this.publicationStoreInfoAlertAnnonceCreateMessage = this.getterInfosPublicationStoreInfoAlertAnnonceMessage
+
+                this.publicationStoreInfoAlertAnnonceCreateErrors = this.getterInfosPublicationStoreInfoAlertAnnonceErrors
+
+                this.loadingPublicationStoreInfoAlertAnnonceCreate = false
+
+
+            }else if( this.getterInfosPublicationStoreInfoAlertAnnonceStatus ==="error"){
+
+                this.publicationStoreInfoAlertAnnonceCreateMessage = this.getterInfosPublicationStoreInfoAlertAnnonceMessage
+
+                this.publicationStoreInfoAlertAnnonceCreateErrors = []
+
+                this.loadingPublicationStoreInfoAlertAnnonceCreate = false
+
+            }
+        },
+
+         async publicationUpdateInfoAlertAnnonce(){
+
+            this.loadingPublicationUpdateInfoAlertAnnonceCreate = true
+
+            this.authSectionModal= 'UPDATEALERTINFOS'
+
+            if(localStorage.getItem('access_token') && localStorage.getItem('nbRsp')){
+
+                await this.actionsGetMeRole();
+
+                if(this.gettersRoleStatus === 'success'){
+
+                    this.meRoleName = this.gettersMeRoleName
+
+                    if((this.meRoleName == localStorage.getItem('nbRsp')) && (localStorage.getItem('nbRsp') === '&nbtsd!?')){
+
+                        this.publicationUpdateInfoAlertAnnonceCreate()
+
+                    }else{
+
+                        this.authModalClick('UPDATEALERTINFOS')
+
+                    }
+
+                }else if(this.gettersRoleStatus === 'failed'){
+
+                    this.authModalClick('UPDATEALERTINFOS')
+                }
 
             }else{
 
-                this.publicationCreateBySlugTypeShowMessage = this.getterInfosPublicationCreateBySlugTypeShowMessage
-
-                this.empty = 3
-
-                this.dataReady = 4
+                this.authModalClick('UPDATEALERTINFOS')
 
             }
 
         },
 
+        async publicationUpdateInfoAlertAnnonceCreate(){
+
+            this.loadingPublicationUpdateInfoAlertAnnonceCreate = true
+
+            this.authSectionModal= 'UPDATEALERTINFOS'
+
+            this.publicationUpdateInfoAlertAnnonceCreateMessage =  null
+            this.publicationUpdateInfoAlertAnnonceCreateErrors = []
+
+            if(this.status == 1){
+                const date = new Date()
+
+                this.date_publish = date.toISOString().slice(0, 16)
+            }
+
+            await this.actionsPublicationUpdateInfoAlertAnnonceDataRequest({ slug : this.$route.params.slug, title : this.title, publication_slug :  this.publicationStoreInfoAlertAnnonceCreateData.publicationCreateData.slug, status : this.status, date_publish : this.date_publish,  date_publish_end : this.date_publish_end  });
+
+            if( this.getterInfosPublicationUpdateInfoAlertAnnonceStatus ==="success"){
+
+                this.publicationUpdateInfoAlertAnnonceCreateData = this.getterInfosPublicationUpdateInfoAlertAnnonceData
+
+                this.publicationUpdateInfoAlertAnnonceCreateMessage =  null
+                this.publicationUpdateInfoAlertAnnonceCreateErrors = []
+                 
+
+                const Toast = this.$swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', this.$swal.stopTimer)
+                        toast.addEventListener('mouseleave', this.$swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: this.getterInfosPublicationUpdateInfoAlertAnnonceMessage
+                })
+
+                this.loadingPublicationUpdateInfoAlertAnnonceCreate = false
+
+                this.publicationUpdateInfoAlertAnnonceCreateMessage =  null
+                this.publicationUpdateInfoAlertAnnonceCreateErrors = []
+
+                this.publicationStoreInfoAlertAnnonceCreateData = this.getterInfosPublicationUpdateInfoAlertAnnonceData
+
+                this.alreadyCreate = true;
+ 
+            }else if( this.getterInfosPublicationUpdateInfoAlertAnnonceStatus ==="empty"){
+
+                this.publicationUpdateInfoAlertAnnonceCreateMessage = this.getterInfosPublicationUpdateInfoAlertAnnonceMessage
+
+                this.publicationUpdateInfoAlertAnnonceCreateErrors = this.getterInfosPublicationUpdateInfoAlertAnnonceErrors
+
+                this.loadingPublicationUpdateInfoAlertAnnonceCreate = false
+
+
+            }else if( this.getterInfosPublicationUpdateInfoAlertAnnonceStatus ==="error"){
+
+                this.publicationUpdateInfoAlertAnnonceCreateMessage = this.getterInfosPublicationUpdateInfoAlertAnnonceMessage
+
+                this.publicationUpdateInfoAlertAnnonceCreateErrors = []
+
+                this.loadingPublicationUpdateInfoAlertAnnonceCreate = false
+
+            }
+        },
+ 
     },
     mounted() {
-
-        this.moment = moment
-        this.show();
+    
+        this.moment = moment 
     },
 };
 </script>
-
-<style src="vue-multiselect/dist/vue-multiselect.css"></style>
+ 
