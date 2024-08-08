@@ -119,6 +119,19 @@ changeProgram.use(VueSweetalert2);
 changeProgram.use(store);
 
 changeProgram.mount('#changeProgram')  
+
+//Importation du Composant des articles à afficher sur la page d'accueil
+
+import HomePageF from './components/frontoffice/home_page/home_page.vue'
+
+const home_page = createApp(HomePageF)
+
+home_page.use(VueSweetalert2);
+
+home_page.use(store);
+
+home_page.mount('#home_page') 
+
 //Gestion de tous les composants administrateurs
 
 import * as adminRouter from './router/adminRouter';

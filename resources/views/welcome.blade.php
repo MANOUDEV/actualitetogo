@@ -14,7 +14,7 @@
 
         </section>
 
-        <div id="home_page"></div> 
+        {{-- <div id="home_page"></div>  --}}
 
         <section class="position-relative" style="margin-top: -95px; margin-bottom: -25px">
 

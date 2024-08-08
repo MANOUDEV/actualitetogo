@@ -31,7 +31,11 @@ import contactModule from "./modules/frontoffice/home_page/contact"
 //Importation du module gérant le changement des status des publications
 
 import changeProgramModule from "./modules/frontoffice/home_page/changeProgram"
- 
+
+//Importation du module gérant les données des publications sur la page d'accueil
+
+import homePageModule from './modules/frontoffice/home_page/home_page'
+  
 //Le fonctionnalités pour l'authentification
 
 import loginModule from './modules/auth/login';
@@ -102,6 +106,10 @@ const store = createStore({
         //Déclaration du module gérant le statut des publication
 
         changeProgram: changeProgramModule,
+
+        //Déclaration du module gérant les données des publications sur la page d'accueil
+
+        homePage: homePageModule,
         
         //Déclaration des modules gérant les données du système d'authenitification
 
