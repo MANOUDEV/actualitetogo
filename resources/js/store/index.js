@@ -69,7 +69,6 @@ import  storePublicitesFirstAdminModule from './modules/backoffice/admin/publica
 import  storePublicitesTwoAdminModule from './modules/backoffice/admin/publications/create/publicites/storePublicitesTwo'
  
 import  storePublicitesThreeAdminModule from './modules/backoffice/admin/publications/create/publicites/storePublicitesThree'
- 
   
 //Importation des modules gérant les données de la partie des publicateurs
 
