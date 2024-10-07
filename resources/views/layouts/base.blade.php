@@ -26,13 +26,14 @@
         <link id="style-switch" rel="stylesheet" type="text/css" href="/assets/css/style.css">
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-         
+        
     </head>
     <body>
 
 
         @yield('content')
-
+ 
+    Cookies alert END -->
         <!-- =======================JS libraries, plugins and custom scripts -->
 
         <!-- Bootstrap JS -->
@@ -43,10 +44,7 @@
         <script defer src="/assets/vendor/sticky-js/sticky.min.js"></script>
 
         <!-- Template Functions -->
-        <script defer src="/assets/js/functions.js"></script>
-
-
-
+        <script defer src="/assets/js/functions.js"></script> 
         <script>
             navigator.serviceWorker.register("{{ URL::asset('service-worker.js') }}");
 
@@ -83,9 +81,6 @@
             }
 
             askForPermission()
-
-            
- 
         </script>
     </body>
 </html>

@@ -30,3 +30,24 @@ Route::get('/{slug}', [OneSlugController::class, 'slug']);
 Route::get('/tags/{slug}', [OneSlugController::class, 'tags']);
 
 Route::get('/authors/{slug}', [OneSlugController::class, 'authors']);
+
+//les routes pour l'authentification
+
+Route::get('/auth/login', [LoginController::class, 'login']);
+
+Route::get('/auth/register', [RegisterController::class, 'register']);
+
+Route::get('/auth/forgot_password', [ForgotPasswordController::class, 'forgot_password']);
+
+//Les routes pour les administrateurs
+
+Route::get('/admin/dashboard',[WebRouteController::class, 'administrateur']);
+
+Route::get('/admin/profile',[WebRouteController::class, 'administrateur']);
+ 
+//Les routes pour les publicateurs
+
+Route::get('/pub/dashboard',[WebRouteController::class, 'publicateur']);
+
+Route::get('/pub/profile',[WebRouteController::class, 'administrateur']);
+ 
