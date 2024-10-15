@@ -6,8 +6,8 @@
 
     @include('includes.header')
 
-    <main>
- 
+    <main> 
+        
     </main>
     <br>
     @include('includes.footer')

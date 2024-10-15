@@ -635,7 +635,7 @@ class IncludesController extends BaseController
         return $this->sendResponse(['publicationsPopularsData' => $publications, 'status' => 200], 'les publications populaires');
 
     }
-
+ 
     public function saveSubscription(Request $request)
     {
         $items = PushSubscription::create([

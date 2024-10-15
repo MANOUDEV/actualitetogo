@@ -1,4 +1,4 @@
- <div class="navbar-top d-none d-lg-block small">
+<div class="navbar-top d-none d-lg-block small">
     <div class="container">
         <div class="d-md-flex justify-content-between align-items-center my-2">
             <!-- Top bar left -->
