@@ -96,6 +96,29 @@ tagsPopulars.use(store)
 
 tagsPopulars.mount('#tagsPopulars')
  
+//Importation du Composant des articles à afficher sur la page d'accueil
+
+import HomePageF from './components/frontoffice/home_page/home_page.vue'
+
+const home_page = createApp(HomePageF)
+
+home_page.use(VueSweetalert2);
+
+home_page.use(store);
+
+home_page.mount('#home_page')
+
+//Importation du Composant de contact à afficher sur la page d'accueil
+
+import ContactF from './components/frontoffice/home_page/contact.vue'
+
+const contact = createApp(ContactF)
+
+contact.use(VueSweetalert2);
+
+contact.use(store);
+
+contact.mount('#contact')
 
 //Gestion de tous les composants administrateurs
 

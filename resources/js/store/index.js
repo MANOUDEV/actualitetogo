@@ -23,7 +23,19 @@ import articlesPopularsModule from './modules/frontoffice/footer/articlesPopular
 import categoryPopularsModule from './modules/frontoffice/footer/categoryPopulars'
 
 import tagsPopularsModule from './modules/frontoffice/footer/tagsPopulars'
- 
+
+//Importation du module gérant les données d'envoi de messages
+
+import contactModule from "./modules/frontoffice/home_page/contact"
+
+//Importation du module gérant le changement des status des publications
+
+import changeProgramModule from "./modules/frontoffice/home_page/changeProgram"
+
+//Importation du module gérant les données des publications sur la page d'accueil
+
+import homePageModule from './modules/frontoffice/home_page/home_page' 
+
 //Le fonctionnalités pour l'authentification
 
 import loginModule from './modules/auth/login';
@@ -57,8 +69,20 @@ const store = createStore({
         newsletter: newsletterModule,
         articlesPopulars: articlesPopularsModule,
         categoryPopulars: categoryPopularsModule,
-        tagsPopulars: tagsPopularsModule,  
-        
+        tagsPopulars: tagsPopularsModule,
+
+        //Déclaration du module gérant les données d'envoi des messages
+
+        contact: contactModule,
+
+        //Déclaration du module gérant le statut des publication
+
+        changeProgram: changeProgramModule,
+
+        //Déclaration du module gérant les données des publications sur la page d'accueil
+
+        homePage: homePageModule,
+
         //Déclaration des modules gérant les données du système d'authenitification
 
         login: loginModule,
@@ -70,7 +94,7 @@ const store = createStore({
         //Déclaration des modules gérant les données du système de la securité su site
 
         roleSecurity: roleModule,
-    } 
+    }
   });
 
   export default store;

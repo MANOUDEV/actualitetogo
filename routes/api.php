@@ -63,7 +63,27 @@ Route::get('/frontoffice/footer/category_populars', [IncludesController::class, 
 Route::get('/frontoffice/footer/articles_populars', [IncludesController::class, 'publicationsRequestData']);
 
 Route::post('/frontoffice/save-push-notification-sub', [IncludesController::class, 'saveSubscription']);
-   
+ 
+//Les routes pour les données de la page d'accueil
+
+Route::get('/frontoffice/home_page/togo_politique', [HomeController::class, 'togoPolitiqueDataRequest']);
+
+Route::get('/frontoffice/home_page/a_ne_pas_manquer_togo', [HomeController::class, 'aNePasManquerTogoDataRequest']);
+
+Route::get('/frontoffice/home_page/international_fenetre_afrique_sports', [HomeController::class, 'internationalFenetreSurLAfriqueSportsDataRequest']);
+
+Route::get('/frontoffice/home_page/societe', [HomeController::class, 'societeDataRequest']);
+
+Route::get('/frontoffice/home_page/opinion_faits_divers', [HomeController::class, 'opinionFaitsDiversDataRequest']);
+
+Route::get('/frontoffice/home_page/important', [HomeController::class, 'importantDataRequest']);
+
+Route::get('/frontoffice/home_page/populars_comments', [HomeController::class, 'popularsCommentsDataRequest']);
+ 
+//Gestion d'envoi de message sans connexion de l'utilisateur
+
+Route::post('/home/contact', [IncludesController::class, 'submitContact']);
+ 
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
 
     //Gestion du système de mot de passe oublié
@@ -99,5 +119,8 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     Route::put('updateMePassword', [ProfileController::class, 'updateMePassword'])->middleware('auth:api');
 
     Route::get('role', [ProfileController::class, 'getRole'])->middleware('auth:api');
- 
+
+    //Gestion d'envoi de message avec connexion de l'utilisateur
+
+    Route::post('/home/contact_auth', [UserActionAuthController::class, 'submitContactAuth'])->middleware('auth:api');
 });

@@ -35,8 +35,6 @@ Route::get('/authors/{slug}', [OneSlugController::class, 'authors']);
 
 Route::get('/auth/login', [LoginController::class, 'login']);
 
-Route::view('/auth/profile', 'authentication.profile');
-
 Route::get('/auth/register', [RegisterController::class, 'register']);
 
 Route::get('/auth/forgot_password', [ForgotPasswordController::class, 'forgot_password']);
