@@ -78,6 +78,21 @@ Route::post('/home/visitor/create_comments', [IncludesController::class, 'genera
 
 Route::get('/home/visitor/{matricule}/check_comments', [IncludesController::class, 'checkVisitorMatriculeComments']);
 
+//Les routes pour les matricules de référence
+
+Route::post('/home/visitor/create_views', [IncludesController::class, 'generateVisitorMatriculeViews']);
+
+Route::get('/home/visitor/{matricule}/check_views', [IncludesController::class, 'checkVisitorMatriculeViews']);
+
+Route::post('/home/visitor/create_likes', [IncludesController::class, 'generateVisitorMatriculeLikes']);
+
+Route::get('/home/visitor/{matricule}/check_likes', [IncludesController::class, 'checkVisitorMatriculeLikes']);
+
+Route::post('/home/visitor/create_comments', [IncludesController::class, 'generateVisitorMatriculeComments']);
+
+Route::get('/home/visitor/{matricule}/check_comments', [IncludesController::class, 'checkVisitorMatriculeComments']);
+ 
+
 //Gestion d'envoi de message sans connexion de l'utilisateur
 
 Route::post('/home/contact', [IncludesController::class, 'submitContact']);

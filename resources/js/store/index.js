@@ -83,6 +83,12 @@ const store = createStore({
         categoryPopulars: categoryPopularsModule,
         tagsPopulars: tagsPopularsModule,
 
+        //Déclaration du module gérant les données de création de matricule pour visiteurs
+
+        visitorsActionsViews: visitorsActionsViewsModule,
+        visitorsActionsLikes: visitorsActionsLikesModule,
+        visitorsActionsComments: visitorsActionsCommentsModule, 
+        
         //Déclaration du module gérant les données d'envoi des messages
 
         contact: contactModule,
