@@ -43,7 +43,7 @@ class IncludesController extends BaseController
 
         }else if ($togoactualiteDataCount !== 0){
 
-            $togoactualiteData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            $togoactualiteData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -86,7 +86,7 @@ class IncludesController extends BaseController
 
         }else if ($rubriquesDataCount !== 0){
 
-            $rubriquesData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            $rubriquesData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -123,7 +123,7 @@ class IncludesController extends BaseController
 
         }else if ($diplomatieDataCount !== 0){
 
-            $diplomatieData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            $diplomatieData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -160,7 +160,7 @@ class IncludesController extends BaseController
 
         }else if ($chroniquesDataCount !== 0){
 
-            $chroniquesData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            $chroniquesData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -197,7 +197,7 @@ class IncludesController extends BaseController
 
         }else if ($economieDataCount !== 0){
 
-            $economieData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            $economieData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -237,7 +237,7 @@ class IncludesController extends BaseController
 
         }else if ($diasporaDataCount !== 0){
 
-            $diasporaData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            $diasporaData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -275,7 +275,7 @@ class IncludesController extends BaseController
 
         }else if ($fenetreSurLAfriqueDataCount !== 0){
 
-            $fenetreSurLAfriqueData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            $fenetreSurLAfriqueData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -315,7 +315,7 @@ class IncludesController extends BaseController
 
         }else if ($internationalDataCount !== 0){
 
-            $internationalData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            $internationalData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -356,7 +356,7 @@ class IncludesController extends BaseController
 
         }else if ($mondeDataCount !== 0){
 
-            $mondeData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            $mondeData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -397,7 +397,7 @@ class IncludesController extends BaseController
 
         }else if ($afriqueDataCount !== 0){
 
-            $afriqueData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            $afriqueData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -438,7 +438,7 @@ class IncludesController extends BaseController
 
         }else if ($sportsDataCount !== 0){
 
-            $sportsData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            $sportsData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -476,7 +476,7 @@ class IncludesController extends BaseController
 
         }else if ($canDataCount !== 0){
 
-            $canData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            $canData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -514,7 +514,7 @@ class IncludesController extends BaseController
 
         }else if ($togoDataCount !== 0){
 
-            $togoData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            $togoData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
