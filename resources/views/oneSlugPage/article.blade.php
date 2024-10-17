@@ -7,7 +7,7 @@
 @include('includes.header')
 
     <main style="margin-top: -45px; margin-bottom: -25px">
-        
+
         <section>
             <div class="container">
                 <div class="row">
@@ -24,20 +24,11 @@
                                 data-items-md="1"
                                 data-items-sm="1"
                                 data-items-xs="1">
-                                @foreach ($files as $file )
                                     <div>
                                         <div class="card card-fold bg-dark">
-                                            <img src="https://togoactualite.com/wp-content/{{$file->file_url}}" class="card-img-top alauneH_first_section_img_responsive" alt="Card image">
-                                            @if($file->description)
-                                                <div class="card-body">
-                                                    <p class="m-0 text-white">{!! $file->description !!}</p>
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                @endforeach
-
-
+                                            <img src="{{$article->image_cover_url}}" class="card-img-top alauneH_first_section_img_responsive" alt="{{$article->title}}">
+                                         </div>
+                                    </div> 
                             </div>
                         </div>
                     </div>
@@ -129,10 +120,10 @@
                             <div>
                                 <div class="d-sm-flex align-items-center justify-content-between">
                                     <div>
-                                        <h4 class="m-0"><a href="/auteurs/{{$article->author_slug}}" class="text-reset">{{$article->author_name}}</a></h4>
+                                        <h4 class="m-0"><a href="/authors/{{$article->author_slug}}" class="text-reset">{{$article->author_name}}</a></h4>
                                         <small>Auteur de cet article</small>
                                     </div>
-                                    <a href="/auteurs/{{$article->author_slug}}" class="btn btn-sm btn-success">Voir ces articles</a>
+                                    <a href="/authors/{{$article->author_slug}}" class="btn btn-sm btn-success">Voir ces articles</a>
                                 </div>
                                 <p class="my-2"> Nous tenons à rappeler aux visiteurs du site que
                                     sans partenariat avec togoactualite.com, la reprise des articles même partielle est strictement interdite.
@@ -141,7 +132,9 @@
 
                             </div>
                         </div>
+
                         <p> {!! $article->content !!} </p>
+
                         <!-- =======================Adv END -->
                         @if ($previous && $next)
                             <div class="row g-0">
@@ -158,7 +151,7 @@
                         @endif
 
                         <div class="mt-2">
-                            <h2 class="my-3"><i class="bi bi-symmetry-vertical me-2"></i>A lire aussi</h2>
+                            <h2 class="my-3"><i class="bi bi-symmetry-vertical me-2"></i>Voir aussi</h2>
                             <div class="tiny-slider arrow-hover arrow-blur arrow-dark arrow-round">
                                 <div class="tiny-slider-inner"
                                     data-autoplay="true"
@@ -174,7 +167,7 @@
                                     <div class="card">
                                         <!-- Card img -->
                                         <div class="position-relative">
-                                            <img class="card-img" src="https://togoactualite.com/wp-content/{{$similar->og_file_url}}" alt="Card image" style="height: 220px; object-fit: cover">
+                                            <img class="card-img" src="{{$similar->image_cover_url}}" alt="{{$article->title}}" style="height: 220px; object-fit: cover">
                                             <div class="card-img-overlay d-flex align-items-start flex-column p-3">
 
                                                 <!-- Card overlay bottom -->
@@ -200,14 +193,14 @@
                         </div>
 
                         <div id="comments">
-                             
+
                         </div>
                     </div>
                     <div class="col-lg-3 mt-5 mt-lg-0">
                         <div data-sticky data-margin-top="80" data-sticky-for="767">
                             <!-- Categories -->
                             <div class="row g-2">
-                                 
+
                                  <!-- Advertisement -->
                                  <div class="mt-4">
                                     <a href="#" class="d-block card-img-flash">
@@ -234,7 +227,45 @@
                                             <div class="card">
                                                 <!-- Card img -->
                                                 <div class="position-relative">
-                                                    <img class="card-img" src="https://togoactualite.com/wp-content/{{ $result->og_file_url }}" style="height: 230px; width: 550px ; object-fit: cover" alt="{{ $result->title }}">
+                                                    <img class="card-img" src="{{ $result->image_cover_url }}" style="height: 230px; width: 550px ; object-fit: cover" alt="{{ $result->title }}">
+                                                    <div class="card-img-overlay d-flex align-items-start flex-column p-3">
+
+                                                        <!-- Card overlay bottom -->
+                                                        <div class="w-100 mt-auto">
+                                                            <a href="/{{$result->category_slug}}" class="badge text-bg-info mb-2"><i class="fas fa-circle me-2 small fw-bold"></i>{{$result->category_name}}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body p-0 pt-3">
+                                                    <h6 class="card-title"><a href="/{{$result->slug}}" class="btn-link text-reset fw-bold">{!! $result->title !!}</a></h6>
+                                                </div>
+                                            </div>
+                                            <!-- Card item END -->
+
+                                            @endforeach
+
+
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <h5 class="mb-3">TOGO POLITIQUE </h5>
+                                    <div class="tiny-slider dots-creative mt-3 mb-1">
+                                        <div class="tiny-slider-inner"
+                                            data-autoplay="true"
+                                            data-hoverpause="true"
+                                            data-gutter="0"
+                                            data-arrow="false"
+                                            data-dots="true"
+                                            data-items="1">
+
+                                            @foreach ($politiqueFirst as  $result)
+
+                                                <!-- Card item START -->
+                                            <div class="card">
+                                                <!-- Card img -->
+                                                <div class="position-relative">
+                                                    <img class="card-img" src="{{ $result->image_cover_url }}" style="height: 230px; width: 550px ; object-fit: cover" alt="{{ $result->title }}">
                                                     <div class="card-img-overlay d-flex align-items-start flex-column p-3">
 
                                                         <!-- Card overlay bottom -->
@@ -256,7 +287,7 @@
                                     </div>
                                 </div>
 
-                               
+
 
                                 <!-- Right sidebar END -->
                             </div>
