@@ -1,3 +1,1 @@
-User-agent: *
-Disallow:
 google.com, pub-5594963864359932, DIRECT, f08c47fec0942fa0

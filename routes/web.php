@@ -31,6 +31,9 @@ Route::get('/tags/{slug}', [OneSlugController::class, 'tags']);
 
 Route::get('/authors/{slug}', [OneSlugController::class, 'authors']);
 
+
+Route::view('/ads.txt', 'oneSlugPage.ads');
+
 //les routes pour l'authentification
 
 Route::get('/auth/login', [LoginController::class, 'login']);

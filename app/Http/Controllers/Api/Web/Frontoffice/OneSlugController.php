@@ -87,6 +87,10 @@ class OneSlugController extends BaseController
 
                 return view('oneSlugPage.mentions_legales');
 
+            }elseif($slug === 'ads.txt'){ 
+
+                return view('oneSlugPage.ads');
+
             }elseif($slug === 'confidentialite'){
 
                 SEOMeta::setTitle('Politique de confidentialité | Togo actualité');

@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+        <meta name="google-adsense-account" content="ca-pub-5594963864359932">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+        
         <title>@yield('title') | Togo actualité</title>
         {!! SEOMeta::generate() !!}
         {!! OpenGraph::generate() !!}
@@ -24,16 +24,17 @@
         <link rel="stylesheet" type="text/css" href="/assets/vendor/tiny-slider/tiny-slider.css">
         <!-- Theme CSS -->
         <link id="style-switch" rel="stylesheet" type="text/css" href="/assets/css/style.css">
-
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
         
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5594963864359932"
+     crossorigin="anonymous"></script>
     </head>
     <body>
 
 
         @yield('content')
- 
-    Cookies alert END -->
+
+        
         <!-- =======================JS libraries, plugins and custom scripts -->
 
         <!-- Bootstrap JS -->
@@ -42,9 +43,10 @@
         <!-- Vendors -->
         <script defer src="/assets/vendor/tiny-slider/tiny-slider.js"></script>
         <script defer src="/assets/vendor/sticky-js/sticky.min.js"></script>
-
+       
         <!-- Template Functions -->
-        <script defer src="/assets/js/functions.js"></script> 
+        <script defer src="/assets/js/functions.js"></script>
+
         <script>
             navigator.serviceWorker.register("{{ URL::asset('service-worker.js') }}");
 
@@ -81,6 +83,14 @@
             }
 
             askForPermission()
+
         </script>
+        {{-- Public Key:
+        BPQaQ_Te_Pz4AwpVdB8-PAGwSHFfL7Ui1QROzgbdslAqDq-EQ4bgapVGkKDgSEjjodwJCW2Ls8ypn_DxGoCW1HE
+
+        Private Key:
+        qwJ1mNZ2OUcBOUcNuE8Z3WdsSO2PRfpCiW32IeGgJGM --}}
+       
+
     </body>
 </html>
