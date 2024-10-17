@@ -889,7 +889,7 @@ class IncludesController extends BaseController
 
     public function articleState($slug, $local_storage_views, $local_storage_likes){
 
-       $slug =  str_replace('https://actualitetogo.test/', '', $slug);
+       $slug =  str_replace('https://actualitetogo.com/', '', $slug);
 
         $article = Publication::where('status', 1)->where('slug', $slug)->where('deja_citer', 0)->first();
 
@@ -954,7 +954,7 @@ class IncludesController extends BaseController
 
     public function articleComments($slug, $local_storage_comments){
 
-        $slug =  str_replace('https://actualitetogo.test/', '', $slug);
+        $slug =  str_replace('https://actualitetogo.com/', '', $slug);
 
         $article = Publication::where('status', 1)->where('slug', $slug)->first();
 
