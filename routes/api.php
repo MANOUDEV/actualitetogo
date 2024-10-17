@@ -64,6 +64,31 @@ Route::get('/frontoffice/footer/articles_populars', [IncludesController::class, 
 
 Route::post('/frontoffice/save-push-notification-sub', [IncludesController::class, 'saveSubscription']);
 
+//Les routes pour les matricules de référence
+
+Route::post('/home/visitor/create_views', [IncludesController::class, 'generateVisitorMatriculeViews']);
+
+Route::get('/home/visitor/{matricule}/check_views', [IncludesController::class, 'checkVisitorMatriculeViews']);
+
+Route::post('/home/visitor/create_likes', [IncludesController::class, 'generateVisitorMatriculeLikes']);
+
+Route::get('/home/visitor/{matricule}/check_likes', [IncludesController::class, 'checkVisitorMatriculeLikes']);
+
+Route::post('/home/visitor/create_comments', [IncludesController::class, 'generateVisitorMatriculeComments']);
+
+Route::get('/home/visitor/{matricule}/check_comments', [IncludesController::class, 'checkVisitorMatriculeComments']);
+
+//Gestion d'envoi de message sans connexion de l'utilisateur
+
+Route::post('/home/contact', [IncludesController::class, 'submitContact']);
+
+//Les routes pour les données de la page d'un article
+
+Route::get('/article/{slug}/article_states/{local_storage_views}/check_likes_views/{local_storage_likes}', [IncludesController::class, 'articleState']);
+
+Route::get('/article/{slug}/article_comments_states/{local_storage_comment}/check_comments', [IncludesController::class, 'articleComments']);
+
+
 //Les routes pour les données de la page d'accueil
 
 Route::get('/frontoffice/home_page/togo_politique', [HomeController::class, 'togoPolitiqueDataRequest']);
@@ -79,10 +104,6 @@ Route::get('/frontoffice/home_page/opinion_faits_divers', [HomeController::class
 Route::get('/frontoffice/home_page/important', [HomeController::class, 'importantDataRequest']);
 
 Route::get('/frontoffice/home_page/populars_comments', [HomeController::class, 'popularsCommentsDataRequest']);
-
-//Gestion d'envoi de message sans connexion de l'utilisateur
-
-Route::post('/home/contact', [IncludesController::class, 'submitContact']);
 
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
 
@@ -123,4 +144,11 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     //Gestion d'envoi de message avec connexion de l'utilisateur
 
     Route::post('/home/contact_auth', [UserActionAuthController::class, 'submitContactAuth'])->middleware('auth:api');
+
+    //Gestion des likes avec connexion de l'utilisateur
+
+    Route::get('/article/{slug}/article_likes/{local_storage_likes}/check_likes', [UserActionAuthController::class, 'actionsLikes'])->middleware('auth:api');
+
+    Route::post('article/{slug}/actions_comments/{local_storage_comment}/comments_creator', [UserActionAuthController::class, 'submitCommentAuth'])->middleware('auth:api');
+    
 });

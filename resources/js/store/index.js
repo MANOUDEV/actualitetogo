@@ -24,17 +24,29 @@ import categoryPopularsModule from './modules/frontoffice/footer/categoryPopular
 
 import tagsPopularsModule from './modules/frontoffice/footer/tagsPopulars'
 
+//Importation du module gérant les données de création de matricule pour visiteurs
+
+import visitorsActionsViewsModule from './modules/frontoffice/visitors_actions/visitors_actions_views'
+
+import visitorsActionsLikesModule from './modules/frontoffice/visitors_actions/visitors_actions_likes'
+
+import visitorsActionsCommentsModule from './modules/frontoffice/visitors_actions/visitors_actions_comments'
+
 //Importation du module gérant les données d'envoi de messages
 
 import contactModule from "./modules/frontoffice/home_page/contact"
 
+//Importation du module gérant les données des publications sur la page d'accueil
+
+import homePageModule from './modules/frontoffice/home_page/home_page'
+
+//Importation du module gérant les données sur article
+
+import articleModule from './modules/frontoffice/article/article'
+
 //Importation du module gérant le changement des status des publications
 
 import changeProgramModule from "./modules/frontoffice/home_page/changeProgram"
-
-//Importation du module gérant les données des publications sur la page d'accueil
-
-import homePageModule from './modules/frontoffice/home_page/home_page' 
 
 //Le fonctionnalités pour l'authentification
 
@@ -75,13 +87,17 @@ const store = createStore({
 
         contact: contactModule,
 
-        //Déclaration du module gérant le statut des publication
-
-        changeProgram: changeProgramModule,
-
         //Déclaration du module gérant les données des publications sur la page d'accueil
 
         homePage: homePageModule,
+
+        //Déclaration du module gérant les données sur un article
+
+        article: articleModule,
+
+        //Déclaration du module gérant le statut des publication
+
+        changeProgram: changeProgramModule,
 
         //Déclaration des modules gérant les données du système d'authenitification
 

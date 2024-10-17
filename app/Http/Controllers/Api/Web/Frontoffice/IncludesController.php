@@ -8,6 +8,12 @@ use App\Models\Publication;
 use App\Models\Message;
 use App\Models\PushSubscription;
 use App\Models\SenderMessage;
+use App\Models\PublicationViews;
+use App\Models\PublicationLikes;
+use App\Models\Comment;
+use App\Models\VisitorMatriculeViews;
+use App\Models\VisitorMatriculeComments;
+use App\Models\VisitorMatriculeLikes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -37,7 +43,7 @@ class IncludesController extends BaseController
 
         }else if ($togoactualiteDataCount !== 0){
 
-            $togoactualiteData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
+            $togoactualiteData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -80,7 +86,7 @@ class IncludesController extends BaseController
 
         }else if ($rubriquesDataCount !== 0){
 
-            $rubriquesData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
+            $rubriquesData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -117,7 +123,7 @@ class IncludesController extends BaseController
 
         }else if ($diplomatieDataCount !== 0){
 
-            $diplomatieData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
+            $diplomatieData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -154,7 +160,7 @@ class IncludesController extends BaseController
 
         }else if ($chroniquesDataCount !== 0){
 
-            $chroniquesData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
+            $chroniquesData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -191,7 +197,7 @@ class IncludesController extends BaseController
 
         }else if ($economieDataCount !== 0){
 
-            $economieData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
+            $economieData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -231,7 +237,7 @@ class IncludesController extends BaseController
 
         }else if ($diasporaDataCount !== 0){
 
-            $diasporaData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
+            $diasporaData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -269,7 +275,7 @@ class IncludesController extends BaseController
 
         }else if ($fenetreSurLAfriqueDataCount !== 0){
 
-            $fenetreSurLAfriqueData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
+            $fenetreSurLAfriqueData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -309,7 +315,7 @@ class IncludesController extends BaseController
 
         }else if ($internationalDataCount !== 0){
 
-            $internationalData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
+            $internationalData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -350,7 +356,7 @@ class IncludesController extends BaseController
 
         }else if ($mondeDataCount !== 0){
 
-            $mondeData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
+            $mondeData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -391,7 +397,7 @@ class IncludesController extends BaseController
 
         }else if ($afriqueDataCount !== 0){
 
-            $afriqueData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
+            $afriqueData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -432,7 +438,7 @@ class IncludesController extends BaseController
 
         }else if ($sportsDataCount !== 0){
 
-            $sportsData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
+            $sportsData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -470,7 +476,7 @@ class IncludesController extends BaseController
 
         }else if ($canDataCount !== 0){
 
-            $canData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
+            $canData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -508,7 +514,7 @@ class IncludesController extends BaseController
 
         }else if ($togoDataCount !== 0){
 
-            $togoData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","image_cover_url"))
+            $togoData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
             ->where(function ($query) {
                 $query->where("status", 1);
             })->where(function ($query) {
@@ -702,10 +708,275 @@ class IncludesController extends BaseController
 
     public function saveSubscription(Request $request)
     {
-        $items = PushSubscription::create([
-            'subscriptions' => $request->sub
-        ]);
-         
-        return response()->json(['message' => 'Added Successfully'], 200);
+        $items = new PushSubscription();
+        $items->subscriptions = json_decode($request->sub);
+        $items->save();
+
+        return response()->json(['message' => 'added successfully'], 200);
     }
+
+
+    public function generateVisitorMatriculeViews(){
+
+        $matricule_visitors_count = VisitorMatriculeViews::count();
+
+        if($matricule_visitors_count == 0){
+
+            $visitor_matricule_create = VisitorMatriculeViews::create([
+                'matricule_reference' => $this->str_replace_all("/", "", Hash::make(time().'-1'))
+            ]);
+
+            return $this->sendResponse(['visitor_matricule_create' => $visitor_matricule_create, 'status' => 200], 'Matricule de référence pour un visiteur géneré.');
+
+        }else{
+
+            $matricule_visitor_latest = VisitorMatriculeViews::latest()->first();
+
+            if($matricule_visitor_latest){
+
+                $visitor_matricule_create = VisitorMatriculeViews::create([
+                    'matricule_reference' => $this->str_replace_all("/", "", Hash::make(time().'-'.$matricule_visitor_latest->id + 1))
+                ]);
+
+                return $this->sendResponse(['visitor_matricule_create' => $visitor_matricule_create, 'status' => 200], 'Matricule de référence pour un visiteur géneré.');
+
+            }else{
+                return $this->sendResponse(['result' => 'Error', 'status' => 401], 'Impossible de générer un matricule de référence pour ce visiteur.');
+            }
+
+        }
+
+    }
+
+    public function checkVisitorMatriculeViews($matricule) {
+
+        $matricule_visitors_count = VisitorMatriculeViews::count();
+
+        if($matricule_visitors_count !== 0){
+
+            $check_matricule_reference = VisitorMatriculeViews::where('matricule_reference', $matricule)->first();
+
+            if($check_matricule_reference){
+
+                return $this->sendResponse(['check_matricule_reference' => $check_matricule_reference, 'status' => 200], 'Ce matricule de réference existe déjà.');
+
+            }else{
+
+                return $this->sendResponse(['result' => 'Error', 'status' => 401], 'Ce matricule de réference n\'existe pas encore.');
+
+            }
+        }else{
+
+            return $this->sendResponse(['result' => 'Error', 'status' => 401], 'Aucun matricule de réference n\'existe encore.');
+
+        }
+
+    }
+
+    public function generateVisitorMatriculeLikes(){
+
+        $matricule_visitors_count = VisitorMatriculeLikes::count();
+
+        if($matricule_visitors_count == 0){
+
+            $visitor_matricule_create = VisitorMatriculeLikes::create([
+                'matricule_reference' => $this->str_replace_all("/", "", Hash::make(time().'-1'))
+            ]);
+
+            return $this->sendResponse(['visitor_matricule_create' => $visitor_matricule_create, 'status' => 200], 'Matricule de référence pour un visiteur géneré.');
+
+        }else{
+
+            $matricule_visitor_latest = VisitorMatriculeLikes::latest()->first();
+
+            if($matricule_visitor_latest){
+
+                $visitor_matricule_create = VisitorMatriculeLikes::create([
+                    'matricule_reference' => $this->str_replace_all("/", "", Hash::make(time().'-'.$matricule_visitor_latest->id + 1))
+                ]);
+
+                return $this->sendResponse(['visitor_matricule_create' => $visitor_matricule_create, 'status' => 200], 'Matricule de référence pour un visiteur géneré.');
+
+            }else{
+                return $this->sendResponse(['result' => 'Error', 'status' => 401], 'Impossible de générer un matricule de référence pour ce visiteur.');
+            }
+
+        }
+
+    }
+
+    public function checkVisitorMatriculeLikes($matricule) {
+
+        $matricule_visitors_count = VisitorMatriculeLikes::count();
+
+        if($matricule_visitors_count !== 0){
+
+            $check_matricule_reference = VisitorMatriculeLikes::where('matricule_reference', $matricule)->first();
+
+            if($check_matricule_reference){
+
+                return $this->sendResponse(['check_matricule_reference' => $check_matricule_reference, 'status' => 200], 'Ce matricule de réference existe déjà.');
+
+            }else{
+
+                return $this->sendResponse(['result' => 'Error', 'status' => 401], 'Ce matricule de réference n\'existe pas encore.');
+
+            }
+        }else{
+
+            return $this->sendResponse(['result' => 'Error', 'status' => 401], 'Aucun matricule de réference n\'existe encore.');
+
+        }
+
+    }
+
+    public function generateVisitorMatriculeComments(){
+
+        $matricule_visitors_count = VisitorMatriculeComments::count();
+
+        if($matricule_visitors_count == 0){
+
+            $visitor_matricule_create = VisitorMatriculeComments::create([
+                'matricule_reference' => $this->str_replace_all("/", "", Hash::make(time().'-1'))
+            ]);
+
+            return $this->sendResponse(['visitor_matricule_create' => $visitor_matricule_create, 'status' => 200], 'Matricule de référence pour un visiteur géneré.');
+
+        }else{
+
+            $matricule_visitor_latest = VisitorMatriculeComments::latest()->first();
+
+            if($matricule_visitor_latest){
+
+                $visitor_matricule_create = VisitorMatriculeComments::create([
+                    'matricule_reference' => $this->str_replace_all("/", "", Hash::make(time().'-'.$matricule_visitor_latest->id + 1))
+                ]);
+
+                return $this->sendResponse(['visitor_matricule_create' => $visitor_matricule_create, 'status' => 200], 'Matricule de référence pour un visiteur géneré.');
+
+            }else{
+                return $this->sendResponse(['result' => 'Error', 'status' => 401], 'Impossible de générer un matricule de référence pour ce visiteur.');
+            }
+
+        }
+
+    }
+
+    public function checkVisitorMatriculeComments($matricule) {
+
+        $matricule_visitors_count = VisitorMatriculeComments::count();
+
+        if($matricule_visitors_count !== 0){
+
+            $check_matricule_reference = VisitorMatriculeComments::where('matricule_reference', $matricule)->first();
+
+            if($check_matricule_reference){
+
+                return $this->sendResponse(['check_matricule_reference' => $check_matricule_reference, 'status' => 200], 'Ce matricule de réference existe déjà.');
+
+            }else{
+
+                return $this->sendResponse(['result' => 'Error', 'status' => 401], 'Ce matricule de réference n\'existe pas encore.');
+
+            }
+        }else{
+
+            return $this->sendResponse(['result' => 'Error', 'status' => 401], 'Aucun matricule de réference n\'existe encore.');
+
+        }
+
+    }
+
+    public function articleState($slug, $local_storage_views, $local_storage_likes){
+
+       $slug =  str_replace('https://actualitetogo.test/', '', $slug);
+
+        $article = Publication::where('status', 1)->where('slug', $slug)->where('deja_citer', 0)->first();
+
+        $user_views = VisitorMatriculeViews::where('matricule_reference', $local_storage_views)->first();
+
+        $user_likes = VisitorMatriculeLikes::where('matricule_reference', $local_storage_likes)->first();
+
+        if($article && $user_views && $user_likes){
+
+            $check_views = PublicationViews::where('publication_id', $article->id)->where('visitor_matricule_id', $user_views->id)->first();
+
+            if($check_views){
+
+                $check_likes = PublicationLikes::where('publication_id', $article->id)->where('visitor_matricule_id', $user_likes->id)->first();
+
+                if($check_likes){
+
+                    return $this->sendResponse(['article' => $article, 'status' => 202], 'Les statistiques sur un article.');
+
+                }else{
+
+                    return $this->sendResponse(['article' => $article, 'status' => 201], 'Les statistiques sur un article.');
+
+                }
+
+            }else{
+
+                $articles = Publication::where('status', 1)->where('slug', $slug)->where('deja_citer', 1)->get();
+
+                foreach($articles as $result){
+
+                    $views_create = PublicationViews::create([
+                        'visitor_matricule_id' => $user_views->id,
+                        'publication_id' => $result->id
+                    ]);
+
+                    $result->views_count += 1;
+
+                    $result->update();
+
+                }
+
+                $view_create = PublicationViews::create([
+                    'visitor_matricule_id' => $user_views->id,
+                    'publication_id' => $article->id
+                ]);
+
+                $article->views_count += 1;
+
+                $article->update();
+
+                return $this->sendResponse(['article' => $article, 'status' => 200], 'Les statistiques sur un article.');
+            }
+
+        }else{
+
+            return $this->sendResponse(['article' => null, 'status' => 422], 'Impossible de chager les données.');
+
+        }
+
+    }
+
+    public function articleComments($slug, $local_storage_comments){
+
+        $slug =  str_replace('https://actualitetogo.test/', '', $slug);
+
+        $article = Publication::where('status', 1)->where('slug', $slug)->first();
+
+        $user = VisitorMatriculeComments::where('matricule_reference', $local_storage_comments)->first();
+
+        if($article && $user){
+
+            $comments = Comment::select(array("comments.id", "comments.content", "comments.date_publish", "commentators.username", "commentators.nom_complet", "comments.commentator_id"))
+            ->where('comments.status', 1)
+            ->where('comments.publication_id', $article->id)
+            ->leftJoin("commentators", "commentators.id", "=", "comments.commentator_id")
+            ->orderBy('comments.date_publish', 'desc')
+            ->get();
+
+            return $this->sendResponse(['article' => $article, 'comments' => $comments, 'status' => 200], 'Les commentaires sur un article.');
+
+        }else{
+
+            return $this->sendResponse(['article' => null, 'status' => 422], 'Impossible de chager les données.');
+
+        }
+
+    }
+
 }
