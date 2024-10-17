@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\Api\Web\Frontoffice\IncludesController;
 use App\Http\Controllers\Api\Web\Frontoffice\HomeController;
- 
+
 use App\Http\Controllers\Api\Web\Authentication\RegisterController;
 use App\Http\Controllers\Api\Web\Authentication\ForgotPasswordController;
 use App\Http\Controllers\Api\Web\Authentication\LoginController;
@@ -63,7 +63,7 @@ Route::get('/frontoffice/footer/category_populars', [IncludesController::class, 
 Route::get('/frontoffice/footer/articles_populars', [IncludesController::class, 'publicationsRequestData']);
 
 Route::post('/frontoffice/save-push-notification-sub', [IncludesController::class, 'saveSubscription']);
- 
+
 //Les routes pour les données de la page d'accueil
 
 Route::get('/frontoffice/home_page/togo_politique', [HomeController::class, 'togoPolitiqueDataRequest']);
@@ -79,11 +79,11 @@ Route::get('/frontoffice/home_page/opinion_faits_divers', [HomeController::class
 Route::get('/frontoffice/home_page/important', [HomeController::class, 'importantDataRequest']);
 
 Route::get('/frontoffice/home_page/populars_comments', [HomeController::class, 'popularsCommentsDataRequest']);
- 
+
 //Gestion d'envoi de message sans connexion de l'utilisateur
 
 Route::post('/home/contact', [IncludesController::class, 'submitContact']);
- 
+
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
 
     //Gestion du système de mot de passe oublié
