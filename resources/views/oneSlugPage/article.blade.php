@@ -132,8 +132,13 @@
 
                             </div>
                         </div>
+                        <div>
+                            <a href="#" class="card-img-flash d-block">
+                                <img src="/assets/images/adv-2.png" alt="adv">
+                            </a>
+                        </div>
 
-                        <p> {!! $article->content !!} </p>
+                        <p> {!! showPub($article->content, $categoriesH[0]->id, $article_id)  !!} </p>
 
                         <!-- =======================Adv END -->
                         @if ($previous && $next)
@@ -149,7 +154,11 @@
                             </div>
                             <!-- Related post START -->
                         @endif
-
+                        <div>
+                            <a href="#" class="card-img-flash d-block">
+                                <img src="/assets/images/adv-2.png" alt="adv">
+                            </a>
+                        </div>
                         <div class="mt-2">
                             <h2 class="my-3"><i class="bi bi-symmetry-vertical me-2"></i>Voir aussi</h2>
                             <div class="tiny-slider arrow-hover arrow-blur arrow-dark arrow-round">

@@ -214,6 +214,11 @@
                 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="container"> 
+                        <div>
+                            <a href="#" class="card-img-flash d-block">
+                                <img src="https://actualitetogo.com/assets/images/adv-2.png" alt="adv">
+                            </a>
+                        </div>
                         <div class="col-md-12 ">
                             <div class="d-flex mb-2">
                                 <div>
@@ -284,7 +289,11 @@
             <div v-if="loadingInternationalFenetreSurLAfriqueSports">
             </div>
             <div v-else class="row mb-4">
-                
+                <div>
+                    <a href="#" class="card-img-flash d-block">
+                        <img src="https://actualitetogo.com/assets/images/adv-2.png" alt="adv">
+                    </a>
+                </div>
                 <!-- Main Post START -->
                 <div class="col-lg-8">
                     <!-- Entertainment START -->
@@ -512,6 +521,11 @@
             </div>
             <div v-else class="mb-4">
                 <div class="row"> 
+                    <div>
+                        <a href="#" class="card-img-flash d-block">
+                            <img src="https://actualitetogo.com/assets/images/adv-2.png" alt="adv">
+                        </a>
+                    </div>
                     <!-- Title -->
                     <div class="col-lg-9">
         
@@ -691,6 +705,11 @@
             <div v-if="loadingOpinionFaitsDivers">
             </div>
             <div class="row g-4 mb-4" v-else> 
+                <div>
+                    <a href="#" class="card-img-flash d-block">
+                        <img src="https://actualitetogo.com/assets/images/adv-2.png" alt="adv">
+                    </a>
+                </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="col-md-12 ">
                         <div class="d-flex mb-2">
@@ -802,6 +821,11 @@
             <div v-else class="row mb-4">
                  
                 <div class="col-lg-12">
+                    <div>
+                        <a href="#" class="card-img-flash d-block">
+                            <img src="https://actualitetogo.com/assets/images/adv-2.png" alt="adv">
+                        </a>
+                    </div>
                     <!-- Entertainment START -->
                     <div class="col-md-12 ">
                         <div class="d-flex mb-2">
