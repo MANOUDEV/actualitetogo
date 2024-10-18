@@ -138,7 +138,7 @@
                             </a>
                         </div>
 
-                        <p> {!! showPub($article->content, $categoriesH[0]->id, $article_id)  !!} </p>
+                        <p> {!! showPub($article->content, $categoriesH[0]->id, $article->id)  !!} </p>
 
                         <!-- =======================Adv END -->
                         @if ($previous && $next)
