@@ -132,6 +132,7 @@
 
                             </div>
                         </div>
+                        <br>
                         <div>
                             <a href="#" class="card-img-flash d-block">
                                 <img src="/assets/images/adv-2.png" alt="adv">
@@ -203,6 +204,12 @@
 
                         <div id="comments">
 
+                        </div>
+                        <br>
+                        <div>
+                            <a href="#" class="card-img-flash d-block">
+                                <img src="/assets/images/adv-2.png" alt="adv">
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-3 mt-5 mt-lg-0">
