@@ -5,11 +5,16 @@
         </div>
         <div v-else class="container">
             <div  class="row ">
-                
+                <div class="mb-2">
+                    <a href="#" class="card-img-flash d-block">
+                        <img src="https://actualitetogo.com/assets/images/adv-3.png" alt="adv">
+                    </a>
+                </div>
                 <!-- Main Post START -->
                 <div class="col-lg-9">
                     <!-- Entertainment START -->
                     <div class="col-md-12 ">
+
                         <div class="d-flex mb-2">
                             <div>
                                 <img src="https://actualitetogo.com/assets/images/Icones_formes/Icones-TAAsset-83.png" class="alaune_logo" alt="Icones-TAAsset-83.png">
@@ -214,12 +219,13 @@
                 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="container"> 
-                        <div>
-                            <a href="#" class="card-img-flash d-block">
-                                <img src="https://actualitetogo.com/assets/images/adv-2.png" alt="adv">
-                            </a>
-                        </div>
+                        
                         <div class="col-md-12 ">
+                            <div class="mb-2">
+                                <a href="#" class="card-img-flash d-block">
+                                    <img src="https://actualitetogo.com/assets/images/adv-3.png" alt="adv">
+                                </a>
+                            </div>
                             <div class="d-flex mb-2">
                                 <div>
                                     <img src="https://actualitetogo.com/assets/images/Icones_formes/Icones-TAAsset-87.png" class="alaune_logo" alt="Icones-TAAsset-87.png">
@@ -289,9 +295,9 @@
             <div v-if="loadingInternationalFenetreSurLAfriqueSports">
             </div>
             <div v-else class="row mb-4">
-                <div>
+                <div class="mb-2">
                     <a href="#" class="card-img-flash d-block">
-                        <img src="https://actualitetogo.com/assets/images/adv-2.png" alt="adv">
+                        <img src="https://actualitetogo.com/assets/images/adv-3.png" alt="adv">
                     </a>
                 </div>
                 <!-- Main Post START -->
@@ -521,9 +527,9 @@
             </div>
             <div v-else class="mb-4">
                 <div class="row"> 
-                    <div>
+                    <div class="mb-2">
                         <a href="#" class="card-img-flash d-block">
-                            <img src="https://actualitetogo.com/assets/images/adv-2.png" alt="adv">
+                            <img src="https://actualitetogo.com/assets/images/adv-3.png" alt="adv">
                         </a>
                     </div>
                     <!-- Title -->
@@ -705,9 +711,9 @@
             <div v-if="loadingOpinionFaitsDivers">
             </div>
             <div class="row g-4 mb-4" v-else> 
-                <div>
+                <div class="mb-2">
                     <a href="#" class="card-img-flash d-block">
-                        <img src="https://actualitetogo.com/assets/images/adv-2.png" alt="adv">
+                        <img src="https://actualitetogo.com/assets/images/adv-3.png" alt="adv">
                     </a>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
@@ -821,9 +827,9 @@
             <div v-else class="row mb-4">
                  
                 <div class="col-lg-12">
-                    <div>
+                    <div class="mb-2">
                         <a href="#" class="card-img-flash d-block">
-                            <img src="https://actualitetogo.com/assets/images/adv-2.png" alt="adv">
+                            <img src="https://actualitetogo.com/assets/images/adv-3.png" alt="adv">
                         </a>
                     </div>
                     <!-- Entertainment START -->
@@ -890,7 +896,13 @@
                         </div>
                     </div>
                 </div>
+
             </div>   
+            <div class="mb-2">
+                <a href="#" class="card-img-flash d-block">
+                    <img src="https://actualitetogo.com/assets/images/adv-3.png" alt="adv">
+                </a>
+            </div>
         </div>  
     </section>
 </template>
