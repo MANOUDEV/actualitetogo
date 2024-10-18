@@ -155,6 +155,7 @@
                             </div>
                             <!-- Related post START -->
                         @endif
+                        <br>
                         <div>
                             <a href="#" class="card-img-flash d-block">
                                 <img src="/assets/images/adv-2.png" alt="adv">
