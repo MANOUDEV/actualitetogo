@@ -11,7 +11,7 @@
             <!-- Logo END -->
             
            <div>
-                {!! Adsense::show('responsive') !!}
+                {!! Adsense::show('rectangle') !!}
             </div>
             
         </div>

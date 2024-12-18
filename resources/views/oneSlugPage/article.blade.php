@@ -26,7 +26,7 @@
                                 data-items-xs="1">
                                     <div>
                                         <div class="card card-fold bg-dark">
-                                            <img src="{{$article->image_cover_url}}" class="card-img-top alauneH_first_section_img_responsive" alt="{{$article->title}}">
+                                            <img src="{{$article->image_cover_url}}" class="card-img-top alauneH_first_section_img_rectangle" alt="{{$article->title}}">
                                          </div>
                                     </div> 
                             </div>
@@ -51,7 +51,7 @@
             <div class="container" data-sticky-container>
                 <div class="row g-4" style="margin-top: -20px">
                     <div class="col-lg-12 col-sm-12 col-xs-12">
-                        {!! Adsense::show('responsive') !!}
+                        {!! Adsense::show('rectangle') !!}
                     </div>
                 </div>
                 <div class="row" style="margin-top: -35px">
@@ -139,7 +139,7 @@
                         <br>
                         <div class="row g-4" style="margin-top: -20px">
                             <div class="col-lg-12 col-sm-12 col-xs-12">
-                                {!! Adsense::show('responsive') !!}
+                                {!! Adsense::show('rectangle') !!}
                             </div>
                         </div>
 
@@ -212,7 +212,7 @@
                         </div>
                         <br>
                         <div>
-                            {!! Adsense::show('responsive') !!}
+                            {!! Adsense::show('rectangle') !!}
                         </div>
                     </div>
                     <div class="col-lg-3 mt-5 mt-lg-0">
@@ -222,7 +222,7 @@
 
                                  <!-- Advertisement -->
                                  <div class="mt-4">
-                                    {!! Adsense::show('responsive') !!}
+                                    {!! Adsense::show('rectangle') !!}
                                 </div>
                                 <!-- Most read -->
                                 <div>
