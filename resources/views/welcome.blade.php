@@ -9,15 +9,11 @@
     <main>
        
         <section class="position-relative" style="margin-top: -45px; margin-bottom: -25px">
-            {!! Adsense::show('responsive') !!}
-            @include('sectionHomePage.alaUne.alaUne')
-            {!! Adsense::show('responsive') !!}
-        </section>
-        
-        <section class="position-relative" style="margin-top: -95px; margin-bottom: -25px">
+            
 
+            @include('sectionHomePage.alaUne.alaUne')
+           
             @include('sectionHomePage.toutelActualite.toutelActualite')
-            {!! Adsense::show('responsive') !!}
         </section>
  
     </main>

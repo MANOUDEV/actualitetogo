@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Publication;
+use Rabol\Adsense\AdsenseFacade;
 
 function showPub($content, $category_id, $article_id){
 
@@ -11,6 +12,14 @@ function showPub($content, $category_id, $article_id){
     ->where("id", "!=" ,$article_id)
     ->orderBy('publications.date_publish', 'desc')
     ->first();
+
+    if($alireaussi == null){
+        $alireaussi = Publication::where("publications.deja_citer", 0)
+        ->where("publications.type_publication_id", 1)
+        ->where("publications.status", 1)
+        ->orderBy('publications.date_publish', 'desc')
+        ->first();
+    }
 
     $content_insert_begin = "<div class=\"row\">
                                 <div class=\"col-sm-12 bg-primary bg-opacity-10 p-4 position-relative border-end border-1 rounded-start\">
