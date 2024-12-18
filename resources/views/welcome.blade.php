@@ -15,7 +15,6 @@
         </section>
         
         <section class="position-relative" style="margin-top: -95px; margin-bottom: -25px">
-            {!! Adsense::show('responsive') !!}
             @include('sectionHomePage.toutelActualite.toutelActualite')
             {!! Adsense::show('responsive') !!}
         </section>
