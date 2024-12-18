@@ -64,5 +64,6 @@
         <div class="col-lg-5 col-sm-12 col-xs-12">
             @include('sectionHomePage.alaUne.sections.alaUneSecondSection')
         </div>
+        
     </div>
 </div>

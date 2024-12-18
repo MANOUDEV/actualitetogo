@@ -139,7 +139,7 @@
                         <br>
                         <div class="row g-4" style="margin-top: -20px">
                             <div class="col-lg-12 col-sm-12 col-xs-12">
-                                {!! Adsense::show('rectangle') !!}
+                                {!! Adsense::show('responsive') !!}
                             </div>
                         </div>
 
