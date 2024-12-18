@@ -8,22 +8,13 @@
 
     <main>
        
-        <section class="position-relative" style="margin-top: -45px; margin-bottom: -25px">
-            <div class="container">
-                {!! Adsense::show('responsive') !!}    
-            </div>
-            
+        <section class="position-relative container" style="margin-top: -45px; margin-bottom: -25px">
             @include('sectionHomePage.alaUne.alaUne')
+        </section>
+        
+        <section class="position-relative" style="margin-top: -95px; margin-bottom: -25px">
 
-            <div class="container">
-                {!! Adsense::show('responsive') !!}    
-            </div>
-           
             @include('sectionHomePage.toutelActualite.toutelActualite')
-
-            <div class="container">
-                {!! Adsense::show('responsive') !!}    
-            </div>
         </section>
  
     </main>
