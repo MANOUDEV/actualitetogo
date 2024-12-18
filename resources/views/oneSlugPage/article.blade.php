@@ -49,7 +49,11 @@
         </section>
         <section class="pt-0 mt-2">
             <div class="container" data-sticky-container>
-
+                <div class="row g-4" style="margin-top: -20px">
+                    <div class="col-lg-12 col-sm-12 col-xs-12">
+                        {!! Adsense::show('responsive') !!}
+                    </div>
+                </div>
                 <div class="row" style="margin-top: -35px">
                     <!-- Left sidebar START -->
                     <div class="col-md-1">
@@ -133,8 +137,10 @@
                             </div>
                         </div>
                         <br>
-                        <div>
-                            {!! Adsense::show('responsive') !!}
+                        <div class="row g-4" style="margin-top: -20px">
+                            <div class="col-lg-12 col-sm-12 col-xs-12">
+                                {!! Adsense::show('responsive') !!}
+                            </div>
                         </div>
 
                         <p> {!! showPub($article->content, $categoriesH[0]->id, $article->id)  !!} </p>

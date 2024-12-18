@@ -55,14 +55,13 @@
     <div class="border-bottom border-2 border-primary opacity-1"></div>
     
     <div class="row g-4" style="margin-top: -20px">
-        <div class="col-lg-12 col-sm-12 col-xs-12">
-            {!! Adsense::show('responsive') !!}
-        </div>
+        
         <div class="col-lg-7 col-sm-12 col-xs-12">
             @include('sectionHomePage.alaUne.sections.alaUneFirstSection')
         </div>
         <div class="col-lg-5 col-sm-12 col-xs-12">
             @include('sectionHomePage.alaUne.sections.alaUneSecondSection')
         </div>
+        
     </div>
 </div>

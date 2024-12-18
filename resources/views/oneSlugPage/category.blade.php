@@ -26,7 +26,11 @@
                             </div>
                         </div>
                     </div>
+                     <div class="row g-4" style="margin-top: -20px">
+                <div class="col-lg-12 col-sm-12 col-xs-12">
                     {!! Adsense::show('responsive') !!}
+                </div>
+            </div>
                 </div>
             </section>
             <!-- =======================
@@ -37,7 +41,11 @@
             <!-- =======================Main content START -->
         <section class="position-relative pt-0">
                 <div class="container" data-sticky-container>
+                     <div class="row g-4" style="margin-top: -20px">
+                <div class="col-lg-12 col-sm-12 col-xs-12">
                     {!! Adsense::show('responsive') !!}
+                </div>
+            </div>
                     @if (count($articles) == 0)
 
                         <section class="overflow-hidden">
@@ -256,7 +264,11 @@
 
                                         <!-- Advertisement -->
                                         <div class="mt-4">
-                                            {!! Adsense::show('responsive') !!}
+                                             <div class="row g-4" style="margin-top: -20px">
+                <div class="col-lg-12 col-sm-12 col-xs-12">
+                    {!! Adsense::show('responsive') !!}
+                </div>
+            </div>
                                         </div>
 
                                         <!-- Right sidebar END -->
