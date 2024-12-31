@@ -22,11 +22,11 @@
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5594963864359932" crossorigin="anonymous"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body>
+    <body >
 
-
-        @yield('content')
-
+        <div id="app">
+            @yield('content')
+        </div>
         <!-- Bootstrap JS -->
         <script defer src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
