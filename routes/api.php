@@ -1,6 +1,6 @@
 <?php
 use App\Http\Controllers\Api\Web\Frontoffice\IncludesController; 
-
+use App\Http\Controllers\Api\Web\Frontoffice\HomeController; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -53,3 +53,19 @@ Route::get('/frontoffice/footer/category_populars', [IncludesController::class, 
 
 Route::get('/frontoffice/footer/articles_populars', [IncludesController::class, 'publicationsRequestData']); 
  
+
+//Les routes pour les données de la page d'accueil
+
+Route::get('/frontoffice/home_page/togo_politique', [HomeController::class, 'togoPolitiqueDataRequest']);
+
+Route::get('/frontoffice/home_page/a_ne_pas_manquer_togo', [HomeController::class, 'aNePasManquerTogoDataRequest']);
+
+Route::get('/frontoffice/home_page/international_fenetre_afrique_sports', [HomeController::class, 'internationalFenetreSurLAfriqueSportsDataRequest']);
+
+Route::get('/frontoffice/home_page/societe', [HomeController::class, 'societeDataRequest']);
+
+Route::get('/frontoffice/home_page/opinion_faits_divers', [HomeController::class, 'opinionFaitsDiversDataRequest']);
+
+Route::get('/frontoffice/home_page/important', [HomeController::class, 'importantDataRequest']);
+
+Route::get('/frontoffice/home_page/populars_comments', [HomeController::class, 'popularsCommentsDataRequest']);

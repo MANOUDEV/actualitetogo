@@ -4,9 +4,9 @@ import './bootstrap';
 
 import { createApp } from 'vue'
 
-// import VueSweetalert2 from 'vue-sweetalert2';
+import VueSweetalert2 from 'vue-sweetalert2';
 
-// import 'sweetalert2/dist/sweetalert2.min.css';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 import store from './store/index';
 
@@ -63,3 +63,16 @@ app.component('TagsPopulars', TagsPopularsFooter)
 app.component('AdsenseFirst', AdsenseFirst)
 
 app.use(store).mount('#app')
+
+
+//Importation du Composant des articles à afficher sur la page d'accueil
+
+import HomePageF from './components/frontoffice/home_page/home_page.vue'
+
+const home_page = createApp(HomePageF)
+
+home_page.use(VueSweetalert2);
+
+home_page.use(store);
+
+home_page.mount('#home_page')

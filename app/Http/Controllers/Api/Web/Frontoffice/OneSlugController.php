@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\BaseController;
 use App\Models\Publication; 
 use App\Models\Author;
 use App\Models\Category;
+use App\Models\PublicationTag;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; 
@@ -134,6 +135,99 @@ class OneSlugController extends BaseController
 
                         return view('oneSlugPage.category', ['articles' => $articles, 'alireaussi' => $alireaussi, 'category' => $category, 'otherCategory' => $otherCategory]);
                     }
+
+                }elseif(($category == null) && ( $article !== null)) {
+
+                    if($article->type_publication_id == 1){
+
+                        $categoriesH = Publication::where("publications.id", $article->id)->get();
+
+                        $tags = PublicationTag::select(array("tags.name", "tags.id", "tags.slug"))
+                        ->where("publications.id", $article->id)
+                        ->leftJoin("publications", "publications.id", "=", "publication_tags.publication_id")
+                        ->leftJoin("tags", "tags.id", "=", "publication_tags.tag_id")
+                        ->get();
+
+                        $tagsSEO = PublicationTag::select("tags.name")
+                        ->where("publications.id", $article->id)
+                        ->leftJoin("publications", "publications.id", "=", "publication_tags.publication_id")
+                        ->leftJoin("tags", "tags.id", "=", "publication_tags.tag_id")
+                        ->get();
+ 
+                        $tagsCount = PublicationTag::select(array("tags.name", "tags.id", "tags.slug"))
+                        ->where("publications.id", $article->id)
+                        ->leftJoin("publications", "publications.id", "=", "publication_tags.publication_id")
+                        ->leftJoin("tags", "tags.id", "=", "publication_tags.tag_id")
+                        ->count();
+
+                        $files = Publication::select(array("files.file_url"))
+                        ->where("publications.id", $article->id)
+                        ->leftJoin("publication_files", "publication_files.publication_id", "=", "publications.id")
+                        ->leftJoin("files", "files.id", "=", "publication_files.file_id")
+                        ->get();
+
+                        $previous = Publication::select('title', 'slug')->where('id', '<' ,$article->id)->where("status", 1)->where("publications.type_publication_id", 1)->where("deja_citer", 0)->orderBy('publications.date_publish', 'desc')->first();
+
+                        $next = Publication::select('title', 'slug')->where('id', '>' ,$article->id)->where("status", 1)->where("publications.type_publication_id", 1)->where("deja_citer", 0)->orderBy('publications.date_publish', 'desc')->first();
+
+                        if($previous && $next){
+
+                            $category = Publication::where("publications.id", $article->id)->first();
+
+                            $similars = Publication::where("status", 1)
+                            ->where("publications.type_publication_id", 1)
+                            ->where("category_id", $category->category_id)
+                            ->where("id", "!=" ,$article->id)
+                            ->where("id", "!=" ,$previous->id)
+                            ->where("id", "!=" ,$next->id)
+                            ->where("deja_citer", 0)
+                            ->orderBy('date_publish', 'desc')
+                            ->take(9)->get();
+
+                        }else{
+
+                            $category = Publication::where("publications.id", $article->id)->first();
+
+                            $similars = Publication::where("status", 1)
+                            ->where("publications.type_publication_id", 1)
+                            ->where("category_id", $category->category_id)
+                            ->where("deja_citer", 0)
+                            ->where("id", "!=" ,$article->id)
+                            ->orderBy('date_publish', 'desc')
+                            ->take(9)->get();
+
+                        }
+
+                        $alireaussi = Publication::where("publications.deja_citer", 0)
+                        ->where("publications.type_publication_id", 1)
+                        ->where("publications.status", 1)
+                        ->orderBy('publications.date_publish', 'desc')
+                        ->take(5)
+                        ->get(); 
+                        
+                        $politiqueFirst = Publication::where("status", 1)
+                        ->where("publications.type_publication_id", 1)
+                        ->where("category_id", 26)
+                        ->orderBy('date_publish', 'desc')
+                        ->take(8)
+                        ->get();
+
+                        return view('oneSlugPage.article',[
+                            'article' => $article,
+                            'files' => $files,
+                            'tags' => $tags,
+                            'alireaussi' => $alireaussi,
+                            'tagsCount' => $tagsCount,
+                            'previous' => $previous,
+                            'next' => $next,
+                            'similars' => $similars,
+                            'categoriesH' => $categoriesH,
+                            'politiqueFirst' => $politiqueFirst
+                        ]);
+
+                    }
+
+
 
                 }else{
 

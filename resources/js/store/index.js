@@ -24,6 +24,11 @@ import categoryPopularsModule from './modules/frontoffice/footer/categoryPopular
 
 import tagsPopularsModule from './modules/frontoffice/footer/tagsPopulars'
 
+//Importation du module gérant les données des publications sur la page d'accueil
+
+import homePageModule from './modules/frontoffice/home_page/home_page'
+
+
 const store = createStore({
     modules:{
 
@@ -42,6 +47,10 @@ const store = createStore({
         articlesPopulars: articlesPopularsModule,
         categoryPopulars: categoryPopularsModule,
         tagsPopulars: tagsPopularsModule,
+
+        //Déclaration du module gérant les données des publications sur la page d'accueil
+
+        homePage: homePageModule,
     }
   });
 
