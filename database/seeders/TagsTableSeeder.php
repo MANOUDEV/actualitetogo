@@ -20,7 +20,7 @@ class TagsTableSeeder extends Seeder
     public function run()
     {
 
-        $response = Http::get("https://www.togoactu.com/wp-json/wp/v2/tags?per_page=100");
+        $response = Http::get("https://www.togoactualite.com/wp-json/wp/v2/tags?per_page=100");
 
         $tags_count_by_type = [
             'x-wp-totalpages' => $response->getHeader('x-wp-totalpages')[0],
@@ -31,7 +31,7 @@ class TagsTableSeeder extends Seeder
          
 
             //Exporter les Tags 01
-            $tags = Http::get('https://www.togoactu.com/wp-json/wp/v2/tags?per_page=100&page='.$i)->json();
+            $tags = Http::get('https://www.togoactualite.com/wp-json/wp/v2/tags?per_page=100&page='.$i)->json();
 
             foreach ($tags as  $value) {
 

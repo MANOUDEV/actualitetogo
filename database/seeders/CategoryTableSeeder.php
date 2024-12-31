@@ -16,7 +16,7 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        $response = Http::get("https://www.togoactu.com/wp-json/wp/v2/categories?per_page=100");
+        $response = Http::get("https://www.togoactualite.com/wp-json/wp/v2/categories?per_page=100");
 
         $categories_count_by_type = [
             'x-wp-totalpages' => $response->getHeader('x-wp-totalpages')[0],
@@ -25,7 +25,7 @@ class CategoryTableSeeder extends Seeder
 
         for($i = 1; $i <= $categories_count_by_type['x-wp-totalpages']; $i++){
 
-            $categories = Http::get("https://www.togoactu.com/wp-json/wp/v2/categories?per_page=100&page=$i")->json();
+            $categories = Http::get("https://www.togoactualite.com/wp-json/wp/v2/categories?per_page=100&page=$i")->json();
 
             foreach( $categories as $result )
             {
