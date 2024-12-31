@@ -17,7 +17,7 @@ class CommentsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $response = Http::get("https://www.togoactualite.com/wp-json/wp/v2/comments?per_page=100");
+        $response = Http::get("https://www.togoactu.com/wp-json/wp/v2/comments?per_page=100");
 
         $comments_count_by_type = [
             'x-wp-totalpages' => $response->getHeader('x-wp-totalpages')[0],
@@ -27,7 +27,7 @@ class CommentsTableSeeder extends Seeder
         for($i = 1; $i <= $comments_count_by_type['x-wp-totalpages']; $i++){
          
 
-            $comments = Http::get('https://www.togoactualite.com/wp-json/wp/v2/comments?per_page=100&page='.$i)->json();
+            $comments = Http::get('https://www.togoactu.com/wp-json/wp/v2/comments?per_page=100&page='.$i)->json();
 
             foreach ($comments as  $value) {
 

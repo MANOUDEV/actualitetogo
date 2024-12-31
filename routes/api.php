@@ -1,6 +1,5 @@
 <?php
-use App\Http\Controllers\Api\Web\Frontoffice\IncludesController;
-
+use App\Http\Controllers\Api\Web\Frontoffice\IncludesController; 
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -52,4 +51,5 @@ Route::get('/frontoffice/footer/tags_populars', [IncludesController::class, 'tag
 
 Route::get('/frontoffice/footer/category_populars', [IncludesController::class, 'categoryRequestData']);
 
-Route::get('/frontoffice/footer/articles_populars', [IncludesController::class, 'publicationsRequestData']);
+Route::get('/frontoffice/footer/articles_populars', [IncludesController::class, 'publicationsRequestData']); 
+ 

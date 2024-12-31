@@ -1,11 +1,7 @@
 <?php
 use App\Http\Controllers\Api\Web\Frontoffice\HomeController;
 use App\Http\Controllers\Api\Web\Frontoffice\OneSlugController;
-use App\Http\Controllers\Api\Web\Authentication\ForgotPasswordController;
-use App\Http\Controllers\Api\Web\Authentication\LoginController;
-use App\Http\Controllers\Api\Web\Authentication\RegisterController;
-use App\Http\Controllers\Api\Web\Backoffice\WebRouteController;
-use Illuminate\Support\Facades\Route; 
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,8 +21,17 @@ Route::get('/', [HomeController::class, 'home'] );
 
 //La route pour les pages à lien unique
 
-Route::get('/{slug}', [OneSlugController::class, 'slug']);
+Route::get('/{slug}/', [OneSlugController::class, 'slug']);
 
-Route::get('/tags/{slug}', [OneSlugController::class, 'tags']);
+Route::get('/tag/{slug}/', [OneSlugController::class, 'tags']);
 
-Route::get('/authors/{slug}', [OneSlugController::class, 'authors']);
+Route::get('/author/{slug}/', [OneSlugController::class, 'authors']);
+
+
+Route::view('/ads.txt', 'oneSlugPage.ads');
+
+Route::view('/about/', 'oneSlugPage.about');
+
+Route::view('/contact/', 'oneSlugPage.contact');
+
+Route::view('/privacy-policy/', 'oneSlugPage.confidentialite');

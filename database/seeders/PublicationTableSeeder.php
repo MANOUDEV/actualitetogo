@@ -30,7 +30,7 @@ class PublicationTableSeeder extends Seeder
 
         $publications_count = 0;
 
-        $response = Http::get("https://www.togoactualite.com/wp-json/wp/v2/posts?per_page=100");
+        $response = Http::get("https://www.togoactu.com/wp-json/wp/v2/posts?per_page=100");
 
         $posts_count_by_type = [
             'x-wp-totalpages' => $response->getHeader('x-wp-totalpages')[0],
@@ -39,7 +39,7 @@ class PublicationTableSeeder extends Seeder
 
         for($i = 1; $i <= $posts_count_by_type['x-wp-totalpages']; $i++){
 
-            $posts = Http::get("https://www.togoactualite.com/wp-json/wp/v2/posts?page=$i&per_page=100")->json();
+            $posts = Http::get("https://www.togoactu.com/wp-json/wp/v2/posts?page=$i&per_page=100")->json();
 
             foreach ($posts as  $value) {
 
@@ -84,9 +84,9 @@ class PublicationTableSeeder extends Seeder
 
                     if(isset($value['yoast_head_json']["schema"]['@graph'][0]['thumbnailUrl'])){
 
-                        $image_cover_url = str_replace('https://togoactualite.com/wp-content/uploads', 'https://actualitetogo.com/storage/wp-content', $value['yoast_head_json']["schema"]['@graph'][0]['thumbnailUrl']);
+                        $image_cover_url = str_replace('https://togoactu.com/wp-content/uploads', 'https://actualitetogo.com/wp-content', $value['yoast_head_json']["schema"]['@graph'][0]['thumbnailUrl']);
 
-                        $link_file = str_replace('https://togoactualite.com/wp-content/uploads', 'https://actualitetogo.com/storage/wp-content', $value['yoast_head_json']["schema"]['@graph'][0]['thumbnailUrl']);
+                        $link_file = str_replace('https://togoactu.com/wp-content/uploads', 'https://actualitetogo.com/wp-content', $value['yoast_head_json']["schema"]['@graph'][0]['thumbnailUrl']);
 
                         $verify_link_file = File::where('file_url',  $link_file)->first();
 
@@ -307,7 +307,7 @@ class PublicationTableSeeder extends Seeder
 
                     if(isset($value['yoast_head_json']["schema"]['@graph'][0]['thumbnailUrl'])){
 
-                        $info =  File::where('file_url',  str_replace('https://togoactualite.com/wp-content/uploads', 'https://actualitetogo.com/storage/wp-content', $value['yoast_head_json']["schema"]['@graph'][0]['thumbnailUrl']))->first();
+                        $info =  File::where('file_url',  str_replace('https://togoactu.com/wp-content/uploads', 'https://actualitetogo.com/wp-content', $value['yoast_head_json']["schema"]['@graph'][0]['thumbnailUrl']))->first();
 
                         if($info){
 

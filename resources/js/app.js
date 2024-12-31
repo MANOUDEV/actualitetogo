@@ -34,6 +34,10 @@ import CategoryPopularsFooter from './components/frontoffice/footer/categoryPopu
 
 import TagsPopularsFooter from './components/frontoffice/footer/tagsPopulars.vue'
 
+//Importation, déclaration et chargement des composants adsense
+
+import AdsenseFirst from './components/frontoffice/adsense/adsense_first.vue'
+ 
 const app = createApp({})
 
 app.component('TogoactualiteHeader', TogoactualiteHeader)
@@ -55,5 +59,7 @@ app.component('ArticlesPopulars', ArticlesPopularsFooter)
 app.component('CategoryPopulars', CategoryPopularsFooter)
 
 app.component('TagsPopulars', TagsPopularsFooter)
+
+app.component('AdsenseFirst', AdsenseFirst)
 
 app.use(store).mount('#app')
