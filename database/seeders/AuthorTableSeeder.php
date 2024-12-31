@@ -49,5 +49,11 @@ class AuthorTableSeeder extends Seeder
                 </p>"
             ], // 0
         ];
+
+        foreach ($datas as $author) {
+
+            Author::create($author);
+ 
+         }
     }
 }
