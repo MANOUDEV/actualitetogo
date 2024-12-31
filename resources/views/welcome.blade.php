@@ -12,6 +12,7 @@
             @include('sectionHomePage.alaUne.alaUne')
             <adsense-first></adsense-first>
             @include('sectionHomePage.toutelActualite.toutelActualite') 
+            <adsense-first></adsense-first>
         </section>
  
     </main>

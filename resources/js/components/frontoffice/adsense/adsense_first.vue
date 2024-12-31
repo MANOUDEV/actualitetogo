@@ -14,7 +14,7 @@ export default {
         adStyle: {
             type: String,
             required: false,
-            default: "display:block",
+            default: "display:block;width: 720px;height: 103px",
         },
 
         adClient: {
