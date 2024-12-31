@@ -14,7 +14,7 @@ export default {
         adStyle: {
             type: String,
             required: false,
-            default: "display:inline-block;",
+            default: "display:block;",
         },
 
         adClient: {
