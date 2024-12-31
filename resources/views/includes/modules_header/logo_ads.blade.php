@@ -11,7 +11,7 @@
             <!-- Logo END -->
 
             <div>
-                <adsense-first></adsense-first>
+                {{-- <adsense-first></adsense-first> --}}
             </div>
 
         </div>
