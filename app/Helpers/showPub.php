@@ -28,9 +28,18 @@ function showPub($content, $category_id, $article_id){
                                 </div>
                             </div>
                             <br>
-                            <div>".
-                                Adsense::show('responsive')
-                            ."</div>";
+                            <div> 
+                            <script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>
+                            <ins class=\"adsbygoogle\"
+                                style=\"display:block\"
+                                data-ad-client=\"ca-pub-5594963864359932\"
+                                data-ad-slot=\"4473479121\"
+                                data-ad-format=\"auto\"
+                                data-full-width-responsive=\"true\"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                            </div>";
 
     // Séparer le paragraphe en un tableau de mots
     $mots = explode(' ',  $content );
