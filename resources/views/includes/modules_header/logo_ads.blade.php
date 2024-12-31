@@ -10,8 +10,8 @@
             </a>
             <!-- Logo END -->
 
-           <div>
-               
+            <div>
+                <adsense-first></adsense-first>
             </div>
 
         </div>
