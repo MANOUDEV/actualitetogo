@@ -10,6 +10,8 @@
 
         <section>
             <div class="container">
+                
+                @include('adsense.google-ads.ads-sections-second-header')
                 <div class="row">
                     <div class="col-12">
                         <div class="tiny-slider arrow-dark arrow-hover arrow-round rounded-3">
@@ -24,20 +26,11 @@
                                 data-items-md="1"
                                 data-items-sm="1"
                                 data-items-xs="1">
-                                @foreach ($files as $file )
                                     <div>
                                         <div class="card card-fold bg-dark">
-                                            <img src="{{$file->file_url}}" class="card-img-top alauneH_first_section_img_responsive" alt="Card image">
-                                            @if($file->description)
-                                                <div class="card-body">
-                                                    <p class="m-0 text-white">{!! $file->description !!}</p>
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                @endforeach
-
-
+                                            <img src="{{$article->image_cover_url}}" class="card-img-top alauneH_first_section_img_rectangle" alt="{{$article->title}}">
+                                         </div>
+                                    </div> 
                             </div>
                         </div>
                     </div>
@@ -58,6 +51,7 @@
         </section>
         <section class="pt-0 mt-2">
             <div class="container" data-sticky-container>
+                
 
                 <div class="row" style="margin-top: -35px">
                     <!-- Left sidebar START -->
@@ -129,10 +123,10 @@
                             <div>
                                 <div class="d-sm-flex align-items-center justify-content-between">
                                     <div>
-                                        <h4 class="m-0"><a href="/auteurs/{{$article->author_slug}}" class="text-reset">{{$article->author_name}}</a></h4>
+                                        <h4 class="m-0"><a href="/authors/{{$article->author_slug}}" class="text-reset">{{$article->author_name}}</a></h4>
                                         <small>Auteur de cet article</small>
                                     </div>
-                                    <a href="/auteurs/{{$article->author_slug}}" class="btn btn-sm btn-success">Voir ces articles</a>
+                                    <a href="/authors/{{$article->author_slug}}" class="btn btn-sm btn-success">Voir ces articles</a>
                                 </div>
                                 <p class="my-2"> Nous tenons à rappeler aux visiteurs du site que
                                     sans partenariat avec togoactualite.com, la reprise des articles même partielle est strictement interdite.
@@ -141,7 +135,20 @@
 
                             </div>
                         </div>
-                        <p> {!! $article->content !!} </p>
+                        <br>
+                        <div class="row g-4" style="margin-top: -20px">
+                            <div class="col-lg-12 col-sm-12 col-xs-12">
+                               
+                            </div>
+                        </div>
+
+                        @include('adsense.google-ads.ads-sections-second-header')
+
+                        <p> {!! showPub($article->content, $categoriesH[0]->id, $article->id)  !!} </p>
+
+                        
+                        @include('adsense.google-ads.ads-sections-second-header')
+
                         <!-- =======================Adv END -->
                         @if ($previous && $next)
                             <div class="row g-0">
@@ -156,9 +163,12 @@
                             </div>
                             <!-- Related post START -->
                         @endif
+                        <br>
+                       
+                        @include('adsense.google-ads.ads-sections-second-header')
 
                         <div class="mt-2">
-                            <h2 class="my-3"><i class="bi bi-symmetry-vertical me-2"></i>A lire aussi</h2>
+                            <h2 class="my-3"><i class="bi bi-symmetry-vertical me-2"></i>Voir aussi</h2>
                             <div class="tiny-slider arrow-hover arrow-blur arrow-dark arrow-round">
                                 <div class="tiny-slider-inner"
                                     data-autoplay="true"
@@ -174,7 +184,7 @@
                                     <div class="card">
                                         <!-- Card img -->
                                         <div class="position-relative">
-                                            <img class="card-img" src="{{$similar->image_cover_url}}" alt="Card image" style="height: 220px; object-fit: cover">
+                                            <img class="card-img" src="{{$similar->image_cover_url}}" alt="{{$article->title}}" style="height: 220px; object-fit: cover">
                                             <div class="card-img-overlay d-flex align-items-start flex-column p-3">
 
                                                 <!-- Card overlay bottom -->
@@ -199,9 +209,8 @@
                             </div> <!-- Slider END -->
                         </div>
 
-                        <div id="comments">
-
-                        </div>
+                        @include('adsense.google-ads.ads-sections-second-header')
+                        <div id="comments"></div>
                     </div>
                     <div class="col-lg-3 mt-5 mt-lg-0">
                         <div data-sticky data-margin-top="80" data-sticky-for="767">
@@ -210,13 +219,22 @@
 
                                  <!-- Advertisement -->
                                  <div class="mt-4">
-                                    <a href="#" class="d-block card-img-flash">
-                                        <img src="assets/images/adv.png" alt="">
-                                    </a>
+                                    
                                 </div>
+                                
                                 <!-- Most read -->
                                 <div>
                                     <br>
+                                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5594963864359932"
+                                        crossorigin="anonymous"></script>
+                                    <!-- annonce carré 300x300 -->
+                                    <ins class="adsbygoogle"
+                                        style="display:inline-block;width:300px;height:300px"
+                                        data-ad-client="ca-pub-5594963864359932"
+                                        data-ad-slot="9589411564"></ins>
+                                    <script>
+                                        (adsbygoogle = window.adsbygoogle || []).push({});
+                                    </script>
                                     <br>
                                     <h5 class="mb-3">A LA UNE </h5>
                                     <div class="tiny-slider dots-creative mt-3 mb-1">
@@ -254,15 +272,64 @@
 
                                         </div>
                                     </div>
+
+                                    <br>
+                                    <h5 class="mb-3">TOGO POLITIQUE </h5>
+                                    <div class="tiny-slider dots-creative mt-3 mb-1">
+                                        <div class="tiny-slider-inner"
+                                            data-autoplay="true"
+                                            data-hoverpause="true"
+                                            data-gutter="0"
+                                            data-arrow="false"
+                                            data-dots="true"
+                                            data-items="1">
+
+                                            @foreach ($politiqueFirst as  $result)
+
+                                                <!-- Card item START -->
+                                            <div class="card">
+                                                <!-- Card img -->
+                                                <div class="position-relative">
+                                                    <img class="card-img" src="{{ $result->image_cover_url }}" style="height: 230px; width: 550px ; object-fit: cover" alt="{{ $result->title }}">
+                                                    <div class="card-img-overlay d-flex align-items-start flex-column p-3">
+
+                                                        <!-- Card overlay bottom -->
+                                                        <div class="w-100 mt-auto">
+                                                            <a href="/{{$result->category_slug}}" class="badge text-bg-info mb-2"><i class="fas fa-circle me-2 small fw-bold"></i>{{$result->category_name}}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body p-0 pt-3">
+                                                    <h6 class="card-title"><a href="/{{$result->slug}}" class="btn-link text-reset fw-bold">{!! $result->title !!}</a></h6>
+                                                </div>
+                                            </div>
+                                            <!-- Card item END -->
+
+                                            @endforeach
+
+
+                                        </div>
+                                    </div>
                                 </div>
 
 
-
+                                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5594963864359932"
+                                crossorigin="anonymous"></script>
+                                <!-- annonce carré 300px -->
+                                <ins class="adsbygoogle"
+                                    style="display:inline-block;width:300px;height:300px"
+                                    data-ad-client="ca-pub-5594963864359932"
+                                    data-ad-slot="2321295639"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
                                 <!-- Right sidebar END -->
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                @include('adsense.google-ads.ads-sections-second-header')
             </div>
         </section>
     </main>

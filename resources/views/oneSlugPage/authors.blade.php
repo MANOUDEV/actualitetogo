@@ -13,6 +13,7 @@
             <!-- =======================Inner intro START -->
             <section class="pt-4">
                 <div class="container">
+                    @include('adsense.google-ads.ads-sections-home-page')
                     <div class="row">
                         <div class="col-12">
                             <!-- Author info START -->
@@ -33,9 +34,7 @@
 
                                     <p class="text-danger my-2" style="font-style: italic">Note urgente:</p>
 
-                                    <p class=""> Nous tenons à rappeler aux visiteurs du site que
-                                        sans partenariat avec togoactualite.com, la reprise des articles même partielle est strictement interdite.
-                                        Tout contrevenant s'expose à de graves poursuites.</p>
+                                   <div> {!! $author->authorName !!} </div>
                                     <!-- Social icons -->
 
                                 </div>
@@ -43,6 +42,9 @@
                                 <!-- Author info END -->
                         </div>
                     </div>
+                    
+                    @include('adsense.google-ads.ads-sections-home-page')
+
                 </div>
             </section>
             <!-- =======================Inner intro START -->
@@ -51,6 +53,8 @@
 
             <section class="position-relative pt-0">
                 <div class="container" data-sticky-container>
+                    
+                    @include('adsense.google-ads.ads-sections-home-page')
 
                     @if (count($articles) == 0)
 
@@ -94,13 +98,14 @@
                     </section>
 
                     @else
-
-                        <div class="row">
-                                <!-- Main Post START -->
-                            <div class="col-12">
-                                <div class="row gy-4">
-                                    @foreach ($articles as $result )
-                                        <div class="col-sm-6 col-lg-4 grid-item business-category">
+                    <div class="row">
+                        <!-- Main Post START -->
+                        <div class="col-lg-9">
+                            <div class="row gy-4">
+                                @foreach ($articles as $result )
+                                    @if($result->image_cover_url)
+                                        <!-- Card item START -->
+                                        <div class="col-sm-6 col-lg-6 grid-item business-category">
                                             <div class="card">
                                                 <!-- Card img -->
                                                 <div class="position-relative">
@@ -112,7 +117,7 @@
                                                     <div>
                                                         <div>{!! $result->truncate_content !!}</div>
                                                     </div>
-                                                    <ul class="nav nav-divider align-items-center d-sm-inline-block">
+                                                    <ul class="nav nav-divider align-items-center  d-sm-inline-block">
                                                         <li class="nav-item">
                                                             <div class="nav-link">
                                                                 <div class="d-flex align-items-center position-relative">
@@ -125,18 +130,161 @@
                                                                 </div>
                                                             </div>
                                                         </li>
+                                                        <li class="nav-item">{{ date('d/m/Y', strtotime($result->date_publish) )}}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Card item END -->
+                                    @else
+                                        <div class="col-sm-6 col-lg-6 grid-item business-category">
+                                            <!-- Card item START -->
+                                            <div class="card mb-4">
+                                                <div class="card-body border rounded-3">
+                                                    <h6 class="card-title"><a href="/{{ $result->slug }}" class="btn-link text-reset stretched-link fw-bold"> {!! $result->title !!} </a></h6>
+                                                    <p class="card-text"> {!! $result->truncate_content_max !!}</p>
+                                                    <!-- Card info -->
+                                                    <ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
                                                         <li class="nav-item">{{ date('d/m/Y', strtotime($result->date_publish)) }}</li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    @endif
+
+
+                                @endforeach
+                            </div>
+                            <br> <br>
+                            {{ $articles->links() }}
+
+                        </div>
+                        <div class="col-lg-3 mt-5 mt-lg-0">
+                            <div data-sticky data-margin-top="80" data-sticky-for="767">
+                                <!-- Categories -->
+                                <div class="row g-2">
+                                    <h5>Autres catégories</h5>
+                                    @for ($i=0; $i<= count($otherCategory) - 1; $i++ )
+
+                                        @if ( $i == 4)
+
+                                            <div class="d-flex justify-content-between align-items-center bg-warning bg-opacity-15 rounded p-2 position-relative">
+                                                <h6 class="m-0 text-warning">{{$otherCategory[$i]['name']}}</h6>
+                                                <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-warning text-dark stretched-link">{{$otherCategory[$i]['count']}}</a>
+                                            </div>
+
+                                        @endif
+
+                                        @if ( $i == 10)
+
+                                            <div class="d-flex justify-content-between align-items-center bg-success bg-opacity-15 rounded p-2 position-relative">
+                                                <h6 class="m-0 text-light">{{$otherCategory[$i]['name']}}</h6>
+                                                <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-success text-light stretched-link">{{$otherCategory[$i]['count']}}</a>
+                                            </div>
+
+                                        @endif
+
+                                        @if ( $i == 9)
+
+                                            <div class="d-flex justify-content-between align-items-center bg-primary bg-opacity-15 rounded p-2 position-relative">
+                                                <h6 class="m-0 text-primary">{{$otherCategory[$i]['name']}}</h6>
+                                                <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-primary text-light stretched-link">{{$otherCategory[$i]['count']}}</a>
+                                            </div>
+
+                                        @endif
+
+                                        @if ( $i == 19)
+
+                                            <div class="d-flex justify-content-between align-items-center bg-linkedin bg-opacity-15 rounded p-2 position-relative">
+                                                <h6 class="m-0 text-light">{{$otherCategory[$i]['name']}}</h6>
+                                                <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-linkedin text-light stretched-link">{{$otherCategory[$i]['count']}}</a>
+                                            </div>
+
+                                        @endif
+
+                                        @if ( $i == 20)
+
+                                            <div class="d-flex justify-content-between align-items-center bg-danger bg-opacity-15 rounded p-2 position-relative">
+                                                <h6 class="m-0 text-danger">{{$otherCategory[$i]['name']}}</h6>
+                                                <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-danger text-light stretched-link">{{$otherCategory[$i]['count']}}</a>
+                                            </div>
+
+                                        @endif
+
+
+                                    @endfor
+                                    <div class="text-center mt-3">
+                                        <a href="/all-category" class="fw-bold text-body text-primary-hover"><u>Voir toutes les catégories</u></a>
+                                    </div>
+
+                                    <!-- Most read -->
+                                    <div>
+                                        <br>
+                                        <br>
+                                        <h5 class="mb-3">A LIRE AUSSI </h5>
+                                        <div class="tiny-slider dots-creative mt-3 mb-1">
+                                            <div class="tiny-slider-inner"
+                                                data-autoplay="true"
+                                                data-hoverpause="true"
+                                                data-gutter="0"
+                                                data-arrow="false"
+                                                data-dots="true"
+                                                data-items="1">
+
+                                                @foreach ($alireaussi as  $result)
+                                                    @if($result->image_cover_url)
+                                                        <!-- Card item START -->
+                                                        <div class="card">
+                                                            <!-- Card img -->
+                                                            <div class="position-relative">
+                                                                <img class="card-img" src="{{ $result->image_cover_url }}" style="height: 230px; width: 550px ; object-fit: cover" alt="{{ $result->title }}">
+                                                                <div class="card-img-overlay d-flex align-items-start flex-column p-3">
+
+                                                                    <!-- Card overlay bottom -->
+                                                                    <div class="w-100 mt-auto">
+                                                                        <a href="/{{$result->category_slug}}" class="badge text-bg-info mb-2"><i class="fas fa-circle me-2 small fw-bold"></i>{{$result->category_name}}</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body p-0 pt-3">
+                                                                <h6 class="card-title"><a href="/{{$result->slug}}" class="btn-link text-reset fw-bold">{!! $result->title !!}</a></h6>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card item END -->
+                                                    @else
+                                                        <!-- Card item START -->
+                                                        <div class="card mb-4">
+                                                            <div class="card-body border rounded-3">
+                                                                <h6 class="card-title"><a href="/{{ $result->slug }}" class="btn-link text-reset stretched-link fw-bold"> {!! $result->title !!} </a></h6>
+                                                                <p class="card-text"> {!! $result->truncate_content !!}</p>
+                                                                <!-- Card info -->
+                                                                <ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
+                                                                    <li class="nav-item">{{ date('d/m/Y', strtotime($result->date_publish)) }}</li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+
+                                                @endforeach
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Advertisement -->
+                                    <div class="mt-4">
+                                        @include('adsense.google-ads.ads-sections-home-page')
+                                    </div>
+
+                                    <!-- Right sidebar END -->
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        {{ $articles->links() }}
+                    </div>
                     @endif
+                    
+                    @include('adsense.google-ads.ads-sections-home-page')
 
                 </div>
             </section>
