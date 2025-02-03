@@ -1,5 +1,6 @@
 <?php
-use App\Http\Controllers\Api\Web\Frontoffice\IncludesController; 
+use App\Http\Controllers\Api\Web\Frontoffice\IncludesController;
+use App\Http\Controllers\Api\Web\Frontoffice\HomeController;
 
 use App\Http\Controllers\Api\Web\Authentication\RegisterController;
 use App\Http\Controllers\Api\Web\Authentication\ForgotPasswordController;
@@ -76,6 +77,25 @@ Route::get('/frontoffice/footer/articles_populars', [IncludesController::class, 
 
 Route::post('/home/contact', [IncludesController::class, 'submitContact']);
 
+
+
+//Les routes pour les données de la page d'accueil
+
+Route::get('/frontoffice/home_page/togo_politique', [HomeController::class, 'togoPolitiqueDataRequest']);
+
+Route::get('/frontoffice/home_page/a_ne_pas_manquer_togo', [HomeController::class, 'aNePasManquerTogoDataRequest']);
+
+Route::get('/frontoffice/home_page/international_fenetre_afrique_sports', [HomeController::class, 'internationalFenetreSurLAfriqueSportsDataRequest']);
+
+Route::get('/frontoffice/home_page/societe', [HomeController::class, 'societeDataRequest']);
+
+Route::get('/frontoffice/home_page/opinion_faits_divers', [HomeController::class, 'opinionFaitsDiversDataRequest']);
+
+Route::get('/frontoffice/home_page/important', [HomeController::class, 'importantDataRequest']);
+
+Route::get('/frontoffice/home_page/populars_comments', [HomeController::class, 'popularsCommentsDataRequest']);
+
+
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
 
     //Gestion du système de mot de passe oublié
@@ -107,7 +127,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     Route::post('profile', [ProfileController::class, 'profile'])->middleware('auth:api');
 
     Route::get('role', [ProfileController::class, 'getRole'])->middleware('auth:api');
-    
+
     //Gestion d'envoi de message avec connexion de l'utilisateur
 
     Route::post('/home/contact_auth', [UserActionAuthController::class, 'submitContactAuth'])->middleware('auth:api');
@@ -124,7 +144,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     Route::put('/backoffice/publicator/{slug}/authors_update', [AuthorsController::class, 'update'])->middleware('auth:api');
 
     Route::delete('/backoffice/publicator/{slug}/authors_delete', [AuthorsController::class, 'delete'])->middleware('auth:api');
- 
+
     //Gestion des tags
 
     Route::get('/backoffice/publicator/tags_list', [TagsController::class, 'index'])->middleware('auth:api');
@@ -140,7 +160,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     Route::put('/backoffice/publicator/{slug}/tags_update', [TagsController::class, 'update'])->middleware('auth:api');
 
     Route::delete('/backoffice/publicator/{slug}/tags_delete', [TagsController::class, 'delete'])->middleware('auth:api');
- 
+
     //Gestion de la partie administrative
 
     //Gestion des types de publications
@@ -219,40 +239,40 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     Route::patch('/backoffice/admin/{slug}/news_letters_activate', [NewsLetterController::class, 'activate'])->middleware('auth:api');
 
     Route::patch('/backoffice/admin/{slug}/news_letters_block', [NewsLetterController::class, 'block'])->middleware('auth:api');
-     
-    //Gestion des publications 
+
+    //Gestion des publications
 
     Route::get('/backoffice/admin/publications/change_programm', [PublicationController::class, 'changeStatusPublicationPrgramm']);
 
     Route::get('/backoffice/admin/publications/create/{slug}/type_publications', [PublicationController::class, 'publicationCreateBySlugType'])->middleware('auth:api');
 
     //Gestion des annonces et alert_infos
-    
+
     Route::post('/backoffice/admin/publications/create/{slug}/store_info_alert_annonce', [AnnonceAlertInfosStoreController::class, 'storeInfoAlertAnnonce'])->middleware('auth:api');
 
     Route::put('/backoffice/admin/publications/create/{slug}/{publication_slug}/update_info_alert_annonce', [AnnonceAlertInfosStoreController::class, 'updateInfoAlertAnnonce'])->middleware('auth:api');
- 
+
     //Gestion des publicités
 
     Route::post('/backoffice/admin/publications/create/{slug}/store_publicites_first', [PublicitesStoreController::class, 'storePublicitesFirst'])->middleware('auth:api');
-    
+
     Route::put('/backoffice/admin/publications/create/{slug}/{publication_slug}/update_publicites_first', [PublicitesStoreController::class, 'updatePublicitesFirst'])->middleware('auth:api');
-  
+
     Route::put('/backoffice/admin/publications/create/{slug}/{publication_slug}/store_publicites_three', [PublicitesStoreController::class, 'storePublicitesThree'])->middleware('auth:api');
-    
+
     Route::put('/backoffice/admin/publications/create/{slug}/{publication_slug}/update_publicites_three', [PublicitesStoreController::class, 'updatePublicitesThree'])->middleware('auth:api');
-     
+
     //Gestion des articles
-    
+
     Route::post('/backoffice/admin/publications/create/{slug}/store_article_first', [ArticleStoreController::class, 'storeArticleFirst'])->middleware('auth:api');
-    
+
     Route::put('/backoffice/admin/publications/create/{slug}/{publication_slug}/update_article_first', [ArticleStoreController::class, 'updateArticleFirst'])->middleware('auth:api');
 
     Route::put('/backoffice/admin/publications/create/{slug}/store_article_two', [ArticleStoreController::class, 'storeArticleTwo'])->middleware('auth:api');
-    
+
     Route::put('/backoffice/admin/publications/create/{slug}/{publication_slug}/update_article_two', [ArticleStoreController::class, 'updateArticleTwo'])->middleware('auth:api');
 
     Route::put('/backoffice/admin/publications/create/{slug}/store_article_four', [ArticleStoreController::class, 'storeArticleFour'])->middleware('auth:api');
-    
+
     Route::put('/backoffice/admin/publications/create/{slug}/{publication_slug}/update_article_four', [ArticleStoreController::class, 'updateArticleFour'])->middleware('auth:api');
 });
