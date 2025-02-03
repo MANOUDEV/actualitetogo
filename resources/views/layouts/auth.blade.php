@@ -39,48 +39,6 @@
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
         <!-- Template Functions -->
         <script defer src="/assets/js/functions.js"></script>
-        <script>
-            navigator.serviceWorker.register("{{ URL::asset('service-worker.js') }}");
-
-            function askForPermission() {
-                Notification.requestPermission().then((permission) => {
-                    if (permission === 'granted') {
-                        // get service worker
-                        navigator.serviceWorker.ready.then((sw) => {
-                            // subscribe
-                            sw.pushManager.subscribe({
-                                userVisibleOnly: true,
-                                applicationServerKey: "BFkgfzx0SjrHdtcwkpzdqbKWFnEmQe08sulnj3JdPLxxZtIwb0Sq8Iz-Os9s54MTATN6EkKKTNyoaujCMuKrlJU"
-                            }).then((subscription) => {
-
-                                saveSub(JSON.stringify(subscription));
-                            });
-                        });
-                    }
-                });
-            }
-
-            function saveSub(sub) {
-                $.ajax({
-                    type: 'post',
-                    url: '{{ URL('/api/frontoffice/save-push-notification-sub') }}',
-                    data: {
-                        '_token': "{{ csrf_token() }}",
-                        'sub': sub
-                    },
-                    success: function(data) {
-
-                    }
-                });
-            }
-
-            askForPermission()
-
-        </script>
-        {{-- Public Key:
-        BPQaQ_Te_Pz4AwpVdB8-PAGwSHFfL7Ui1QROzgbdslAqDq-EQ4bgapVGkKDgSEjjodwJCW2Ls8ypn_DxGoCW1HE
-
-        Private Key:
-        qwJ1mNZ2OUcBOUcNuE8Z3WdsSO2PRfpCiW32IeGgJGM --}}
+       
     </body>
 </html>
