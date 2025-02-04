@@ -264,9 +264,20 @@
                                             </form>
                                             <form v-if="UploadStateButton">
                                                 <div class="container">
-                                                    <div class="col-lg-12 mt-3  " >
-                                                        
-                                                    </div> 
+                                                    <div class="col-lg-12 mt-1" >
+                                                        <div class="file-upload">
+                                                            <input type="file" name="files" class="file-input" multiple>
+                                                            <div class="icon text-center">
+                                                                <i   class="fa fa-arrow-up arrow" aria-hidden="true"></i>
+                                                            </div>
+                                                            <h3 class="text-center">Glissez et déposer vos fichiers ici</h3>
+                                                            <span>-OU-</span>
+                                                            <strong>Cliquez ici</strong>
+                                                            <button>
+                                                                <i  class="fas fa-plus .plus"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 </div> 
                                             </form>
                                             <form v-if="ExistStateButton">
@@ -318,7 +329,7 @@
                                                                     <div class="col-md-3"></div>
                                                                     <div class="col-md-6">
                                                                     <div style="position: relative; height: 250px;">
-                                                                        <img src="https://actualitetogo.com/assets/images/empty.png" style="width: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="empty">
+                                                                        <img src="https://togoactu.com/assets/images/empty.png" style="width: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="empty">
                                                                     </div>
                                                                     <h5 style="text-align: center; margin-top: -50px"> {{ filesMessage  }} </h5>
                                                                     </div>
@@ -367,7 +378,7 @@
                                                     <div class="col-md-3"></div>
                                                     <div class="col-md-6">
                                                     <div style="position: relative; height: 250px;">
-                                                        <img src="https://actualitetogo.com/assets/images/empty.png" style="width: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="empty">
+                                                        <img src="https://togoactu.com/assets/images/empty.png" style="width: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="empty">
                                                     </div>
                                                     <h5 style="text-align: center; margin-top: -50px"> Ancun fichier n'a été uploadé  pour le moment. </h5>
                                                     </div>
@@ -442,7 +453,7 @@
                                                     <div class="col-md-3"></div>
                                                     <div class="col-md-6">
                                                     <div style="position: relative; height: 250px;">
-                                                        <img src="https://actualitetogo.com/assets/images/empty.png" style="width: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="empty">
+                                                        <img src="https://togoactu.com/assets/images/empty.png" style="width: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="empty">
                                                     </div>
                                                     <h5 style="text-align: center; margin-top: -50px">Aucun fichier n'est disponible pour l'instant</h5>
                                                     </div>
@@ -466,7 +477,7 @@
                                                     <div class="col-md-3"></div>
                                                     <div class="col-md-6">
                                                     <div style="position: relative; height: 250px;">
-                                                        <img src="https://actualitetogo.com/assets/images/empty.png" style="width: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="empty">
+                                                        <img src="https://togoactu.com/assets/images/empty.png" style="width: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="empty">
                                                     </div>
                                                     <h5 style="text-align: center; margin-top: -50px"> Ancune image de couverture pour le moment. </h5>
                                                     </div>
@@ -1120,7 +1131,7 @@ export default {
         },
 
         getImage(slug){
-            return 'https://togoactualite.com/wp-content/'+slug;
+            return  slug;
         }, 
 
         selectFiles(file_name, type_file_id, file_url){

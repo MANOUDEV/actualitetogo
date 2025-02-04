@@ -287,6 +287,8 @@ class ArticlesController extends BaseController
 
                     $datas['title_truncate'] = $this->getExcerpt(10, $datas['title']); 
 
+                   
+
                     $date = Carbon::parse(now());
 
                     $mois_id = $date->format('m');
@@ -312,6 +314,8 @@ class ArticlesController extends BaseController
                     $publicationCreateData->truncate_content = $this->getExcerpt(20, $datas['content']);
 
                     $publicationCreateData->truncate_content_max = $this->getExcerpt(60, $datas['content']);
+
+                    $publicationCreateData->og_file_url = $datas['og_file_url'];
 
                     $publicationCreateData->update(); 
 
@@ -429,6 +433,8 @@ class ArticlesController extends BaseController
 
                     $datas['title_truncate'] = $this->getExcerpt(10, $datas['title']); 
 
+                   
+
                     $date = Carbon::parse(now());
 
                     $mois_id = $date->format('m');
@@ -454,6 +460,8 @@ class ArticlesController extends BaseController
                     $publicationCreateData->truncate_content = $this->getExcerpt(20, $datas['content']);
 
                     $publicationCreateData->truncate_content_max = $this->getExcerpt(60, $datas['content']);
+
+                    $publicationCreateData->og_file_url = $datas['og_file_url'];
 
                     $publicationCreateData->update(); 
 
@@ -560,6 +568,8 @@ class ArticlesController extends BaseController
 
                         $datas['title_truncate'] = $this->getExcerpt(10, $datas['title']); 
 
+                       
+
                         $date = Carbon::parse(now());
 
                         $mois_id = $date->format('m');
@@ -585,6 +595,8 @@ class ArticlesController extends BaseController
                         $publicationCreateData->truncate_content = $this->getExcerpt(20, $datas['content']);
 
                     $publicationCreateData->truncate_content_max = $this->getExcerpt(60, $datas['content']);
+
+                    $publicationCreateData->og_file_url = $datas['og_file_url'];
 
                     $publicationCreateData->update(); 
 
