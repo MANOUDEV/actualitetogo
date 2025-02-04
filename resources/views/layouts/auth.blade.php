@@ -3,14 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta name="google-adsense-account" content="ca-pub-5594963864359932">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <title>@yield('title') | Togo actualité</title>
-        {!! SEOMeta::generate() !!}
-        {!! OpenGraph::generate() !!}
-        {!! Twitter::generate() !!}
-        {!! JsonLd::generate() !!}
+
         <!-- Favicon -->
         <link rel="shortcut icon" href="/assets/images/Icone.png">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5594963864359932"
@@ -25,7 +21,7 @@
         <!-- Theme CSS -->
         <link id="style-switch" rel="stylesheet" type="text/css" href="/assets/css/style.css">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-       
+
     </head>
     <body>
 

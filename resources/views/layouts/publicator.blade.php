@@ -5,13 +5,7 @@
 	
 	<!-- Meta Tags -->
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="google-adsense-account" content="ca-pub-5594963864359932">
-	<title>Page de publication | Togo actualités</title>
-	{!! SEOMeta::generate() !!}
-	{!! OpenGraph::generate() !!}
-	{!! Twitter::generate() !!}
-	{!! JsonLd::generate() !!}
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="/assets/images/Icone.png">
 
@@ -28,8 +22,7 @@
 	<!-- Theme CSS -->
 	<link id="style-switch" rel="stylesheet" type="text/css" href="/assets/css/style.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5594963864359932"
-     crossorigin="anonymous"></script>
+	
 </head>
 
 <body>
