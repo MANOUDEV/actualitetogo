@@ -90,7 +90,7 @@ onMounted(() => {
                 <div class="col-md-12 ">
                     <div class="d-flex mb-2">
                         <div>
-                            <img src="https://actualitetogo.com/assets/images/Icones_formes/Icones-TAAsset-87.png" class="alaune_logo" alt="Icones-TAAsset-87.png">
+                            <img src="https://togoactu.com/assets/images/Icones_formes/Icones-TAAsset-87.png" class="alaune_logo" alt="Icones-TAAsset-87.png">
                         </div>
                         <div>&nbsp; &nbsp; &nbsp;</div>
                         <div>
@@ -175,7 +175,7 @@ onMounted(() => {
             </div>
             <div class="col-lg-4">
                 <div class="row">
-                    
+
                     <!-- Main Post START -->
                     <div class="col-lg-12">
                         <div class="col-md-12 ">
@@ -231,7 +231,7 @@ onMounted(() => {
                         </div>
 
                     </div>
-                     
+
                 </div>
             </div>
 

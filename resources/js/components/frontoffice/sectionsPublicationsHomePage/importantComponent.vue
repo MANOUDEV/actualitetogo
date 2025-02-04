@@ -61,7 +61,7 @@ onMounted(() => {
             <div class="col-md-12 ">
                 <div class="d-flex mb-2">
                     <div>
-                        <img src="https://actualitetogo.com/assets/images/Icones_formes/Icones-TAAsset-87.png" class="alaune_logo" alt="">
+                        <img src="https://togoactu.com/assets/images/Icones_formes/Icones-TAAsset-87.png" class="alaune_logo" alt="">
                     </div>
                     <div>&nbsp; &nbsp; &nbsp;</div>
                     <div>

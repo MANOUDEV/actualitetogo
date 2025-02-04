@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import moment from 'moment';
-import { useStore } from 'vuex'; 
+import { useStore } from 'vuex';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
 const store = useStore();
@@ -68,7 +68,7 @@ onMounted(() => {
 
                     <div class="d-flex mb-2">
                         <div>
-                            <img src="https://actualitetogo.com/assets/images/Icones_formes/Icones-TAAsset-83.png" class="alaune_logo" alt="Icones-TAAsset-83.png">
+                            <img src="https://togoactu.com/assets/images/Icones_formes/Icones-TAAsset-83.png" class="alaune_logo" alt="Icones-TAAsset-83.png">
                         </div>
                         <div>&nbsp; &nbsp; &nbsp;</div>
                         <div>
@@ -251,7 +251,7 @@ onMounted(() => {
                         </div>
                     </div>
                 </div>
- 
+
             </div>
         </div>
     </div>
