@@ -2,7 +2,7 @@
     <div  v-if="dataReady == 0" >
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <div class="d-flex justify-content-center">
-            <img src="https://actualitetogo.com/assets/images/logo.png"  style="width: 150px;" alt="empty">
+            <img src="https://togoactu.com/assets/images/logo.png"  style="width: 150px;" alt="empty">
         </div>
         <div class="d-flex justify-content-center mt-3">
             <div class="spinner-border text-success" style="text-success: #006633" role="status">

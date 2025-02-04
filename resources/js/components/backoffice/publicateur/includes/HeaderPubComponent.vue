@@ -6,7 +6,7 @@
             <div class="container">
                 <!-- Logo START -->
                 <a class="navbar-brand me-3" href="/">
-                    <img class="navbar-brand-item light-mode-item" src="https://actualitetogo.com/assets/images/logo.png" alt="logo">
+                    <img class="navbar-brand-item light-mode-item" src="https://togoactu.com/assets/images/logo.png" alt="logo">
                 </a>
                 <!-- Logo END -->
 
@@ -27,7 +27,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" style="font-size: 0.9375rem" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-pencil me-1"></i>Mes publications</a>
                             <ul class="dropdown-menu" aria-labelledby="pagesMenu">
-                                <li> <router-link class="dropdown-item" to="#">Mes Tags</router-link></li>
+                                <li> <router-link class="dropdown-item" :to="{name: 'pub.tags'}">Mes Tags</router-link></li>
                                 <li> <a class="dropdown-item" href="#">Toutes mes publications</a></li>
                                 <li> <a class="dropdown-item" href="#">Brouillons</a></li>
                                 <li> <router-link class="dropdown-item" to="#">Créer une publication</router-link></li>
@@ -37,7 +37,7 @@
 
                         <li class="nav-item"><router-link class="nav-link" style="font-size: 0.9375rem" to="#"><i class="bi bi-image me-1"></i>Mes fichiers</router-link></li>
 
-                        <li class="nav-item"><router-link class="nav-link" style="font-size: 0.9375rem"  to="#"><i class="bi bi-user me-1"></i>Mes auteurs</router-link></li>
+                        <li class="nav-item"><router-link class="nav-link" style="font-size: 0.9375rem"  :to="{name: 'pub.authors'}"><i class="bi bi-user me-1"></i>Mes auteurs</router-link></li>
                         
                     </ul>
 
@@ -72,7 +72,7 @@
                                             <a href="#" class="list-group-item-action border-0 border-bottom d-flex p-3">
                                                 <div class="me-3">
                                                     <div class="avatar avatar-sm">
-                                                        <img class="avatar-img rounded-circle" src="https://actualitetogo.com/assets/images/avatar/08.jpg" alt="avatar">
+                                                        <img class="avatar-img rounded-circle" src="https://togoactu.com/assets/images/avatar/08.jpg" alt="avatar">
                                                     </div>
                                                 </div>
                                                 <div>
@@ -87,7 +87,7 @@
                                             <a href="#" class="list-group-item-action border-0 border-bottom d-flex p-3">
                                                 <div class="me-3">
                                                     <div class="avatar avatar-sm">
-                                                        <img class="avatar-img rounded-circle" src="https://actualitetogo.com/assets/images/avatar/02.jpg" alt="avatar">
+                                                        <img class="avatar-img rounded-circle" src="https://togoactu.com/assets/images/avatar/02.jpg" alt="avatar">
                                                     </div>
                                                 </div>
                                                 <div>
@@ -102,7 +102,7 @@
                                             <a href="#" class="list-group-item-action border-0 border-bottom d-flex p-3">
                                                 <div class="me-3">
                                                     <div class="avatar avatar-sm">
-                                                        <img class="avatar-img rounded-circle" src="https://actualitetogo.com/assets/images/avatar/05.jpg" alt="avatar">
+                                                        <img class="avatar-img rounded-circle" src="https://togoactu.com/assets/images/avatar/05.jpg" alt="avatar">
                                                     </div>
                                                 </div>
                                                 <div>
@@ -117,7 +117,7 @@
                                             <a href="#" class="list-group-item-action border-0 border-bottom d-flex p-3">
                                                 <div class="me-3">
                                                     <div class="avatar avatar-sm">
-                                                        <img class="avatar-img rounded-circle" src="https://actualitetogo.com/assets/images/avatar/03.jpg" alt="avatar">
+                                                        <img class="avatar-img rounded-circle" src="https://togoactu.com/assets/images/avatar/03.jpg" alt="avatar">
                                                     </div>
                                                 </div>
                                                 <div>

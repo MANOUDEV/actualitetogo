@@ -40,11 +40,7 @@ import visitorsActionsCommentsModule from './modules/frontoffice/visitors_action
 //Importation du module gérant les données d'envoi de messages
 
 import contactModule from "./modules/frontoffice/home_page/contact"
-
-//Importation du module gérant les données des publications sur la page d'accueil
-
-import homePageModule from './modules/frontoffice/home_page/home_page'
-
+ 
 //Importation du module gérant les données sur article
 
 import articleModule from './modules/frontoffice/article/article'
@@ -68,6 +64,35 @@ import forgot_passwordModule from './modules/auth/forgot_password';
 //Sécurité pour les pages d'administration
 
 import roleModule from './modules/backoffice/role'
+
+
+//Importation des modules gérant les données de la partie administrative
+
+import categoryAdminModule from './modules/backoffice/admin/category'
+
+import authorsAdminModule from './modules/backoffice/admin/authors'
+
+import typePublicationAdminModule from './modules/backoffice/admin/typePublication'
+
+import tagsAdminModule from './modules/backoffice/admin/tags'
+
+import newsLetterAdminModule from './modules/backoffice/admin/newsLetter'
+
+import  publicationAdminModule from './modules/backoffice/admin/publications/publication'
+
+import  alertInfosAnnonceAdminModule from './modules/backoffice/admin/publications/crud/alertInfosAnnonce'
+
+import  articlesAdminModule from './modules/backoffice/admin/publications/crud/articles'
+
+import  publicitesAdminModule from './modules/backoffice/admin/publications/crud/publicites'
+
+//Importation des modules gérant les données de la partie des publicateurs
+
+import tagsPubModule from './modules/backoffice/publicator/tags'
+
+import authorsPubModule from './modules/backoffice/publicator/authors'
+
+
 
 const store = createStore({
     modules:{
@@ -102,10 +127,6 @@ const store = createStore({
 
         contact: contactModule,
 
-        //Déclaration du module gérant les données des publications sur la page d'accueil
-
-        homePage: homePageModule,
-
         //Déclaration du module gérant les données sur un article
 
         article: articleModule,
@@ -125,6 +146,22 @@ const store = createStore({
         //Déclaration des modules gérant les données du système de la securité su site
 
         roleSecurity: roleModule,
+
+        //Déclaration des modules gérant les données de la partie administrative
+
+        typePublicationAdmin: typePublicationAdminModule,
+        categoryAdmin: categoryAdminModule,
+        authorsAdmin: authorsAdminModule,
+        publicationAdmin: publicationAdminModule,
+        alertInfosAnnonceAdmin: alertInfosAnnonceAdminModule,
+        articlesAdmin: articlesAdminModule,
+        publicitesAdmin: publicitesAdminModule,
+        tagsAdmin: tagsAdminModule,
+        newsLetterAdmin: newsLetterAdminModule,
+
+        //Déclaration des modules gérant les données de la partie des publicateurs
+        authorsPub: authorsPubModule,
+        tagsPub: tagsPubModule,
     }
   });
 

@@ -72,19 +72,19 @@ app.component('TagsPopulars', TagsPopularsFooter)
 
 app.component('togoPolitique', togoPolitiqueComponent)
 
-app.component('aNePasManquerTogo', aNePasManquerTogoComponent) 
+app.component('aNePasManquerTogo', aNePasManquerTogoComponent)
 
 app.component('international', internationalComponent)
 
-app.component('societe', societeComponent) 
+app.component('societe', societeComponent)
 
-app.component('opinionFaitsDivers', opinionFaitsDiversComponent) 
+app.component('opinionFaitsDivers', opinionFaitsDiversComponent)
 
 app.component('important', importantComponent)
 
 app.use(VueSweetalert2).use(store).mount('#app')
 
- 
+
 //Importation du Composant de contact à afficher sur la page d'accueil
 
 import ContactF from './components/frontoffice/home_page/contact.vue'
@@ -118,6 +118,20 @@ comments.use(VueSweetalert2);
 comments.use(store);
 
 comments.mount('#comments')
+
+
+//Importation du Composant de contact à afficher sur la page d'accueil
+
+import ChangeProgramF from './components/frontoffice/home_page/changeProgram.vue'
+
+const changeProgram = createApp(ChangeProgramF)
+
+changeProgram.use(VueSweetalert2);
+
+changeProgram.use(store);
+
+changeProgram.mount('#changeProgram')
+
 
 //Gestion de tous les composants administrateurs
 
