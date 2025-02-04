@@ -315,7 +315,7 @@ class ArticlesController extends BaseController
 
                     $publicationCreateData->truncate_content_max = $this->getExcerpt(60, $datas['content']);
 
-                    $publicationCreateData->og_file_url = $datas['og_file_url'];
+                    $publicationCreateData->image_cover_url = $datas['og_file_url'];
 
                     $publicationCreateData->update(); 
 
@@ -461,7 +461,7 @@ class ArticlesController extends BaseController
 
                     $publicationCreateData->truncate_content_max = $this->getExcerpt(60, $datas['content']);
 
-                    $publicationCreateData->og_file_url = $datas['og_file_url'];
+                    $publicationCreateData->image_cover_url = $datas['og_file_url'];
 
                     $publicationCreateData->update(); 
 
@@ -596,7 +596,7 @@ class ArticlesController extends BaseController
 
                     $publicationCreateData->truncate_content_max = $this->getExcerpt(60, $datas['content']);
 
-                    $publicationCreateData->og_file_url = $datas['og_file_url'];
+                    $publicationCreateData->image_cover_url = $datas['og_file_url'];
 
                     $publicationCreateData->update(); 
 
