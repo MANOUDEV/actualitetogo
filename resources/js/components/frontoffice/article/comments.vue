@@ -600,11 +600,11 @@ export default{
 
         async actionComments(){
 
-             this.initialData = window.location.href.replace('https://togoactu.com/', '')
+             this.initialData = window.location.href.replace('https://togoactualite.com/', '')
 
             if(localStorage.getItem('access_token') && localStorage.getItem('nbRsp')){
 
-                 this.initialData = window.location.href.replace('https://togoactu.com/', '')
+                 this.initialData = window.location.href.replace('https://togoactualite.com/', '')
 
                 await this.actionsGetMeProfile();
 
@@ -1282,7 +1282,7 @@ export default{
 
                 this.loading = 1
 
-                 this.initialData = window.location.href.replace('https://togoactu.com/', '')
+                 this.initialData = window.location.href.replace('https://togoactualite.com/', '')
 
                 await this.actionCheckArticleCommentsStateDataRequest({slug: this.initialData});
 
@@ -1307,7 +1307,7 @@ export default{
 
         async initialStateH(){
 
-             this.initialData = window.location.href.replace('https://togoactu.com/', '')
+             this.initialData = window.location.href.replace('https://togoactualite.com/', '')
 
                 await this.actionCheckArticleCommentsStateDataRequest({slug: this.initialData});
 
@@ -1333,7 +1333,7 @@ export default{
         initialComments(){
 
             this.loadingCreate = true
-             this.initialData = window.location.href.replace('https://togoactu.com/', '')
+             this.initialData = window.location.href.replace('https://togoactualite.com/', '')
             jwtInterceptor.post(`article/${this.initialData}/actions_comments/${localStorage.getItem('mtrc')}/comments_creator`, {content: this.content})
             .then(response => {
 
@@ -1386,7 +1386,7 @@ export default{
 
     mounted(){
         this.moment = moment
-         this.initialData = window.location.href.replace('https://togoactu.com/', '')
+         this.initialData = window.location.href.replace('https://togoactualite.com/', '')
         this.getResults();
     }
 }

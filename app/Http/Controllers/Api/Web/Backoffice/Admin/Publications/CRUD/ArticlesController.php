@@ -17,7 +17,7 @@ use Minishlink\WebPush\Subscription;
 use Minishlink\WebPush\WebPush;
 use App\Models\Tag;
 use Carbon\Carbon;
-use Illuminate\Http\Request; 
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
@@ -50,7 +50,7 @@ class ArticlesController extends BaseController
 
     public function stripTags($post_content){
 
-        $content = strip_tags($post_content); 
+        $content = strip_tags($post_content);
 
         return $content;
 
@@ -73,21 +73,21 @@ class ArticlesController extends BaseController
                 $files = File::where('files.file_name', 'like', '%'. $request->input('search') . '%')
                 ->where(function ($query) {
                     $query->where("type_file_id", 1)->orWhere("type_file_id", 2);
-                }) 
+                })
                 ->orderBy('files.count_publications', 'desc')
                 ->paginate(6);
 
                 $filesCount = File::where('files.file_name', 'like', '%'. $request->input('search') . '%')
                 ->where(function ($query) {
                     $query->where("type_file_id", 1)->orWhere("type_file_id", 2);
-                }) 
+                })
                 ->orderBy('files.count_publications', 'desc')
                 ->count();
 
                 if($filesCount === 0){
 
                     return $this->sendResponse(['status' => 401, 'filesCount'=> $filesCount], 'Aucun fichier ne correspond à votre recherche.');
-    
+
                 }else{
 
                     return $this->sendResponse(['files' => $files, 'filesCount'=> $filesCount,'status' => 200], 'Liste des fichiers à la newsletter .');
@@ -108,7 +108,7 @@ class ArticlesController extends BaseController
                 if($filesCount === 0){
 
                     return $this->sendResponse(['status' => 401, 'filesCount'=> $filesCount], 'Aucun fichier n\'est enregistré.');
-    
+
                 }else{
 
                     return $this->sendResponse(['files' => $files, 'filesCount'=> $filesCount,'status' => 200], 'Liste des fichiers à la newsletter .');
@@ -146,7 +146,7 @@ class ArticlesController extends BaseController
                 if($filesCount === 0){
 
                     return $this->sendResponse(['status' => 401, 'filesCount'=> $status], 'Aucun fichier n\'est enregistré.');
-    
+
                 }else{
 
                     return $this->sendResponse(['files' => $files, 'filesCount'=> $status,'status' => 200], 'Liste des fichiers à la newsletter .');
@@ -154,7 +154,7 @@ class ArticlesController extends BaseController
                 }
 
             }else{
-                
+
                 $files = File::where('files.type_file_id', $status)
                 ->orderBy('files.count_publications', 'desc')
                 ->paginate(6);
@@ -165,11 +165,11 @@ class ArticlesController extends BaseController
 
                 if($filesCount === 0){
 
-                    return $this->sendResponse(['status' => 401, 'filesCount'=> $status], 'Aucun fichier ne correspond à votre recherche.');
-    
+                    return $this->sendResponse(['status' => 401, 'filesCount'=> $filesCount], 'Aucun fichier ne correspond à votre recherche.');
+
                 }else{
 
-                    return $this->sendResponse(['files' => $files, 'filesCount'=> $status,'status' => 200], 'Liste des fichiers à la newsletter .');
+                    return $this->sendResponse(['files' => $files, 'filesCount'=> $filesCount,'status' => 200], 'Liste des fichiers à la newsletter .');
 
                 }
 
@@ -177,7 +177,7 @@ class ArticlesController extends BaseController
 
         }
 
-    } 
+    }
 
     /**
      * Display a listing of the resource.
@@ -223,23 +223,23 @@ class ArticlesController extends BaseController
                     if($datas['date_publish'] <= now()){
 
                         return $this->sendResponse(['status' => 422], 'Veuillez bien revoir votre date de debut de publication .');
-    
+
                     }else{
-    
+
                         if($datas['date_publish_end'] <= now()){
-    
+
                             return $this->sendResponse(['status' => 422], 'Veuillez bien revoir votre date de fin de publication .');
-    
+
                         }else{
-    
+
                             if($datas['date_publish_end'] <= $datas['date_publish']){
-    
+
                                 return $this->sendResponse(['status' => 422], 'Votre date de fin de publication ne peut être antérieure à la date de debut de publication ');
-    
+
                             }
                         }
                     }
-                } 
+                }
 
                 if(count($datas['category']) === 1){
 
@@ -285,9 +285,9 @@ class ArticlesController extends BaseController
 
                     $datas['slug'] = Str::slug($this->stripTags($datas['title']));
 
-                    $datas['title_truncate'] = $this->getExcerpt(10, $datas['title']); 
+                    $datas['title_truncate'] = $this->getExcerpt(10, $datas['title']);
 
-                   
+
 
                     $date = Carbon::parse(now());
 
@@ -317,7 +317,7 @@ class ArticlesController extends BaseController
 
                     $publicationCreateData->image_cover_url = $datas['og_file_url'];
 
-                    $publicationCreateData->update(); 
+                    $publicationCreateData->update();
 
                     for ($i=0; $i<= count($datas['tag']) - 1; $i++ ){
 
@@ -377,7 +377,7 @@ class ArticlesController extends BaseController
 
                     if($publicationCreateData){
 
-                        
+
 
                         return $this->sendResponse(['publicationCreateData' => $publicationCreateData, 'status' => 200], 'Première étape validée.');
 
@@ -388,7 +388,7 @@ class ArticlesController extends BaseController
                     }
 
                 }else{
-                    
+
                     $datas['type_publication_id'] = $typePublication->id;
 
                     $datas['type_publication_name'] = $typePublication->name;
@@ -431,9 +431,9 @@ class ArticlesController extends BaseController
 
                     $datas['slug'] = Str::slug($this->stripTags($datas['title']));
 
-                    $datas['title_truncate'] = $this->getExcerpt(10, $datas['title']); 
+                    $datas['title_truncate'] = $this->getExcerpt(10, $datas['title']);
 
-                   
+
 
                     $date = Carbon::parse(now());
 
@@ -463,7 +463,7 @@ class ArticlesController extends BaseController
 
                     $publicationCreateData->image_cover_url = $datas['og_file_url'];
 
-                    $publicationCreateData->update(); 
+                    $publicationCreateData->update();
 
                     for ($i=0; $i<= count($datas['tag']) - 1; $i++ ){
 
@@ -529,7 +529,7 @@ class ArticlesController extends BaseController
                         $datas['type_publication_name'] = $typePublication->name;
 
                         $datas['type_publication_slug'] = $typePublication->slug;
- 
+
                         $datas['date_publish'] = now();
 
                         $datas['deja_citer'] = 1;
@@ -566,9 +566,9 @@ class ArticlesController extends BaseController
 
                         $datas['slug'] = Str::slug($this->stripTags($datas['title']));
 
-                        $datas['title_truncate'] = $this->getExcerpt(10, $datas['title']); 
+                        $datas['title_truncate'] = $this->getExcerpt(10, $datas['title']);
 
-                       
+
 
                         $date = Carbon::parse(now());
 
@@ -598,7 +598,7 @@ class ArticlesController extends BaseController
 
                     $publicationCreateData->image_cover_url = $datas['og_file_url'];
 
-                    $publicationCreateData->update(); 
+                    $publicationCreateData->update();
 
                     for ($i=0; $i<= count($datas['tag']) - 1; $i++ ){
 
@@ -656,12 +656,12 @@ class ArticlesController extends BaseController
 
                     }
 
-                       
+
                     }
 
                     if($publicationCreateData){
 
-                        
+
 
                         return $this->sendResponse(['publicationCreateData' => $publicationCreateData, 'status' => 200], 'Première étape validée.');
 

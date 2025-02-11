@@ -1,7 +1,7 @@
 <template>
     <div class="row mt-3">
         <div class="card border">
-               
+
             <!-- Card body START -->
             <div class="card-body p-3 pb-0">
                 <div class="col-12">
@@ -18,10 +18,8 @@
                                     <!-- Message -->
                                     <div class="mb-3">
                                         <label class="form-label" >Titre de la publication</label>
-                                        <QuillEditor theme="snow"  v-model:content="title" contentType="html" />
-                                    </div>
-
-                                    
+                                        <QuillEditor theme="snow" v-model:content="title" contentType="html" />
+                                    </div> 
                                 </div>
                                 <div class="col-lg-12 mt-3"  v-if=" publicationStoreArticlesCreateErrors.source">
                                     <label class="form-label" >Ajouter le nom de la source</label>
@@ -151,7 +149,7 @@
                                     <div class="col-xl-8">
                                         <!-- Chart START -->
                                         <div class="card border ">
-                        
+
                                             <!-- Card header -->
                                             <div class="card-header p-3 border-bottom">
                                                 <h5 class="card-header-title mb-0">Ajouter vos photos et videos</h5>
@@ -194,13 +192,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-            
+
                                             <form class="container" v-if="LinkStateButton">
                                                 <div class="col-lg-12 mt-3"  v-if="manageFilesPubStoreCreateErrors.file_name">
                                                     <label class="form-label" >Non du fichier</label>
                                                     <input  name="file_name" v-model="file_name" type="text" class="form-control" placeholder="Veuillez entrer le nom du fichier">
                                                 </div>
-                        
+
                                                 <div class="col-lg-12 mt-3"  v-else>
                                                     <label class="form-label" >Non du fichier</label>
                                                     <input  name="file_name" v-model="file_name" type="text" class="form-control" placeholder="Veuillez entrer le nom du fichier">
@@ -209,7 +207,7 @@
                                                     <label class="form-label" >URL fichier</label>
                                                     <input  name="file_url" v-model="file_url" type="url" class="form-control" placeholder="Veuillez entrer le lien du fichier">
                                                 </div>
-                        
+
                                                 <div class="col-lg-12 mt-3"  v-else>
                                                     <label class="form-label" >URL fichier</label>
                                                     <input  name="file_url" v-model="file_url" type="url" class="form-control" placeholder="Veuillez entrer le lien du fichier">
@@ -218,7 +216,7 @@
                                                     <label class="form-label" >Ajoutez une description au fichier</label>
                                                     <input  name="description_file" v-model="description_file" type="text" class="form-control" placeholder="Veuillez décrire le fichier">
                                                 </div>
-                        
+
                                                 <div class="col-lg-12 mt-3"  v-else>
                                                     <label class="form-label" >Ajoutez une description au fichier</label>
                                                     <input  name="description_file" v-model="description_file" type="text" class="form-control" placeholder="Veuillez décrire le fichier">
@@ -227,14 +225,14 @@
                                                     <button type="button"   class="btn btn-danger border-0 me-2">Annuler</button>
                                                     <button type="submit"    class="btn btn-primary">Enregistrer</button>
                                                 </div>
-                        
+
                                             </form>
                                             <form class="container" v-if="IframeStateButton">
                                                 <div class="col-lg-12 mt-3"  v-if="manageFilesPubStoreCreateErrors.file_name">
                                                     <label class="form-label" >Non du fichier</label>
                                                     <input  name="file_name" v-model="file_name" type="text" class="form-control" placeholder="Veuillez entrer le nom du fichier">
                                                 </div>
-                        
+
                                                 <div class="col-lg-12 mt-3"  v-else>
                                                     <label class="form-label" >Non du fichier</label>
                                                     <input  name="file_name" v-model="file_name" type="text" class="form-control" placeholder="Veuillez entrer le nom du fichier">
@@ -243,7 +241,7 @@
                                                     <label class="form-label" >Code Iframe</label>
                                                     <textarea  cols="3" rows="3" name="file_url" v-model="file_url" type="url" class="form-control"  ></textarea>
                                                 </div>
-                        
+
                                                 <div class="col-lg-12 mt-3"  v-else>
                                                     <label class="form-label" >Code Iframe</label>
                                                     <textarea  cols="3" rows="3" name="file_url" v-model="file_url" type="url" class="form-control"  ></textarea>
@@ -252,7 +250,7 @@
                                                     <label class="form-label" >Ajoutez une description au fichier</label>
                                                     <input  name="description_file" v-model="description_file" type="text" class="form-control" placeholder="Veuillez décrire le fichier">
                                                 </div>
-                        
+
                                                 <div class="col-lg-12 mt-3"  v-else>
                                                     <label class="form-label" >Ajoutez une description au fichier</label>
                                                     <input  name="description_file" v-model="description_file" type="text" class="form-control" placeholder="Veuillez décrire le fichier">
@@ -278,7 +276,7 @@
                                                             </button>
                                                         </div>
                                                     </div>
-                                                </div> 
+                                                </div>
                                             </form>
                                             <form v-if="ExistStateButton">
                                                 <div class="container" v-if=" loadingFiles == false">
@@ -300,13 +298,13 @@
                                                                             <select class="form-select" @change="handleSelectionSearchByStatusFiles($event)" v-model="statusFiles" name="statusFiles" id="statusFiles">
                                                                                 <option value="3" >Tous les fichiers</option>
                                                                                 <option value="1" >Les images</option>
-                                                                                <option value="2" >Les videos</option> 
+                                                                                <option value="2" >Les videos</option>
                                                                             </select>
                                                                         </form>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                        
+
                                                             <!-- Card body START -->
                                                             <div class="card-body p-3" v-if="emptyFiles == 0">
                                                                 <div class="row g-3" >
@@ -314,12 +312,12 @@
                                                                         <div class="card bg-transparent" v-if="result.type_file_id == 1">
                                                                             <!-- Card img -->
                                                                             <img @click="selectFiles(result.file_name, result.type_file_id, result.file_url)" class="card-img rounded" :src='getImage(result.file_url)' style="height: 150px; object-fit: cover;  cursor:pointer"  >
-                                                                            
+
                                                                         </div>
                                                                         <div class="card bg-transparent" v-else-if="result.type_file_id == 2">
                                                                             <!-- Card img -->
                                                                             <video @click="selectFiles(result.file_name, result.type_file_id, result.file_url)" class="card-img rounded" muted :src='getImage(result.file_url)' style="height: 150px; object-fit: cover; cursor:pointer"  ></video>
-                                                                            
+
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -336,11 +334,11 @@
                                                                     <div class="col-md-3"></div>
                                                                 </div>
                                                             </div>
-                                
-                                                            <div class="card-footer p-3" v-if="empty == 0">
+
+                                                            <div class="card-footer p-3" v-if="emptyFiles == 0">
                                                                 <!-- Pagination START -->
                                                                 <div class="d-sm-flex justify-content-sm-between align-items-sm-center">
-                                
+
                                                                     <Bootstrap5Pagination
                                                                         class="mb-0"
                                                                         :data="filesData.files"
@@ -351,23 +349,23 @@
                                                                         :align="align"
                                                                         @pagination-change-page="getFiles"
                                                                     />
-                                
+
                                                                 </div>
                                                             </div>
-                                                        </div> 
-                
+                                                        </div>
+
                                                     </div>
-            
+
                                                 </div>
                                             </form>
-                                            
+
                                         </div>
                                         <!-- Chart END -->
                                     </div>
                                     <div class="col-xl-4">
                                         <!-- Chart START -->
                                         <div class="card border  ">
-                        
+
                                             <!-- Card header -->
                                             <div class="card-header p-3 border-bottom">
                                                 <h5 class="card-header-title mb-0">Mes fichiers</h5>
@@ -387,7 +385,7 @@
                                                 <div class="row" v-else>
                                                     <!-- Blog item -->
                                                     <div v-for="info in files_selected" :key="info">
-                                                        
+
                                                         <div class="card">
                                                             <div class="row g-3">
                                                                 <div class="col-3">
@@ -408,18 +406,18 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                            
+
                                                         <!-- Divider -->
                                                         <hr class="my-3">
                                                     </div>
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- Chart END -->
                                     </div>
                                 </div>
-                            
+
                                 <div class="d-flex justify-content-end mt-4"  >
                                     <button type="button" @click="stepStoreArticlesThreeToTwoButton" class="btn btn-danger border-0 me-2"><i class="fa fa-angle-left"></i>Précédent</button>
                                     <button type="submit"  @click="stepStoreArticlesThreeToFourButton" class="btn btn-primary">Suivant<i class="fa fa-angle-right"></i></button>
@@ -430,7 +428,7 @@
                                     <div class="col-xl-7">
                                         <!-- Chart START -->
                                         <div class="card border h-100">
-            
+
                                             <!-- Card header -->
                                             <div class="card-header p-3 border-bottom">
                                                 <h5 class="card-header-title mb-0">Définir une image de couverture</h5>
@@ -442,9 +440,9 @@
                                                         <div class="card bg-transparent" v-if="result.type_file_id == 1">
                                                             <!-- Card img -->
                                                             <img @click="selectFilesOg(result.file_name, result.type_file_id, result.file_url)" class="card-img rounded" :src='getImage(result.file_url)' style="height: 150px; object-fit: cover;  cursor:pointer"  >
-                                                            
+
                                                         </div>
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -466,7 +464,7 @@
                                     <div class="col-xl-5">
                                         <!-- Chart START -->
                                         <div class="card border h-100">
-            
+
                                             <!-- Card header -->
                                             <div class="card-header p-3 border-bottom">
                                                 <h5 class="card-header-title mb-0">Votre image de couverture</h5>
@@ -489,9 +487,9 @@
                                                             <div class="card bg-transparent" v-if="og_file_url.type_file_id == 1">
                                                                 <!-- Card img -->
                                                                 <img   class="card-img rounded" :src='getImage(og_file_url.file_url)' style="height: 350px; object-fit: cover;  cursor:pointer"  >
-                                                                
+
                                                             </div>
-                                                            
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -507,7 +505,7 @@
                             </div>
                             <div v-if="stepStoreArticlesFiveState">
                                 <div class="row" v-if="alreadyCreate == false">
-                                    
+
                                     <div class="col-lg-4">
                                         <label class="form-label" >Statut de publication</label>
                                         <select class="form-select" @change="handleSelectionSearchByStatus($event)" v-model="status" name="status" id="status">
@@ -560,14 +558,14 @@
                                         <div class="col-md-3"></div>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                         </form>
 
                     </div>
                 </div>
             </div>
         </div>
-        
+
     </div>
 
     <div class="modal fade" id="authFormModalpublicationStoreArticlesCreate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -799,10 +797,9 @@
 <script>
 import { mapGetters, mapActions} from "vuex";
 import moment from 'moment'
-import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.snow.css'; 
 import {Bootstrap5Pagination, TailwindPagination } from '../../../../../../libraries/pagination/lib';
- 
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import VueMultiselect from 'vue-multiselect';
 export default {
 
@@ -824,7 +821,7 @@ export default {
             authSectionModal: 'CREATEARTICLE',
             publicationStoreArticlesCreateData: {},
             publicationStoreArticlesCreateMessage: null,
-            publicationStoreArticlesCreateErrors: { }, 
+            publicationStoreArticlesCreateErrors: { },
             manageFilesPubStoreCreateData: {},
             manageFilesPubStoreCreateMessage: null,
             manageFilesPubStoreCreateErrors: { },
@@ -888,11 +885,12 @@ export default {
             file_url: null,
             description_file: null,
             active: false,
-            dropzoneFile: [ ], 
+            dropzoneFile: [ ],
             files_selected: [ ],
             filesMessage: null,
             filesData: { },
-            emptyFiles: 0, 
+            emptyFiles: 0,
+            empty: 0,
             statusFiles: 3,
             loadingFiles: true,
             style: 'bootstrap5',
@@ -903,7 +901,7 @@ export default {
             align: 'left',
             search: '',
             og_file_url: null,
-            images_og:[], 
+            images_og:[],
         }
     },
     computed: {
@@ -1132,30 +1130,32 @@ export default {
 
         getImage(slug){
             return  slug;
-        }, 
+        },
 
         selectFiles(file_name, type_file_id, file_url){
 
-            if(type_file_id == 1){  
+            if(type_file_id == 1){
 
-                this.images_og.push({file_name: file_name, type_file_id: type_file_id, file_url: file_url}) 
+                this.images_og.push({file_name: file_name, type_file_id: type_file_id, file_url: file_url})
 
-                this.files_selected.push({file_name: file_name, type_file_id: type_file_id, file_url: file_url}) 
+                this.files_selected.push({file_name: file_name, type_file_id: type_file_id, file_url: file_url})
+
+
 
             }else{
 
-                this.files_selected.push({file_name: file_name, type_file_id: type_file_id, file_url: file_url}) 
+                this.files_selected.push({file_name: file_name, type_file_id: type_file_id, file_url: file_url})
 
-            } 
+            }
         },
 
         selectFilesOg(file_name, type_file_id, file_url){
 
-            if(type_file_id == 1){  
+            if(type_file_id == 1){
 
-                this.og_file_url= {file_name: file_name, type_file_id: type_file_id, file_url: file_url}  
- 
-            } 
+                this.og_file_url= {file_name: file_name, type_file_id: type_file_id, file_url: file_url}
+
+            }
         },
 
         async handleSelectionSearchByStatus(event ){
@@ -1755,7 +1755,7 @@ export default {
                 this.date_publish = date.toISOString().slice(0, 16)
             }
 
-            await this.actionsPublicationStoreArticlesDataRequest({ slug : this.$route.params.slug, title : this.title, content : this.content, category : this.category, tag : this.tag, og_file_url : this.og_file_url.file_url  ,files_selected : this.files_selected ,author : this.author, source : this.source,status : this.status, date_publish : this.date_publish,  date_publish_end : this.date_publish_end  });
+            await this.actionsPublicationStoreArticlesDataRequest({ slug : this.$route.params.slug, title : this.title, content : this.content, category : this.category, tag : this.tag, image_cover_url : this.og_file_url.file_url  ,files_selected : this.files_selected ,author : this.author, source : this.source,status : this.status, date_publish : this.date_publish,  date_publish_end : this.date_publish_end  });
 
             if( this.getterInfosPublicationStoreArticlesStatus ==="success"){
 
@@ -1812,39 +1812,39 @@ export default {
         },
 
         async getFiles( page=1){
- 
+
             await this.actionsPublicationGetFilesDataRequest({slug : this.$route.params.slug, page : page, search: this.search });
 
             if( this.getterInfosPublicationGetFilesStatus ==="success"){
 
                 this.filesData = this.getterInfosPublicationGetFilesData
 
-                this.empty = 0 
+                this.emptyFiles = 0
 
-                this.loadingFiles = false 
+                this.loadingFiles = false
 
             }else if( this.getterInfosPublicationGetFilesStatus ==="empty"){
 
                 this.filesMessage = this.getterInfosPublicationGetFilesMessage
- 
-                this.empty = 1
-                
-                this.loadingFiles = false 
+
+                this.emptyFiles = 1
+
+                this.loadingFiles = false
 
             } else{
 
                 this.filesMessage = this.getterInfosPublicationGetFilesMessage
 
-                this.empty = 3 
+                this.emptyFiles = 3
 
-                this.loadingFiles = false 
+                this.loadingFiles = false
 
             }
         },
 
         async handleSelectionSearchByStatusFiles(event, page=1){
 
-            this.status = event.target.value 
+            this.status = event.target.value
 
             await this.actionsPublicationSearchByTypeFilesDataRequest({ slug : this.$route.params.slug, page : page, status: this.status, search: this.search});
 
@@ -1852,25 +1852,27 @@ export default {
 
                 this.filesData = this.getterInfosPublicationSearchByTypeFilesData
 
-                this.empty = 0
- 
+                this.emptyFiles = 0
+
             }else if( this.getterInfosPublicationSearchByTypeFilesStatus ==="empty"){
 
                 this.filesMessage = this.getterInfosPublicationSearchByTypeFilesMessage
- 
-                this.empty = 1 
+
+                this.emptyFiles = 1
 
             } else{
 
                 this.filesMessage = this.getterInfosPublicationSearchByTypeFilesMessage
 
-                this.empty = 3 
+                this.emptyFiles = 3
 
             }
         },
 
         removeFiles(index) {
+            index = this.files_selected.indexOf(index)
             this.files_selected.splice(index, 1);
+            this.images_og.splice(index, 1);
         }
 
     },

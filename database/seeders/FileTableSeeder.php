@@ -33,7 +33,7 @@ class FileTableSeeder extends Seeder
         foreach($type_files as $type_file){
 
             $response = Http::get("https://www.togoactualite.com/wp-json/wp/v2/media?media_type=$type_file->slug_wp&per_page=100");
-            
+
             $medias_count_by_type[] = [
                 'x-wp-totalpages' => $response->getHeader('x-wp-totalpages')[0],
                 'x-wp-total' => $response->getHeader('x-wp-total')[0],
@@ -45,14 +45,14 @@ class FileTableSeeder extends Seeder
             $type_file->count_files = $response->getHeader('x-wp-total')[0];
 
             $type_file->update();
-        
+
         }
 
         //dd($medias_count_by_type);
 
         foreach($medias_count_by_type as $result){
 
-           
+
             $media_type = $result['type_file_slug_wp'];
 
             $page = $result['x-wp-totalpages'];
@@ -61,14 +61,14 @@ class FileTableSeeder extends Seeder
 
             for($i = 1; $i <= $page; $i++){
 
-                $medias = Http::get('https://www.togoactualite.com/wp-json/wp/v2/media?media_type=$media_type&page='.$i.'&per_page=100')->json();
+                $medias = Http::get('https://www.togoactualite.com/wp-json/wp/v2/media?media_type='.$media_type.'&page='.$i.'&per_page=100')->json();
 
-            
-                foreach( $medias as $media ){ 
-                    
+
+                foreach( $medias as $media ){
+
                     if(isset($media['source_url'])){
 
-                        $link = $media['source_url']; 
+                        $link = $media['source_url'];
 
                         $date = Carbon::parse($media["modified_gmt"]);
 
@@ -88,6 +88,8 @@ class FileTableSeeder extends Seeder
 
                         }
 
+                        // dd($media['title']['rendered']);
+
                         $fichier_original = File::create([
                             'file_url' => str_replace('https://togoactualite.com/wp-content/uploads', 'https://togoactualite.com/wp-content/uploads', $link),
                             'date_name' => $date_name,
@@ -99,16 +101,16 @@ class FileTableSeeder extends Seeder
                             'type_file_id' => $type_file_id,
                             'user_id' => 1
                         ]);
-        
-                            
+
+
                     }
 
-                    
+
                 }
 
-                    
+
             }
-            
+
         }
 
     }

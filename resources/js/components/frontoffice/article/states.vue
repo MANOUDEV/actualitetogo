@@ -957,11 +957,11 @@ export default{
 
             async actionLikes(){
 
-                this.initialData = window.location.href.replace('https://togoactu.com/', '')
+                this.initialData = window.location.href.replace('https://togoactualite.com/', '')
 
                 if(localStorage.getItem('access_token') && localStorage.getItem('nbRsp')){
 
-                    this.initialData = window.location.href.replace('https://togoactu.com/', '')
+                    this.initialData = window.location.href.replace('https://togoactualite.com/', '')
 
                     await this.actionsGetMeProfile();
 
@@ -1145,7 +1145,7 @@ export default{
 
             async getResults(){
 
-                this.initialData = window.location.href.replace('https://togoactu.com/', '')
+                this.initialData = window.location.href.replace('https://togoactualite.com/', '')
                 this.loading = 1
 
                 if(localStorage.getItem('mtrv') == null){
@@ -1170,7 +1170,7 @@ export default{
             },
 
             async getResultsLikes(){
-                this.initialData = window.location.href.replace('https://togoactu.com/', '')
+                this.initialData = window.location.href.replace('https://togoactualite.com/', '')
                 this.loading = 1
 
                 if(localStorage.getItem('mtrl') == null){
@@ -1317,7 +1317,7 @@ export default{
             },
 
             async initialState(){
-                this.initialData = window.location.href.replace('https://togoactu.com/', '')
+                this.initialData = window.location.href.replace('https://togoactualite.com/', '')
                 this.loading = 1
                 await this.actionCheckArticleStateDataRequest({slug: this.initialData});
 
@@ -1357,7 +1357,7 @@ export default{
 
 
             async initialLikes(){
-                this.initialData = window.location.href.replace('https://togoactu.com/', '')
+                this.initialData = window.location.href.replace('https://togoactualite.com/', '')
                 await this.actionCheckArticleLikesDataRequest({slug: this.initialData});
                 if(this.getterInfosCheckArticleLikesStatus === 201){
 
@@ -1415,7 +1415,7 @@ export default{
     },
 
     mounted(){
-        this.initialData = window.location.href.replace('https://togoactu.com/', '')
+        this.initialData = window.location.href.replace('https://togoactualite.com/', '')
         this.getResults();
     }
 }
