@@ -241,6 +241,8 @@ class ArticlesController extends BaseController
                     }
                 }
 
+                $datas['title'] = strip_tags($datas['title']);
+
                 if(count($datas['category']) === 1){
 
                     $datas['type_publication_id'] = $typePublication->id;
