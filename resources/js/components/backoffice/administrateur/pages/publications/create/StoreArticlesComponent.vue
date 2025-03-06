@@ -1755,7 +1755,7 @@ export default {
                 this.date_publish = date.toISOString().slice(0, 16)
             }
 
-            await this.actionsPublicationStoreArticlesDataRequest({ slug : this.$route.params.slug, title : this.title, content : this.content, category : this.category, tag : this.tag, image_cover_url : this.og_file_url.file_url  ,files_selected : this.files_selected ,author : this.author, source : this.source,status : this.status, date_publish : this.date_publish,  date_publish_end : this.date_publish_end  });
+            await this.actionsPublicationStoreArticlesDataRequest({ slug : this.$route.params.slug, title : this.title, content : this.content, category : this.category, tag : this.tag, og_file_url : this.og_file_url.file_url  ,files_selected : this.files_selected ,author : this.author, source : this.source,status : this.status, date_publish : this.date_publish,  date_publish_end : this.date_publish_end  });
 
             if( this.getterInfosPublicationStoreArticlesStatus ==="success"){
 
