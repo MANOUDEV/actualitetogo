@@ -31,6 +31,18 @@ class OneSlugController extends BaseController
 
                 return view('oneSlugPage.forum');
 
+            }elseif($slug === 'publicites'){
+
+                return view('oneSlugPage.pub');
+
+            }elseif($slug === 'events'){
+
+                return view('oneSlugPage.events');
+
+            }elseif($slug === 'videos'){
+
+                return view('oneSlugPage.videos');
+
             }elseif($slug === 'contact'){
 
                 return view('oneSlugPage.contact');
@@ -364,7 +376,7 @@ class OneSlugController extends BaseController
 
 
 
-                $articles = Publication::select(array("publications.id", "publications.content", "publications.truncate_content","publications.title", "publications.slug", "publications.date_publish" ,"publications.author_name", "publications.author_slug","publications.og_file_url"))
+                $articles = Publication::select(array("publications.id", "publications.content", "publications.truncate_content","publications.title", "publications.slug", "publications.date_publish" ,"publications.author_name", "publications.author_slug","publications.image_cover_url"))
                 ->where("publications.status", 1)
                 ->where("publications.type_publication_id", 1)
                 ->where("tags.id", $tag->id)

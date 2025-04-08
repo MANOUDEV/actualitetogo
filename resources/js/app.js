@@ -52,6 +52,10 @@ import in_first_menuF from './components/frontoffice/verify_auth/in_first_menu.v
 
 import loginH from './components/authentication/login.vue'
 
+//Importation du Composant de contact à afficher sur la page d'accueil
+
+import contactF from './components/frontoffice/includes/contact.vue'
+
 const app = createApp({})
 
 app.component('TogoactualiteHeader', TogoactualiteHeader)
@@ -85,5 +89,7 @@ app.component('offCanvas', off_canvasF)
 app.component('inFirstMenu', in_first_menuF)
 
 app.component('login', loginH)
+
+app.component('contact', contactF)
 
 app.use(VueSweetalert2).use(store).mount('#app')

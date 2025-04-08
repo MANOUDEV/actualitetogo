@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\Web\Authentication\ForgotPasswordController;
 use App\Http\Controllers\Api\Web\Authentication\LoginController;
 use App\Http\Controllers\Api\Web\Authentication\LogoutController;
 use App\Http\Controllers\Api\Web\Authentication\ProfileController;
-
+use App\Http\Controllers\Api\Web\Frontoffice\UserActionAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -60,6 +60,10 @@ Route::get('/frontoffice/footer/category_populars', [IncludesController::class, 
 
 Route::get('/frontoffice/footer/articles_populars', [IncludesController::class, 'publicationsRequestData']);
 
+//Gestion d'envoi de message sans connexion de l'utilisateur
+
+Route::post('/home/contact', [IncludesController::class, 'submitContact']); 
+
 //Les routes pour les données de la page d'accueil
 
 Route::get('/frontoffice/home_page/togo_politique', [HomeController::class, 'togoPolitiqueDataRequest']);
@@ -102,4 +106,9 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     Route::put('updateMePassword', [ProfileController::class, 'updateMePassword'])->middleware('auth:api');
 
     Route::get('role', [ProfileController::class, 'getRole'])->middleware('auth:api');
+
+    //Gestion d'envoi de message avec connexion de l'utilisateur
+
+    Route::post('/home/contact_auth', [UserActionAuthController::class, 'submitContactAuth'])->middleware('auth:api');
+
 });
