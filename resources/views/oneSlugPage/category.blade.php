@@ -89,7 +89,7 @@
                                             <div class="card">
                                                 <!-- Card img -->
                                                 <div class="position-relative">
-                                                    <img class="card-img" src="https://togoactualite.com/wp-content/{{$result->og_file_url}}" style="height: 260px; width: 550px ; object-fit: cover" alt="{{ $result->title }}">
+                                                    <img class="card-img" src="{{$result->image_cover_url}}" style="height: 260px; width: 550px ; object-fit: cover" alt="{{ $result->title }}">
 
                                                 </div>
                                                 <div class="card-body px-0 pt-3">
@@ -126,49 +126,50 @@
                                     <!-- Categories -->
                                     <div class="row g-2">
                                         <h5>Autres catégories</h5>
+ 
                                         @for ($i=0; $i<= count($otherCategory) - 1; $i++ )
 
                                             @if ( $i == 4)
 
                                                 <div class="d-flex justify-content-between align-items-center bg-warning bg-opacity-15 rounded p-2 position-relative">
                                                     <h6 class="m-0 text-warning">{{$otherCategory[$i]['name']}}</h6>
-                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-warning text-dark stretched-link">{{$otherCategory[$i]['count']}}</a>
+                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-warning text-dark stretched-link">{{$otherCategory[$i]['count_publications']}}</a>
                                                 </div>
 
                                             @endif
 
                                             @if ( $i == 10)
 
-                                                <div class="d-flex justify-content-between align-items-center bg-success bg-opacity-15 rounded p-2 position-relative">
-                                                    <h6 class="m-0 text-light">{{$otherCategory[$i]['name']}}</h6>
-                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-success text-light stretched-link">{{$otherCategory[$i]['count']}}</a>
+                                                <div class="d-flex justify-content-between align-items-center bg-success bg-opacity-10 rounded p-2 position-relative">
+                                                    <h6 class="m-0 text-success">{{$otherCategory[$i]['name']}}</h6>
+                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-success stretched-link">{{$otherCategory[$i]['count_publications']}}</a>
                                                 </div>
 
                                             @endif
 
                                             @if ( $i == 9)
 
-                                                <div class="d-flex justify-content-between align-items-center bg-primary bg-opacity-15 rounded p-2 position-relative">
-                                                    <h6 class="m-0 text-primary">{{$otherCategory[$i]['name']}}</h6>
-                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-primary text-light stretched-link">{{$otherCategory[$i]['count']}}</a>
+                                            <div class="d-flex justify-content-between align-items-center bg-info bg-opacity-10 rounded p-2 position-relative">
+                                                <h6 class="m-0 text-info">{{$otherCategory[$i]['name']}}</h6>
+                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-info stretched-link">{{$otherCategory[$i]['count_publications']}}</a>
                                                 </div>
 
                                             @endif
 
                                             @if ( $i == 19)
 
-                                                <div class="d-flex justify-content-between align-items-center bg-linkedin bg-opacity-15 rounded p-2 position-relative">
-                                                    <h6 class="m-0 text-light">{{$otherCategory[$i]['name']}}</h6>
-                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-linkedin text-light stretched-link">{{$otherCategory[$i]['count']}}</a>
+                                                <div class="d-flex justify-content-between align-items-center bg-primary bg-opacity-10 rounded p-2 position-relative">
+                                                    <h6 class="m-0 text-primary">{{$otherCategory[$i]['name']}}</h6>
+                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-primary stretched-link">{{$otherCategory[$i]['count_publications']}}</a>
                                                 </div>
 
                                             @endif
 
                                             @if ( $i == 20)
 
-                                                <div class="d-flex justify-content-between align-items-center bg-danger bg-opacity-15 rounded p-2 position-relative">
+                                                <div class="d-flex justify-content-between align-items-center bg-danger bg-opacity-10 rounded p-2 position-relative">
                                                     <h6 class="m-0 text-danger">{{$otherCategory[$i]['name']}}</h6>
-                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-danger text-light stretched-link">{{$otherCategory[$i]['count']}}</a>
+                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-danger stretched-link">{{$otherCategory[$i]['count_publications']}}</a>
                                                 </div>
 
                                             @endif

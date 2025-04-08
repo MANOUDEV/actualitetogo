@@ -151,7 +151,7 @@
                                                 </div>
                                                 <!-- Image -->
                                                 <div class="col-sm-4">
-                                                    <img class="rounded-3" src="https://togoactualite.com/wp-content/{{ $article->og_file_url }}" style="height: 220px; width: 700px ;object-fit:cover" alt="{{ $article->title }}">
+                                                    <img class="rounded-3" src="{{ $article->image_cover_url }}" style="height: 220px; width: 700px ;object-fit:cover" alt="{{ $article->title }}">
                                                 </div>
                                             </div>
                                         </div>
