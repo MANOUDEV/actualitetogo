@@ -10,6 +10,8 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 import store from './store/index';
 
+import vue3GoogleLogin from 'vue3-google-login'
+
 //Importation, déclaration et chargement des composants inclus dans le header
 
 import TogoactualiteHeader from './components/frontoffice/header/togoactualite.vue'
@@ -52,6 +54,8 @@ import in_first_menuF from './components/frontoffice/verify_auth/in_first_menu.v
 
 import loginH from './components/authentication/login.vue'
 
+import socialGoogleLoginComponent from './components/authentication/social_login/google-authentication.vue'
+
 //Importation du Composant de contact à afficher sur la page d'accueil
 
 import contactF from './components/frontoffice/includes/contact.vue'
@@ -89,6 +93,8 @@ app.component('offCanvas', off_canvasF)
 app.component('inFirstMenu', in_first_menuF)
 
 app.component('login', loginH)
+
+app.component('googleLogin', socialGoogleLoginComponent)
 
 app.component('contact', contactF)
 
