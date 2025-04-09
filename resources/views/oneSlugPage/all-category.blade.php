@@ -10,6 +10,7 @@
         <!-- =======================Author list START -->
         <section class="py-4">
             <div class="container">
+            @include('adsense.google-ads.ads-sections-home-page')
             <!-- Author list title START -->
                 <div class="row g-4 pb-4">
                     <div class="col-12">
@@ -18,6 +19,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <!-- Author list title START -->
                 <div class="row g-4">
                     <div class="col-12">
@@ -73,7 +75,7 @@
                                                                         <h5 class="mb-0">Aucune publication</h5>
                                                                     @else
                                                                         <h5 class="mb-0"> {{ $category->count_publications }} </h5>
-                                                                        <h6 class="mb-0 fw-light">publications totales</h6>
+                                                                        <h6 class="mb-0 fw-light">publications</h6>
                                                                     @endif
 
                                                                 </div>
@@ -117,6 +119,7 @@
 
 
                 </div>
+                @include('adsense.google-ads.ads-sections-home-page')                
             </div>
         </section>
         <!-- =======================Author list END -->

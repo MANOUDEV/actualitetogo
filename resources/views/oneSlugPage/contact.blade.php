@@ -11,7 +11,7 @@
             <div class="container">
                 <div class="row"> 
                     <div class="col-md-9 mx-auto text-center">
-                          
+                        @include('adsense.google-ads.ads-sections-home-page')  
                         <h1 class="display-4">Contactez-nous</h1>
                         <!-- breadcrumb -->
                         <nav class="d-flex justify-content-center" aria-label="breadcrumb">
@@ -21,7 +21,7 @@
                         </ol>
                         </nav>
                         
-                        
+                        @include('adsense.google-ads.ads-sections-home-page')
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 mx-auto"> 
-                        
+                        @include('adsense.google-ads.ads-sections-home-page')
                         <div class="row mt-2">
                             <div class="col-sm-12 mb-sm-0">
                                 <h3>Publicités / Annonces</h3>
@@ -41,8 +41,8 @@
                             </div>
                         </div>
                         <hr class="my-5">
-                        <contact></contact>
-                        
+                        <div id="contact"></div>
+                        @include('adsense.google-ads.ads-sections-home-page')
                     </div>
                 </div>
             </div>

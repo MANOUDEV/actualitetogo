@@ -2,6 +2,6 @@
 
 @section('content')
 
-    <administrateur></administrateur>
+    <div id="administrateur"></div>
    
 @endsection

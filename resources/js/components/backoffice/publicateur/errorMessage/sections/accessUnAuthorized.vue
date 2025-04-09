@@ -1,6 +1,3 @@
-<script>
-
-</script>
 <template>
     <section class="overflow-hidden">
         <div class="container">

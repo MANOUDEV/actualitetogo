@@ -3,95 +3,93 @@
 namespace App\Http\Controllers\Api\Web\Frontoffice;
 use App\Http\Controllers\Api\BaseController;
 use App\Models\Publication;
-use App\Models\PublicationTag;
 use App\Models\Author;
 use App\Models\Category;
+use App\Models\PublicationTag;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class OneSlugController extends BaseController
 {
     public function slug(Request $request, $slug){
 
-        $articles_count = Publication::where('status', 1)->where("publications.type_publication_id", 1)->count();
+        if($slug === 'forum'){
 
-        if($articles_count === 0){
+            return view('oneSlugPage.forum');
 
-            return view('errors.HomePageControlEmpty');
+        }elseif($slug === 'mentions_legales'){
 
-        }else{
+            return view('oneSlugPage.mentions_legales');
 
-            if($slug === 'ads.txt'){
+        }elseif($slug === 'confidentialite'){
 
-                return view('adsense.ads');
+            return view('oneSlugPage.confidentialite');
 
-            }elseif($slug === 'forum'){
+        }elseif($slug === 'contact'){
 
-                return view('oneSlugPage.forum');
+            return view('oneSlugPage.contact');
 
-            }elseif($slug === 'publicites'){
+        }elseif($slug === 'about'){
 
-                return view('oneSlugPage.pub');
 
-            }elseif($slug === 'events'){
+            $users = User::where('status', 1)->paginate(10);
 
-                return view('oneSlugPage.events');
+            return view('oneSlugPage.about', ['users' => $users]);
 
-            }elseif($slug === 'videos'){
+        }elseif ($slug === 'infos-pratiques') {
 
-                return view('oneSlugPage.videos');
+            return view('oneSlugPage.infos-pratiques');
 
-            }elseif($slug === 'contact'){
+        }elseif ($slug === 'ads.txt') {
 
-                return view('oneSlugPage.contact');
+            return view('adsense.ads');
 
-            }elseif($slug === 'about'){
+        }elseif ($slug === 'all-category') {
 
-                $users = User::where('status', 1)->paginate(10);
+            $categories = Category::query();
 
-                return view('oneSlugPage.about', ['users' => $users]);
+            if($request->input('search')){
 
-            }elseif ($slug === 'infos-pratiques') {
+                $categories = DB::table("categories")
+                ->where('categories.name', 'like', '%'. $request->input('search') . '%')
+                ->orWhere('categories.slug', 'like', '%'. $request->input('search') . '%')
+                ->orWhere('categories.date_publish', 'like', '%'. $request->input('search') . '%')
+                ->orWhere('categories.count_publications', 'like', '%'. $request->input('search') . '%')
+                ->orderBy('categories.count_publications', 'desc')
+                ->paginate(9);
 
-                return view('oneSlugPage.infos-pratiques');
+                $categoryCount = DB::table("categories")
+                ->where('categories.name', 'like', '%'. $request->input('search') . '%')
+                ->orWhere('categories.slug', 'like', '%'. $request->input('search') . '%')
+                ->orWhere('categories.date_publish', 'like', '%'. $request->input('search') . '%')
+                ->orWhere('categories.count_publications', 'like', '%'. $request->input('search') . '%')
+                ->orderBy('categories.count_publications', 'desc')
+                ->count();
 
-            }elseif ($slug === 'all-category') {
+            }else{
 
-                $categories = Category::query();
+                $categories = DB::table("categories")
+                ->orderBy('categories.count_publications', 'desc')
+                ->paginate(9);
 
-                if($request->input('search')){
+                $categoryCount = Category::count();
 
-                    $categories = DB::table("categories")
-                    ->where('categories.name', 'like', '%'. $request->input('search') . '%')
-                    ->orWhere('categories.slug', 'like', '%'. $request->input('search') . '%')
-                    ->orWhere('categories.date_publish', 'like', '%'. $request->input('search') . '%')
-                    ->orWhere('categories.count_publications', 'like', '%'. $request->input('search') . '%')
-                    ->orderBy('categories.count_publications', 'desc')
-                    ->paginate(9);
+            }
 
-                    $categoryCount = DB::table("categories")
-                    ->where('categories.name', 'like', '%'. $request->input('search') . '%')
-                    ->orWhere('categories.slug', 'like', '%'. $request->input('search') . '%')
-                    ->orWhere('categories.date_publish', 'like', '%'. $request->input('search') . '%')
-                    ->orWhere('categories.count_publications', 'like', '%'. $request->input('search') . '%')
-                    ->orderBy('categories.count_publications', 'desc')
-                    ->count();
+            return view('oneSlugPage.all-category', ['categories' => $categories, 'categoryCount'=> $categoryCount]);
 
-                }else{
+        }elseif($slug === "search-posts"){
 
-                    $categories = DB::table("categories")
-                    ->orderBy('categories.count_publications', 'desc')
-                    ->paginate(9);
+            $articles_count = Publication::where('status', 1)->where("publications.type_publication_id", 1)->count();
 
-                    $categoryCount = Category::count();
+            if($articles_count === 0){
 
-                }
+                return view('errors.HomePageControlEmpty');
 
-                return view('oneSlugPage.all-category', ['categories' => $categories, 'categoryCount'=> $categoryCount]);
-
-            }else if($slug === "search-posts"){
+            }else{
 
                 $categories = Category::query();
 
@@ -130,124 +128,8 @@ class OneSlugController extends BaseController
                     return view('oneSlugPage.search-article', ['articles' => $articles, 'search' => $search, 'count' => $count]);
 
                 }
-            }else if($slug === "videos"){
-
-                $categories = Category::query();
-
-                if($request->input('query')){
-
-                    $search = $request->input('query');
-
-                    $articles = Publication::where('publications.status', 1)
-                    ->where("publications.type_publication_id", 4)
-                    ->where('publications.deja_citer', 0)
-                    ->where('publications.title', 'like', '%'. $request->input('query') . '%')
-                    ->orWhere('publications.category_name', 'like', '%'. $request->input('query') . '%')
-                    ->orWhere('publications.author_name', 'like', '%'. $request->input('query') . '%')
-                    ->orderBy('publications.date_publish', 'desc')
-                    ->get();
-
-                    $count = Publication::where('publications.status', 1)
-                    ->where("publications.type_publication_id", 4)
-                    ->where('publications.deja_citer', 0)
-                    ->where('publications.title', 'like', '%'. $request->input('query') . '%')
-                    ->orWhere('publications.category_name', 'like', '%'. $request->input('query') . '%')
-                    ->orWhere('publications.author_name', 'like', '%'. $request->input('query') . '%')
-                    ->orderBy('publications.date_publish', 'desc')
-                    ->count();
-
-                    return view('oneSlugPage.videos', ['articles' => $articles, 'search' => $search, 'count' => $count]);
-
-                }else{
-
-                    $search = false;
-
-                    $count = false;
-
-                    $articles = Publication::where('status', 1)->where("publications.type_publication_id", 4)->where('deja_citer', 0)->orderBy('date_publish', 'desc')->take(10)->get();
-
-                    return view('oneSlugPage.videos', ['articles' => $articles, 'search' => $search, 'count' => $count]);
-
-                }
-            }else if($slug === "pub"){
-
-                $categories = Category::query();
-
-                if($request->input('query')){
-
-                    $search = $request->input('query');
-
-                    $articles = Publication::where('publications.status', 1)
-                    ->where("publications.type_publication_id", 5)
-                    ->where('publications.deja_citer', 0)
-                    ->where('publications.title', 'like', '%'. $request->input('query') . '%')
-                    ->orWhere('publications.category_name', 'like', '%'. $request->input('query') . '%')
-                    ->orWhere('publications.author_name', 'like', '%'. $request->input('query') . '%')
-                    ->orderBy('publications.date_publish', 'desc')
-                    ->get();
-
-                    $count = Publication::where('publications.status', 1)
-                    ->where("publications.type_publication_id", 5)
-                    ->where('publications.deja_citer', 0)
-                    ->where('publications.title', 'like', '%'. $request->input('query') . '%')
-                    ->orWhere('publications.category_name', 'like', '%'. $request->input('query') . '%')
-                    ->orWhere('publications.author_name', 'like', '%'. $request->input('query') . '%')
-                    ->orderBy('publications.date_publish', 'desc')
-                    ->count();
-
-                    return view('oneSlugPage.pub', ['articles' => $articles, 'search' => $search, 'count' => $count]);
-
-                }else{
-
-                    $search = false;
-
-                    $count = false;
-
-                    $articles = Publication::where('status', 1)->where("publications.type_publication_id", 5)->where('deja_citer', 0)->orderBy('date_publish', 'desc')->take(10)->get();
-
-                    return view('oneSlugPage.pub', ['articles' => $articles, 'search' => $search, 'count' => $count]);
-
-                }
-            }else if($slug === "events"){
-
-                $categories = Category::query();
-
-                if($request->input('query')){
-
-                    $search = $request->input('query');
-
-                    $articles = Publication::where('publications.status', 1)
-                    ->where("publications.type_publication_id", 6)
-                    ->where('publications.deja_citer', 0)
-                    ->where('publications.title', 'like', '%'. $request->input('query') . '%')
-                    ->orWhere('publications.category_name', 'like', '%'. $request->input('query') . '%')
-                    ->orWhere('publications.author_name', 'like', '%'. $request->input('query') . '%')
-                    ->orderBy('publications.date_publish', 'desc')
-                    ->get();
-
-                    $count = Publication::where('publications.status', 1)
-                    ->where("publications.type_publication_id", 6)
-                    ->where('publications.deja_citer', 0)
-                    ->where('publications.title', 'like', '%'. $request->input('query') . '%')
-                    ->orWhere('publications.category_name', 'like', '%'. $request->input('query') . '%')
-                    ->orWhere('publications.author_name', 'like', '%'. $request->input('query') . '%')
-                    ->orderBy('publications.date_publish', 'desc')
-                    ->count();
-
-                    return view('oneSlugPage.events', ['articles' => $articles, 'search' => $search, 'count' => $count]);
-
-                }else{
-
-                    $search = false;
-
-                    $count = false;
-
-                    $articles = Publication::where('status', 1)->where("publications.type_publication_id", 6)->where('deja_citer', 0)->orderBy('date_publish', 'desc')->take(10)->get();
-
-                    return view('oneSlugPage.events', ['articles' => $articles, 'search' => $search, 'count' => $count]);
-
-                } 
-            }else{
+            }
+        }else{
 
                 $category = Category::where('slug', $slug)->first();
 
@@ -259,31 +141,45 @@ class OneSlugController extends BaseController
 
                 }elseif(($category !== null) && ( $article == null)) {
 
+                    $articles_count = Publication::where('status', 1)->where("publications.type_publication_id", 1)->count();
 
-                    $otherCategory = Category::get();
+                    if($articles_count === 0){
 
-                    $articles = Publication::where("publications.status", 1)
-                    ->where("publications.type_publication_id", 1)
-                    ->where("publications.category_id", $category->id)
-                    ->orderBy('publications.date_publish', 'desc')
-                    ->paginate(6);
+                        return view('errors.HomePageControlEmpty');
 
-                    $alireaussi = Publication::where("publications.deja_citer", 0)
-                    ->where("publications.type_publication_id", 1)
-                    ->where("publications.status", 1)
-                    ->orderBy('publications.date_publish', 'desc')
-                    ->take(5)
-                    ->get();
+                    }else{
 
-                    return view('oneSlugPage.category', ['articles' => $articles, 'alireaussi' => $alireaussi, 'category' => $category, 'otherCategory' => $otherCategory]);
+                        $otherCategory = Category::get();
 
-                }else{
+                        $articles = Publication::where("publications.status", 1)
+                        ->where("publications.type_publication_id", 1)
+                        ->where("publications.category_id", $category->id)
+                        ->orderBy('publications.date_publish', 'desc')
+                        ->paginate(6);
+
+                        $alireaussi = Publication::where("publications.deja_citer", 0)
+                        ->where("publications.type_publication_id", 1)
+                        ->where("publications.status", 1)
+                        ->orderBy('publications.date_publish', 'desc')
+                        ->take(5)
+                        ->get();
+
+                        return view('oneSlugPage.category', ['articles' => $articles, 'alireaussi' => $alireaussi, 'category' => $category, 'otherCategory' => $otherCategory]);
+                    }
+
+                }elseif(($category == null) && ( $article !== null)) {
 
                     if($article->type_publication_id == 1){
 
                         $categoriesH = Publication::where("publications.id", $article->id)->get();
 
                         $tags = PublicationTag::select(array("tags.name", "tags.id", "tags.slug"))
+                        ->where("publications.id", $article->id)
+                        ->leftJoin("publications", "publications.id", "=", "publication_tags.publication_id")
+                        ->leftJoin("tags", "tags.id", "=", "publication_tags.tag_id")
+                        ->get();
+
+                        $tagsSEO = PublicationTag::select("tags.name")
                         ->where("publications.id", $article->id)
                         ->leftJoin("publications", "publications.id", "=", "publication_tags.publication_id")
                         ->leftJoin("tags", "tags.id", "=", "publication_tags.tag_id")
@@ -333,25 +229,43 @@ class OneSlugController extends BaseController
 
                         }
 
-                        return view('oneSlugPage.publication',[
+                        $alireaussi = Publication::where("publications.deja_citer", 0)
+                        ->where("publications.type_publication_id", 1)
+                        ->where("publications.status", 1)
+                        ->orderBy('publications.date_publish', 'desc')
+                        ->take(5)
+                        ->get();
+
+                        $politiqueFirst = Publication::where("status", 1)
+                        ->where("publications.type_publication_id", 1)
+                        ->where("category_id", 26)
+                        ->orderBy('date_publish', 'desc')
+                        ->take(8)
+                        ->get();
+
+                        return view('oneSlugPage.article',[
                             'article' => $article,
                             'files' => $files,
                             'tags' => $tags,
+                            'alireaussi' => $alireaussi,
                             'tagsCount' => $tagsCount,
                             'previous' => $previous,
                             'next' => $next,
                             'similars' => $similars,
-                            'categoriesH' => $categoriesH
+                            'categoriesH' => $categoriesH,
+                            'politiqueFirst' => $politiqueFirst
                         ]);
 
                     }
 
 
 
+                }else{
+
+                    return view('errors.ErrorSlugPage');
                 }
             }
 
-        }
     }
 
     public function tags($slug)
@@ -374,8 +288,6 @@ class OneSlugController extends BaseController
 
             } else {
 
-
-
                 $articles = Publication::select(array("publications.id", "publications.content", "publications.truncate_content","publications.title", "publications.slug", "publications.date_publish" ,"publications.author_name", "publications.author_slug","publications.image_cover_url"))
                 ->where("publications.status", 1)
                 ->where("publications.type_publication_id", 1)
@@ -386,7 +298,16 @@ class OneSlugController extends BaseController
                 ->orderBy('publications.date_publish', 'desc')
                 ->paginate(6);
 
-                return view('oneSlugPage.tags', ['articles' => $articles, 'tag' => $tag]);
+                $otherCategory = Tag::get();
+
+                $alireaussi = Publication::where("publications.deja_citer", 0)
+                ->where("publications.type_publication_id", 1)
+                ->where("publications.status", 1)
+                ->orderBy('publications.date_publish', 'desc')
+                ->take(5)
+                ->get();
+
+                return view('oneSlugPage.tags', ['articles' => $articles, 'tag' => $tag, 'alireaussi' => $alireaussi, 'otherCategory' => $otherCategory]);
 
             }
         }
@@ -411,6 +332,7 @@ class OneSlugController extends BaseController
 
             } else {
 
+
                 $articles = Publication::where("status", 1)
                 ->where("publications.type_publication_id", 1)
                 ->where("deja_citer", 1)
@@ -418,7 +340,16 @@ class OneSlugController extends BaseController
                 ->orderBy('date_publish', 'desc')
                 ->paginate(6);
 
-                return view('oneSlugPage.authors', ['articles' => $articles, 'author' => $author]);
+                $otherCategory = Category::get();
+
+                $alireaussi = Publication::where("publications.deja_citer", 0)
+                ->where("publications.type_publication_id", 1)
+                ->where("publications.status", 1)
+                ->orderBy('publications.date_publish', 'desc')
+                ->take(5)
+                ->get();
+
+                return view('oneSlugPage.authors', [ 'author' => $author, 'articles' => $articles, 'alireaussi' => $alireaussi, 'otherCategory' => $otherCategory]);
 
             }
         }

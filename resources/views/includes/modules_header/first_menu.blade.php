@@ -17,9 +17,11 @@
                     <a class="nav-link" href="/contact">Contactez Nous</a>
                 </li>
                 <li class="nav-item">
-                    <in-first-menu></in-first-menu> 
+                    <span id="in_first_menu"></span> 
                 </li>
-                 
+                <li class="nav-item">
+                    <span id="changeProgram"></span> 
+                </li>
             </ul>
             <!-- Top bar right -->
             <div class="d-flex align-items-center">
