@@ -52,5 +52,32 @@ class UserTableSeeder extends Seeder
            User::create($user);
 
         }
+
+        $sitemapHeader = <<<XML
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+XML;
+        
+                $sitemapContent = $sitemapHeader . "\n";
+        
+                $authors = ['', 'about', 'contact', 'forum', 'infos-partatiques', 'events', 'pub', 'videos', 'all-category', 'search-article'];
+                $lastmod = now()->toDateString();
+        
+                foreach ($authors as $author) {
+                    $url = "https://togoactu.com/{$author}";
+                    $sitemapContent .= <<<XML
+          <url>
+            <loc>{$url}</loc>
+            <lastmod>{$lastmod}</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.6</priority>
+          </url>
+        
+        XML;
+                }
+        
+                $sitemapContent .= "</urlset>";
+        
+                Storage::disk('public')->put('sitemap.xml', $sitemapContent);
     }
 }

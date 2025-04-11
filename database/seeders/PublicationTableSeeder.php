@@ -37,9 +37,18 @@ class PublicationTableSeeder extends Seeder
             'x-wp-total' => $response->getHeader('x-wp-total')[0],
         ];
 
-        for($i = 1; $i <= $posts_count_by_type['x-wp-totalpages']; $i++){
+           // Préparation du sitemap XML
+        $sitemapHeader = <<<XML
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+XML;
 
-            $posts = Http::get("https://www.togoactualite.com/wp-json/wp/v2/posts?page=$i&per_page=100")->json();
+         // Initialisation du contenu XML
+         $sitemapContent = $sitemapHeader . "\n";
+
+        for($i = 1; $i <= 1; $i++){
+
+            $posts = Http::get("https://www.togoactualite.com/wp-json/wp/v2/posts?page=1&per_page=100")->json();
 
             foreach ($posts as  $value) {
 
@@ -324,8 +333,34 @@ class PublicationTableSeeder extends Seeder
                 }
 
                 $publications_count++;
+
+                // Génération de l'entrée XML
+            $slug = $post->slug;
+            $image = $post->image_cover_url;
+            $url = "https://togoactu.com/{$slug}";
+            $lastmod = now()->toDateString();
+
+            $sitemapContent .= <<<XML
+<url>
+<loc>{$url}</loc>
+<image:image>
+    <image:loc>{$image}</image:loc>
+</image:image>
+<lastmod>{$lastmod}</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+
+XML;
             }
+            
         }
+
+          // Fermeture du XML
+          $sitemapContent .= "</urlset>";
+
+          // Écriture dans le fichier sitemap.xml (dans le disque 'public')
+          Storage::disk('public')->put('sitemap-publication.xml', $sitemapContent);
 
     }
 }

@@ -9,6 +9,7 @@ use App\Models\InfosMonthYearFile;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class FileTableSeeder extends Seeder
 {
@@ -29,6 +30,15 @@ class FileTableSeeder extends Seeder
         $type_files = TypeFile::get();
 
         $medias_count_by_type = [];
+
+           // Préparation du sitemap XML
+           $sitemapHeader = <<<XML
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+XML;
+
+        // Initialisation du contenu XML
+        $sitemapContent = $sitemapHeader . "\n";
 
         foreach($type_files as $type_file){
 
@@ -61,7 +71,7 @@ class FileTableSeeder extends Seeder
 
             for($i = 1; $i <= $page; $i++){
 
-                $medias = Http::get('https://www.togoactualite.com/wp-json/wp/v2/media?media_type=$media_type&page='.$i.'&per_page=100')->json();
+                $medias = Http::get('https://www.togoactualite.com/wp-json/wp/v2/media?media_type='.$media_type.'&page='.$i.'&per_page=100')->json();
 
             
                 foreach( $medias as $media ){ 
@@ -88,6 +98,7 @@ class FileTableSeeder extends Seeder
 
                         }
 
+                       
                         $fichier_original = File::create([
                             'file_url' => str_replace('https://togoactualite.com/wp-content/uploads', 'https://togoactualite.com/wp-content/uploads', $link),
                             'date_name' => $date_name,
@@ -99,10 +110,26 @@ class FileTableSeeder extends Seeder
                             'type_file_id' => $type_file_id,
                             'user_id' => 1
                         ]);
+
+                         // Génération de l'entrée XML
+            $slug = $link; 
+            $url = "{$slug}";
+            $lastmod = now()->toDateString();
+
+            $sitemapContent .= <<<XML
+<url>
+<loc>{$url}</loc>
+<lastmod>{$lastmod}</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+
+XML;
         
                             
                     }
 
+                   
                     
                 }
 
@@ -110,6 +137,12 @@ class FileTableSeeder extends Seeder
             }
             
         }
+
+         // Fermeture du XML
+         $sitemapContent .= "</urlset>";
+
+         // Écriture dans le fichier sitemap.xml (dans le disque 'public')
+         Storage::disk('public')->put('sitemap-files.xml', $sitemapContent);
 
     }
 }
