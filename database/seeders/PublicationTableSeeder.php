@@ -46,9 +46,9 @@ XML;
          // Initialisation du contenu XML
          $sitemapContent = $sitemapHeader . "\n";
 
-        for($i = 1; $i <= 1; $i++){
+        for($i = 1; $i <= $posts_count_by_type['x-wp-totalpages']; $i++){
 
-            $posts = Http::get("https://www.togoactualite.com/wp-json/wp/v2/posts?page=1&per_page=100")->json();
+            $posts = Http::get("https://www.togoactualite.com/wp-json/wp/v2/posts?page=$i&per_page=100")->json();
 
             foreach ($posts as  $value) {
 
@@ -360,7 +360,7 @@ XML;
           $sitemapContent .= "</urlset>";
 
           // Écriture dans le fichier sitemap.xml (dans le disque 'public')
-          Storage::disk('public')->put('sitemap-publication.xml', $sitemapContent);
+          Storage::disk('public')->put('sitemap-publications.xml', $sitemapContent);
 
     }
 }

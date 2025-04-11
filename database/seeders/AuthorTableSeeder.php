@@ -81,6 +81,6 @@ XML;
 
         $sitemapContent .= "</urlset>";
 
-        Storage::disk('public')->put('sitemap-author.xml', $sitemapContent);
+        Storage::disk('public')->put('sitemap-authors.xml', $sitemapContent);
     }
 }
