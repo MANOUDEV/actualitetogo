@@ -8,7 +8,7 @@ import VueSweetalert2 from 'vue-sweetalert2';
 
 import 'sweetalert2/dist/sweetalert2.min.css';
 
-import store from './store/index';
+import store from './store/index'; 
 
 //Importation, déclaration et chargement des composants inclus dans le header
 
@@ -39,6 +39,24 @@ import TagsPopularsFooter from './components/frontoffice/footer/tagsPopulars.vue
 import togoPolitiqueComponent from './components/frontoffice/sectionsPublicationsHomePage/togoPolitiqueComponent.vue'
 
 import aNePasManquerTogoComponent from './components/frontoffice/sectionsPublicationsHomePage/aNePasManquerTogoComponent.vue'
+ 
+//Verifier les connexions pour configurer les menus
+
+import in_second_menuF from './components/frontoffice/verify_auth/in_second_menu.vue'
+ 
+import off_canvasF from './components/frontoffice/verify_auth/off_canvas.vue'
+
+import in_first_menuF from './components/frontoffice/verify_auth/in_first_menu.vue'
+ 
+//Importation des composants pour l'authentification
+
+import loginH from './components/authentication/login.vue'
+
+import socialGoogleLoginComponent from './components/authentication/social_login/google-authentication.vue'
+
+//Importation du Composant de contact à afficher sur la page d'accueil
+
+import contactF from './components/frontoffice/includes/contact.vue'
 
 const app = createApp({})
 
@@ -65,5 +83,15 @@ app.component('TagsPopulars', TagsPopularsFooter)
 app.component('togoPolitique', togoPolitiqueComponent)
 
 app.component('aNePasManquerTogo', aNePasManquerTogoComponent)
+ 
+app.component('inSecondMenu', in_second_menuF)
+ 
+app.component('offCanvas', off_canvasF)
+
+app.component('inFirstMenu', in_first_menuF)
+
+app.component('login', loginH)
+
+app.component('contact', contactF)
 
 app.use(VueSweetalert2).use(store).mount('#app')

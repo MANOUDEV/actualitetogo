@@ -15,11 +15,11 @@
                     <ul class="navbar-nav navbar-nav-scroll navbar-lh-sm" >
 
                         <li class="nav-item">
-                            <a class="nav-link responsive_nav_link " href="/"  id="homeMenu">ACCUEIL</a>
+                            <a style="font-size: 12px" class="nav-link  " href="/"  id="homeMenu">ACCUEIL</a>
                         </li>
 
                         <li class="nav-item dropdown dropdown-fullwidth">
-                            <a class="nav-link responsive_nav_link dropdown-toggle" href="#"  id="megaMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">TOGO ACTUALITE</a>
+                            <a style="font-size: 12px" class="nav-link  dropdown-toggle" href="#"  id="megaMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">TOGO ACTUALITE</a>
                             <div class="dropdown-menu" aria-labelledby="megaMenu" >
                                 <div>
                                     <togoactualite-header></togoactualite-header>
@@ -29,7 +29,7 @@
 
                         <!-- Nav item 3 Post -->
                         <li class="nav-item dropdown dropdown-fullwidth">
-                            <a class="nav-link responsive_nav_link dropdown-toggle" href="#"  id="megaMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">RUBRIQUES+</a>
+                            <a style="font-size: 12px" class="nav-link  dropdown-toggle" href="#"  id="megaMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">RUBRIQUES+</a>
                             <div class="dropdown-menu" aria-labelledby="megaMenu">
                                 <div>
                                     <rubriques-header></rubriques-header>
@@ -38,7 +38,7 @@
                         </li>
 
                         <li class="nav-item dropdown dropdown-fullwidth">
-                            <a class="nav-link responsive_nav_link dropdown-toggle" href="#"  id="megaMenuH" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ECONOMIE</a>
+                            <a style="font-size: 12px" class="nav-link  dropdown-toggle" href="#"  id="megaMenuH" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ECONOMIE</a>
                             <div class="dropdown-menu" aria-labelledby="megaMenuH">
                                 <div>
                                     <togoactualite-header></togoactualite-header>
@@ -46,7 +46,7 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown dropdown-fullwidth">
-                            <a class="nav-link responsive_nav_link dropdown-toggle" href="#"  id="megaMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">DIASPORA</a>
+                            <a style="font-size: 12px" class="nav-link  dropdown-toggle" href="#"  id="megaMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">DIASPORA</a>
                             <div class="dropdown-menu" aria-labelledby="megaMenu">
                                 <div>
                                     <diaspora-header></diaspora-header>
@@ -55,7 +55,7 @@
                         </li>
 
                         <li class="nav-item dropdown dropdown-fullwidth">
-                            <a class="nav-link responsive_nav_link dropdown-toggle" href="#"  id="megaMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">INTERNATIONAL</a>
+                            <a style="font-size: 12px" class="nav-link  dropdown-toggle" href="#"  id="megaMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">INTERNATIONAL</a>
                             <div class="dropdown-menu" aria-labelledby="megaMenu">
                                 <div>
                                     <international-header></international-header>
@@ -64,7 +64,7 @@
                         </li>
 
                         <li class="nav-item dropdown dropdown-fullwidth">
-                            <a class="nav-link responsive_nav_link dropdown-toggle" href="#"  id="megaMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SPORT</a>
+                            <a style="font-size: 12px" class="nav-link  dropdown-toggle" href="#"  id="megaMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SPORT</a>
                             <div class="dropdown-menu" aria-labelledby="megaMenu">
                                 <div>
                                     <sports-header></sports-header>
@@ -72,7 +72,7 @@
                             </div>
                         </li>
                          
-                        <li class="nav-item"> <a class="nav-link responsive_nav_link"  href="/infos-pratiques">INFOS PRATIQUES</a></li>
+                        <li class="nav-item"> <a style="font-size: 12px" class="nav-link "  href="/infos-pratiques">INFOS PRATIQUES</a></li>
 
                     </ul>
                 </div>
@@ -81,11 +81,11 @@
                 <!-- Nav right START -->
                 <div class="nav flex-nowrap align-items-center me-2">
 
-                    <div class="nav-item" style="margin-top: 7px" id="in_second_menu"></div>
+                    <in-second-menu class="nav-item" style="margin-top: 7px"></in-second-menu>
 
                     <!-- Nav Search -->
                     <div class="nav-item dropdown nav-search dropdown-toggle-icon-none">
-                        <a class="nav-link responsive_nav_link text-uppercase dropdown-toggle" role="button" href="/search-posts" >
+                        <a style="font-size: 12px" class="nav-link  text-uppercase dropdown-toggle" role="button" href="/search-posts" >
                             <i class="bi bi-search fs-4"> </i>
                         </a>
 
@@ -94,7 +94,7 @@
 
                     <!-- Offcanvas menu toggler -->
                     <div class="nav-item">
-                        <a class="nav-link responsive_nav_link pe-0" data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu">
+                        <a style="font-size: 12px" class="nav-link  pe-0" data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu">
                             <i class="bi bi-text-right rtl-flip fs-2" data-bs-target="#offcanvasMenu"> </i>
                         </a>
                     </div>

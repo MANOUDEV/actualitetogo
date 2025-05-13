@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <title>@yield('title') | Togo Actu</title>
+        <title>@yield('title') | Togoactualité</title>
         <!-- Favicon -->
         <link rel="shortcut icon" href="/assets/images/Icone.png">
 
@@ -19,12 +19,12 @@
         <link rel="stylesheet" type="text/css" href="/assets/vendor/tiny-slider/tiny-slider.css">
         <!-- Theme CSS -->
         <link id="style-switch" rel="stylesheet" type="text/css" href="/assets/css/style.css">
-        <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5594963864359932" crossorigin="anonymous"></script> -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5594963864359932" crossorigin="anonymous"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body >
 
-        <div id="app">
+        <div id="app"> 
             @yield('content')
         </div>
         <!-- Bootstrap JS -->

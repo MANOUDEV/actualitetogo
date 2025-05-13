@@ -33,9 +33,7 @@
 
                                     <p class="text-danger my-2" style="font-style: italic">Note urgente:</p>
 
-                                    <p class=""> Nous tenons à rappeler aux visiteurs du site que
-                                        sans partenariat avec togoactualite.com, la reprise des articles même partielle est strictement interdite.
-                                        Tout contrevenant s'expose à de graves poursuites.</p>
+                                    <p class="">{!! $author->description !!}</p>
                                     <!-- Social icons -->
 
                                 </div>
