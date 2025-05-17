@@ -1,5 +1,5 @@
  <!-- SVG decoration right START -->
- <div class="container">
+<div class="container">
     <div class="row d-flex align-items-center my-2">
         <!-- Top bar left -->
         <!-- Top bar left -->
@@ -42,7 +42,7 @@
                         data-items="1">
                         <!-- Slider items -->
                         @foreach($tendances as $result)
-                            <div>  <a href="{{$result->slug}}" class="text-reset btn-link"> {!! $result->title !!} </a></div>
+                            <div>  <a href="#" class="text-reset btn-link"> {!! $result->title !!} </a></div>
                         @endforeach
                     </div>
                 </div>
@@ -55,11 +55,13 @@
     <div class="border-bottom border-2 border-primary opacity-1"></div>
 
     <div class="row g-4" style="margin-top: -20px">
+
         <div class="col-lg-7 col-sm-12 col-xs-12">
             @include('sectionHomePage.alaUne.sections.alaUneFirstSection')
         </div>
         <div class="col-lg-5 col-sm-12 col-xs-12">
             @include('sectionHomePage.alaUne.sections.alaUneSecondSection')
         </div>
+
     </div>
 </div>

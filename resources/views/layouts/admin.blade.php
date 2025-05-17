@@ -27,7 +27,9 @@
 
 <body>
 
-    @yield('content')
+   <div id="admin">
+		@yield('content')
+	</div>
 
     <!-- Back to top -->
     <div class="back-top"><i class="bi bi-arrow-up-short"></i></div>

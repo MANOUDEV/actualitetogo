@@ -2,6 +2,5 @@
 
 @section('content')
 
-    <administrateur></administrateur>
    
 @endsection

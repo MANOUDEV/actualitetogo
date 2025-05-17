@@ -83,7 +83,7 @@ onMounted(() => {
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                       <div style="position: relative; height: 250px;">
-                          <img src="https://actualitetogo.com/assets/images/empty.png" style="width: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="empty">
+                          <img :src="`/assets/images/empty.png`" style="width: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="empty">
                       </div>
                       <h5 style="text-align: center; margin-top: -50px"> {{ diasporaMessage  }} </h5>
                     </div>
@@ -96,7 +96,7 @@ onMounted(() => {
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                       <div style="position: relative; height: 250px;">
-                          <img src="https://actualitetogo.com/assets/images/error.png" style="width: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="empty">
+                          <img :src="`/assets/images/error.png`" style="width: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="empty">
                       </div>
                       <h5 style="text-align: center; margin-top: -50px"> {{ diasporaMessage  }} </h5>
                     </div>

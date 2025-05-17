@@ -70,6 +70,16 @@ Route::get('/frontoffice/home_page/togo_politique', [HomeController::class, 'tog
 
 Route::get('/frontoffice/home_page/a_ne_pas_manquer_togo', [HomeController::class, 'aNePasManquerTogoDataRequest']);
 
+Route::get('/frontoffice/home_page/international_fenetre_afrique_sports', [HomeController::class, 'internationalFenetreSurLAfriqueSportsDataRequest']);
+
+Route::get('/frontoffice/home_page/societe', [HomeController::class, 'societeDataRequest']);
+
+Route::get('/frontoffice/home_page/opinion_faits_divers', [HomeController::class, 'opinionFaitsDiversDataRequest']);
+
+Route::get('/frontoffice/home_page/important', [HomeController::class, 'importantDataRequest']);
+
+Route::get('/frontoffice/home_page/populars_comments', [HomeController::class, 'popularsCommentsDataRequest']);
+
 
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
 

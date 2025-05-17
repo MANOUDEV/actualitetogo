@@ -1,3 +1,102 @@
+<script setup>
+import { ref, computed, onMounted } from 'vue';
+import { useStore } from 'vuex';
+import Swal from 'sweetalert2';
+
+const store = useStore();
+const dataReady = ref(0);
+const meProfileUserName = ref(null);
+const meProfileRoleName = ref(null);
+const meProfileEmail = ref(null); 
+const logoutCheck = ref(false);
+const loadingConnect = ref(false);
+const remember_me = ref(false);
+ 
+const show = async () => {
+  if (localStorage.getItem('access_token') && localStorage.getItem('nbRsp')) {
+    await store.dispatch('meProfile/getMeProfile');
+    const gettersMeProfileUserName =  store.getters['meProfile/getMeProfileUserName'];
+    const gettersMeProfileRoleName =  store.getters['meProfile/getMeProfileRoleName'];
+    const gettersMeProfileStatus =  store.getters['meProfile/getMeProfileStatus'];
+    if (gettersMeProfileStatus === 'success') {
+      meProfileRoleName.value = gettersMeProfileRoleName;
+      meProfileUserName.value = gettersMeProfileUserName;
+      dataReady.value = 1;
+    } else if (gettersMeProfileStatus === 'failed') {
+      dataReady.value = 3;
+    }
+  } else {
+    dataReady.value = 2;
+  }
+};
+
+const loginClick = async () => {
+  if (localStorage.getItem('remember_me') === 'true' && localStorage.getItem('username') && localStorage.getItem('password')) {
+    loadingConnect.value = true;
+    remember_me.value = localStorage.getItem('remember_me');
+
+    await store.dispatch('login/login', {
+      username: localStorage.getItem('username'),
+      password: localStorage.getItem('password'),
+      remember_me: localStorage.getItem('remember_me')
+    });
+
+    const getterLoginStatus =  store.getters['login/getLoginStatus'];
+    const getterLoginMessage =  store.getters['login/getLoginMessage'];
+
+    if (getterLoginStatus.includes('success')) {
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'success',
+        title: getterLoginMessage,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+      });
+      const redirectPath = getterLoginStatus.includes('admin') ? '/admin/dashboard' : getterLoginStatus.includes('pub') ? '/pub/dashboard' : '/';
+      window.location = redirectPath;
+    } else {
+      window.location = '/auth/login';
+    }
+  } else {
+    window.location = '/auth/login';
+  }
+};
+const logout = async () => {
+  logoutCheck.value = true;
+  await store.dispatch('logout/getLogoutApi');
+  const getterLogoutStatus =  store.getters['logout/getLogoutStatus'];
+  const getterLogoutMessage =  store.getters['logout/getLogoutMessage'];
+  if (getterLogoutStatus === 'success') {
+    Swal.fire({
+      toast: true,
+      position: 'top-end',
+      icon: 'success',
+      title: getterLogoutMessage,
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true
+    });
+    const  clearToken = {
+      access_token: null,
+      expires_in: null
+    }
+
+    store.getters["login/getAuthData"].access_token = clearToken.access_token
+    store.getters["login/getAuthData"].expires_in = clearToken.expires_in
+
+    window.location = '/auth/login'
+
+    this.logoutCheck = false
+    window.location = '/auth/login';
+  }
+};
+
+onMounted(() => {
+  show();
+});
+</script>
 <template>
     <!-- =======================Header START -->
     <header class="navbar-light navbar-sticky header-static border-bottom navbar-dashboard">
@@ -163,7 +262,7 @@
                                 <hr>
                             </li>
                             <!-- Links -->
-                            <li><router-link class="dropdown-item" :to="{name: 'pub.profile'}"><i class="bi bi-person fa-fw me-2"></i>Editer mon profil</router-link></li>
+                            <li><router-link class="dropdown-item" to="#"><i class="bi bi-person fa-fw me-2"></i>Editer mon profil</router-link></li>
                             <li>
                                 <span class="dropdown-item" v-if="!logoutCheck" style="cursor: pointer" @click="logout"><i class="bi bi-power fa-fw me-2"></i>Se deconnecter</span>
                                 <span class="dropdown-item" v-else ><i class="bi bi-power fa-fw me-2"></i>Déconnexion en cours ...</span>
@@ -181,110 +280,4 @@
     </header>
     <!-- =======================Header END -->
 </template>
-<script>
-import { mapGetters, mapActions, mapMutations } from "vuex";
-import store from '../../../../store/index'
-export default {
-    // inside your script
-    data () {
-        return {
-            dataReady: false,
-            meProfileUserName: null,
-            meProfileRoleName: null,
-            logoutCheck: false
-            // other data
-        }
-    },
-    computed: {
-        ...mapGetters("meProfile",{
-            gettersMeProfileUserName:"getMeProfileUserName",
-            gettersMeProfileRoleName:"getMeProfileRoleName",
-            gettersMeProfileStatus:'getMeProfileStatus',
-        }),
-        ...mapGetters("login", {
-            gettersAuthData: "getAuthData",
-        }),
 
-        ...mapGetters('logout',{
-            getterLogoutStatus:'getLogoutStatus',
-            getterLogoutMessage:'getLogoutMessage',
-
-        })
-    },
-    methods:{
-      ...mapActions("meProfile",{
-          actionsGetMeProfile:'getMeProfile'
-      }),
-      ...mapActions("logout",{
-          actionsGetLogout:'getLogoutApi'
-      }),
-
-      ...mapMutations('login',{
-            saveTokenData: 'saveTokenData'
-      }),
-
-      ...mapMutations('logout',{
-            setlogout: 'setLogout'
-      }),
-
-      async show(){
-
-        await this.actionsGetMeProfile();
-
-        if(this.gettersMeProfileStatus === 'success'){
-
-            this.meProfileRoleName = this.gettersMeProfileRoleName
-
-            this.meProfileUserName = this.gettersMeProfileUserName
-
-            this.dataReady = true;
-
-        }
-      },
-
-      async logout(){
-
-        this.logoutCheck = true
-
-        await this.actionsGetLogout();
-
-        if(this.getterLogoutStatus === 'success'){
-
-            const Toast = this.$swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', this.$swal.stopTimer)
-                    toast.addEventListener('mouseleave', this.$swal.resumeTimer)
-                }
-            })
-
-            Toast.fire({
-                icon: 'success',
-                title: this.getterLogoutMessage
-            })
-
-            const  clearToken = {
-                access_token: null,
-                expires_in: null
-            }
-
-            store.getters["login/getAuthData"].access_token = clearToken.access_token
-            store.getters["login/getAuthData"].expires_in = clearToken.expires_in
-
-           window.location = '/auth/login'
-
-           this.logoutCheck = false
-
-        }
-
-      },
-    },
-    mounted() {
-     this.show();
-    },
-};
-</script>

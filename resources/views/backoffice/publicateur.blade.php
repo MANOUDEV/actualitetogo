@@ -2,6 +2,5 @@
 
 @section('content')
 
-    <publicateur></publicateur>
    
 @endsection

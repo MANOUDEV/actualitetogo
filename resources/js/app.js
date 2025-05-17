@@ -39,7 +39,15 @@ import TagsPopularsFooter from './components/frontoffice/footer/tagsPopulars.vue
 import togoPolitiqueComponent from './components/frontoffice/sectionsPublicationsHomePage/togoPolitiqueComponent.vue'
 
 import aNePasManquerTogoComponent from './components/frontoffice/sectionsPublicationsHomePage/aNePasManquerTogoComponent.vue'
- 
+
+import internationalComponent from './components/frontoffice/sectionsPublicationsHomePage/internationalComponent.vue'
+
+import opinionFaitsDiversComponent from './components/frontoffice/sectionsPublicationsHomePage/opinionFaitsDiversComponent.vue'
+
+import societeComponent from './components/frontoffice/sectionsPublicationsHomePage/societeComponent.vue'
+
+import importantComponent from './components/frontoffice/sectionsPublicationsHomePage/importantComponent.vue'
+
 //Verifier les connexions pour configurer les menus
 
 import in_second_menuF from './components/frontoffice/verify_auth/in_second_menu.vue'
@@ -51,12 +59,70 @@ import in_first_menuF from './components/frontoffice/verify_auth/in_first_menu.v
 //Importation des composants pour l'authentification
 
 import loginH from './components/authentication/login.vue'
-
-import socialGoogleLoginComponent from './components/authentication/social_login/google-authentication.vue'
-
+ 
 //Importation du Composant de contact à afficher sur la page d'accueil
 
-import contactF from './components/frontoffice/includes/contact.vue'
+import contactF from './components/frontoffice/includes/contact.vue' 
+
+//Gestion de tous les composants administrateurs
+
+import * as adminRouter from './router/adminRouter';
+
+import administrateurA from './components/backoffice/administrateur/administrateur.vue'
+
+import HeaderAdminComponent from './components/backoffice/administrateur/includes/HeaderAdminComponent.vue'
+
+import FooterAdminComponent from './components/backoffice/administrateur/includes/FooterComponent.vue'
+
+import authRequiredMessageAdminComponent from './components/backoffice/administrateur/errorMessage/sections/authRequiredMessage.vue'
+
+import sessionExpiredMessageAdminComponent from './components/backoffice/administrateur/errorMessage/sections/sessionExpiredMessage.vue'
+
+import accessUnAuthorizedAdminComponent from './components/backoffice/administrateur/errorMessage/sections/accessUnAuthorized.vue' 
+
+//Gestion de tous les composants publicateurs d'articles
+
+import * as pubRouter from './router/pubRouter';
+
+import publicateurA from './components/backoffice/publicateur/publicateur.vue'
+
+import HeaderPubComponent from './components/backoffice/publicateur/includes/HeaderPubComponent.vue'
+
+import FooterPubComponent from './components/backoffice/publicateur/includes/FooterComponent.vue'
+
+import authRequiredMessagePubComponent from './components/backoffice/publicateur/errorMessage/sections/authRequiredMessage.vue'
+
+import sessionExpiredMessagePubComponent from './components/backoffice/publicateur/errorMessage/sections/sessionExpiredMessage.vue'
+
+import accessUnAuthorizedPubComponent from './components/backoffice/publicateur/errorMessage/sections/accessUnAuthorized.vue'
+
+const administrateur = createApp(administrateurA)
+ 
+administrateur.component('HeaderAdmin', HeaderAdminComponent)
+
+administrateur.component('FooterAdmin',  FooterAdminComponent)
+
+administrateur.component('authRequiredMessageAdmin', authRequiredMessageAdminComponent)
+
+administrateur.component('accessUnAuthorizedAdmin', accessUnAuthorizedAdminComponent)
+
+administrateur.component('sessionExpiredMessageAdmin', sessionExpiredMessageAdminComponent)
+
+administrateur.use(adminRouter.routeConfig).use(store).mount('#admin');
+
+const publicateur = createApp(publicateurA)  
+
+publicateur.component('HeaderPub', HeaderPubComponent)
+
+publicateur.component('FooterPub',  FooterPubComponent)
+
+publicateur.component('authRequiredMessagePub', authRequiredMessagePubComponent)
+
+publicateur.component('accessUnAuthorizedPub', accessUnAuthorizedPubComponent)
+
+publicateur.component('sessionExpiredMessagePub', sessionExpiredMessagePubComponent)
+
+publicateur.use(pubRouter.routeConfig).use(store).mount('#pub');
 
 const app = createApp({})
 
@@ -83,7 +149,15 @@ app.component('TagsPopulars', TagsPopularsFooter)
 app.component('togoPolitique', togoPolitiqueComponent)
 
 app.component('aNePasManquerTogo', aNePasManquerTogoComponent)
- 
+
+app.component('international', internationalComponent)
+
+app.component('societe', societeComponent)
+
+app.component('opinionFaitsDivers', opinionFaitsDiversComponent)
+
+app.component('important', importantComponent)
+
 app.component('inSecondMenu', in_second_menuF)
  
 app.component('offCanvas', off_canvasF)
