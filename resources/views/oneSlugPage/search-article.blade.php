@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title') Rechercher un article @endsection
+@section('title') Rechercher une publication @endsection
 
 @section('content')
 
@@ -17,6 +17,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-9 mx-auto text-center py-4">
+                                
+                                @include('adsense.google-ads.ads-sections-home-page')
                                 <h2 class="display-5">Rechercher une publication</h2>
 
                                 <!-- Search -->
@@ -29,6 +31,7 @@
                                         </form>
                                     </div>
                                 </div>
+                                @include('adsense.google-ads.ads-sections-home-page')
                             </div>
                         </div>
                     </div>
@@ -41,46 +44,73 @@
                             <div class="col-lg-9 mx-auto">
 
                                 <h2><i class="bi bi-symmetry-vertical me-2"></i>Publications à la une</h2>
-
+                                @include('adsense.google-ads.ads-sections-home-page')
                                 @foreach ($articles as $article)
 
                                 <!-- Card item START -->
                                 <div class="card border rounded-3 up-hover p-4 mb-2">
                                     <div class="row g-3">
-                                        <div class="col-sm-8">
-                                            <!-- Categories -->
-                                            <a href="/{{ $article->category_slug }}" class="badge text-bg-danger mb-2"><i class="fas fa-circle me-2 small fw-bold"></i> {{ $article->category_name }} </a>
+                                        @if($article->image_cover_url)
+                                            <div class="col-sm-8">
+                                                <!-- Categories -->
+                                                <a href="/{{ $article->category_slug }}" class="badge text-bg-danger mb-2"><i class="fas fa-circle me-2 small fw-bold"></i> {{ $article->category_name }} </a>
 
-                                            <!-- Title -->
-                                            <h5 class="card-title">
-                                                <a href="/{{ $article->slug }}" class="btn-link text-reset stretched-link">{!! $article->title !!}</a>
-                                            </h5>
+                                                <!-- Title -->
+                                                <h5 class="card-title">
+                                                    <a href="/{{ $article->slug }}" class="btn-link text-reset stretched-link">{!! $article->title !!}</a>
+                                                </h5>
 
-                                            <div>
-                                                {!! $article->truncate_content !!}
-                                            </div>
-                                            <!-- Card info -->
-                                            <ul class="nav nav-divider align-items-center text-uppercase small mt-2">
-                                                <li class="nav-item">
-                                                    <div class="nav-link">
-                                                        <div class="d-flex align-items-center position-relative">
-                                                            <span class="ms-3"><a href="/authors/{{ $article->author_slug }}" class="stretched-link text-reset btn-link"> {{ strtoupper($article->author_name) }} </a></span>
+                                                <div>
+                                                    {!! $article->truncate_content !!}
+                                                </div>
+                                                <!-- Card info -->
+                                                <ul class="nav nav-divider align-items-center text-uppercase small mt-2">
+                                                    <li class="nav-item">
+                                                        <div class="nav-link">
+                                                            <div class="d-flex align-items-center position-relative">
+                                                                <span class="ms-3"><a href="/authors/{{ $article->author_slug }}" class="stretched-link text-reset btn-link"> {{ strtoupper($article->author_name) }} </a></span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </li>
-                                                <li class="nav-item">{{ date('d/m/Y', strtotime($article->date_publish)) }}</li>
-                                            </ul>
-                                        </div>
-                                        <!-- Image -->
-                                        <div class="col-sm-4">
-                                            <img class="rounded-3" src="{{ $article->image_cover_url }}" style="height: 220px; width: 700px ;object-fit:cover" alt="{{ $article->title }}">
-                                        </div>
+                                                    </li>
+                                                    <li class="nav-item">{{ date('d/m/Y', strtotime($article->date_publish)) }}</li>
+                                                </ul>
+                                            </div>
+                                            <!-- Image -->
+                                            <div class="col-sm-4">
+                                                <img class="rounded-3" src="{{ $article->image_cover_url }}" style="height: 220px; width: 700px ;object-fit:cover" alt="{{ $article->title }}">
+                                            </div>
+                                        @else
+                                            <div class="col-sm-12">
+                                                <!-- Categories -->
+                                                <a href="/{{ $article->category_slug }}" class="badge text-bg-danger mb-2"><i class="fas fa-circle me-2 small fw-bold"></i> {{ $article->category_name }} </a>
+
+                                                <!-- Title -->
+                                                <h5 class="card-title">
+                                                    <a href="/{{ $article->slug }}" class="btn-link text-reset stretched-link">{!! $article->title !!}</a>
+                                                </h5>
+
+                                                <div>
+                                                    {!! $article->truncate_content !!}
+                                                </div>
+                                                <!-- Card info -->
+                                                <ul class="nav nav-divider align-items-center text-uppercase small mt-2">
+                                                    <li class="nav-item">
+                                                        <div class="nav-link">
+                                                            <div class="d-flex align-items-center position-relative">
+                                                                <span class="ms-3"><a href="/authors/{{ $article->author_slug }}" class="stretched-link text-reset btn-link"> {{ strtoupper($article->author_name) }} </a></span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="nav-item">{{ date('d/m/Y', strtotime($article->date_publish)) }}</li>
+                                                </ul>
+                                            </div> 
+                                        @endif
                                     </div>
                                 </div>
                                 <!-- Card item END -->
 
                                 @endforeach
-
+                                @include('adsense.google-ads.ads-sections-home-page') 
                             </div>
                         </div>
                     </div>
@@ -106,6 +136,7 @@
                                         </form>
                                     </div>
                                 </div>
+                                @include('adsense.google-ads.ads-sections-home-page')
                             </div>
                         </div>
                     </div>
@@ -118,46 +149,74 @@
                             <div class="col-lg-9 mx-auto">
 
                                 <h2><i class="bi bi-symmetry-vertical me-2"></i>@if ($count == 0) Aucune publication trouvée @elseif ($count == 1) publication trouvée @else {{ $count }} publications trouvées @endif </h2>
-
+                                @include('adsense.google-ads.ads-sections-home-page')
                                 @if ($count !== 0)
                                     @foreach ($articles as $article)
 
                                         <!-- Card item START -->
                                         <div class="card border rounded-3 up-hover p-4 mb-2">
                                             <div class="row g-3">
-                                                <div class="col-sm-8">
-                                                    <!-- Categories -->
-                                                    <a href="/{{ $article->category_slug }}" class="badge text-bg-danger mb-2"><i class="fas fa-circle me-2 small fw-bold"></i> {{ $article->category_name }} </a>
-
-                                                    <!-- Title -->
-                                                    <h5 class="card-title">
-                                                        <a href="/{{ $article->slug }}" class="btn-link text-reset stretched-link">{!! $article->title !!}</a>
-                                                    </h5>
-
-                                                    <div>
-                                                        {!! $article->truncate_content !!}
-                                                    </div>
-                                                    <!-- Card info -->
-                                                    <ul class="nav nav-divider align-items-center text-uppercase small mt-2">
-                                                        <li class="nav-item">
-                                                            <div class="nav-link">
-                                                                <div class="d-flex align-items-center position-relative">
-                                                                    <span class="ms-3"><a href="/authors/{{ $article->author_slug }}" class="stretched-link text-reset btn-link"> {{ strtoupper($article->author_name) }} </a></span>
+                                                @if($article->image_cover_url)
+                                                    <div class="col-sm-8">
+                                                        <!-- Categories -->
+                                                        <a href="/{{ $article->category_slug }}" class="badge text-bg-danger mb-2"><i class="fas fa-circle me-2 small fw-bold"></i> {{ $article->category_name }} </a>
+        
+                                                        <!-- Title -->
+                                                        <h5 class="card-title">
+                                                            <a href="/{{ $article->slug }}" class="btn-link text-reset stretched-link">{!! $article->title !!}</a>
+                                                        </h5>
+        
+                                                        <div>
+                                                            {!! $article->truncate_content !!}
+                                                        </div>
+                                                        <!-- Card info -->
+                                                        <ul class="nav nav-divider align-items-center text-uppercase small mt-2">
+                                                            <li class="nav-item">
+                                                                <div class="nav-link">
+                                                                    <div class="d-flex align-items-center position-relative">
+                                                                        <span class="ms-3"><a href="/authors/{{ $article->author_slug }}" class="stretched-link text-reset btn-link"> {{ strtoupper($article->author_name) }} </a></span>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="nav-item">{{ date('d/m/Y', strtotime($article->date_publish)) }}</li>
-                                                    </ul>
-                                                </div>
-                                                <!-- Image -->
-                                                <div class="col-sm-4">
-                                                    <img class="rounded-3" src="{{ $article->image_cover_url }}" style="height: 220px; width: 700px ;object-fit:cover" alt="{{ $article->title }}">
-                                                </div>
+                                                            </li>
+                                                            <li class="nav-item">{{ date('d/m/Y', strtotime($article->date_publish)) }}</li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- Image -->
+                                                    <div class="col-sm-4">
+                                                        <img class="rounded-3" src="{{ $article->image_cover_url }}" style="height: 220px; width: 700px ;object-fit:cover" alt="{{ $article->title }}">
+                                                    </div>
+                                                @else
+                                                    <div class="col-sm-12">
+                                                        <!-- Categories -->
+                                                        <a href="/{{ $article->category_slug }}" class="badge text-bg-danger mb-2"><i class="fas fa-circle me-2 small fw-bold"></i> {{ $article->category_name }} </a>
+        
+                                                        <!-- Title -->
+                                                        <h5 class="card-title">
+                                                            <a href="/{{ $article->slug }}" class="btn-link text-reset stretched-link">{!! $article->title !!}</a>
+                                                        </h5>
+        
+                                                        <div>
+                                                            {!! $article->truncate_content !!}
+                                                        </div>
+                                                        <!-- Card info -->
+                                                        <ul class="nav nav-divider align-items-center text-uppercase small mt-2">
+                                                            <li class="nav-item">
+                                                                <div class="nav-link">
+                                                                    <div class="d-flex align-items-center position-relative">
+                                                                        <span class="ms-3"><a href="/authors/{{ $article->author_slug }}" class="stretched-link text-reset btn-link"> {{ strtoupper($article->author_name) }} </a></span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="nav-item">{{ date('d/m/Y', strtotime($article->date_publish)) }}</li>
+                                                        </ul>
+                                                    </div> 
+                                                @endif
                                             </div>
                                         </div>
                                         <!-- Card item END -->
 
                                     @endforeach
+                                    @include('adsense.google-ads.ads-sections-home-page')
                                 @else
                                 <section class="overflow-hidden">
                                     <div class="container">
@@ -197,9 +256,11 @@
                                         </div>
                                     </div>
                                 </section>
+                                @include('adsense.google-ads.ads-sections-home-page')
                                 @endif
 
                             </div>
+                            @include('adsense.google-ads.ads-sections-home-page')
                         </div>
                     </div>
                 </section>

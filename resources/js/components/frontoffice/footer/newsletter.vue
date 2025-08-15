@@ -1,13 +1,17 @@
 <script setup>
-import { ref, onMounted } from 'vue'; 
+import { ref, onMounted } from 'vue';
+import moment from 'moment';
 import { useStore } from 'vuex';
 
 const store = useStore();
 const loading = ref(false);
 const data = ref({email: null});
 const errors = ref({});
+const captchaRandomNumber = ref(null)
+const captchaRandomVerify = ref(null)
+const messageCaptcha = ref(null) 
 
-const saveNewsletter = async () => { 
+const storeH = async () => { 
   loading.value = true;
   await store.dispatch('newsletter/newsletterRequest', {email: data.value.email});
 
@@ -67,8 +71,58 @@ const saveNewsletter = async () => {
     }
   }
   loading.value = false;
-}; 
-  
+};
+const verifyCaptchaNewsLetterClose = () =>{
+    generateCaptcha()
+    messageCaptcha.value = null
+    captchaRandomVerify.value = null
+    $('#verifyCaptchaNewsLetter').modal('hide');
+};
+
+const verifyCaptchaNewsLetterShow = () =>{
+    generateCaptcha()
+    $('#verifyCaptchaNewsLetter').modal('show');
+};
+
+const reloadcaptchaRandomNumber = () =>{
+    generateCaptcha()
+};
+
+const generateCaptcha = () =>{
+    const randomString = Math.random().toString(36).substring(2, 7);
+    const randomStringArray = randomString.split("");
+    const changeString = randomStringArray.map((char) =>
+        Math.random() > 0.5
+        ? char.toUpperCase()
+        : char
+    );
+
+    captchaRandomNumber.value = changeString.join("");
+};
+
+const saveNewsletter = () => {
+    generateCaptcha()
+    verifyCaptchaNewsLetterShow()
+};
+
+const save = () => {
+
+    if(captchaRandomVerify.value != captchaRandomNumber.value){
+
+        messageCaptcha.value="Veuillez entrer un captcha valide."
+
+    }else{
+
+        verifyCaptchaNewsLetterClose()
+
+        storeH()
+
+    }
+};
+
+onMounted(() => {
+    generateCaptcha()
+});
 </script>
 <template>
     <form class="input-group mt-2" >
@@ -88,5 +142,42 @@ const saveNewsletter = async () => {
     <div v-else class="form-text mt-2 text-white">
         En vous abonnant, vous acceptez notre politique de confidentialité.
     </div>
-    
+    <div class="modal fade" id="verifyCaptchaNewsLetter" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <h5 class="modal-title">Vérification CAPTCHA</h5>
+                    <button type="button" class="btn-close" @click="verifyCaptchaNewsLetterClose" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3"  >
+                        <div class="input-btn">
+                            <div class="input-img">
+                              <input type="text" class="form-control captcha-text" v-model="captchaRandomNumber" disabled />
+                              <img :src="`/assets/images/captcha.jpg`" alt=""/>
+                            </div>
+                            <button class="refresh-btn" @click="reloadcaptchaRandomNumber">
+                              <i class="fas fa-rotate-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mb-3"  >
+                        <div class="input-btn">
+                            <div class="input-img">
+                              <input type="text" class="form-control " v-model="captchaRandomVerify" />
+                            </div>
+                            <button class="refresh-btn" @click="save">
+                              <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <small class="text-danger" v-if="messageCaptcha">{{ messageCaptcha }}</small>
+                    </div>
+                </div>
+                <div class="modal-footer"> </div>
+                <div  style="margin-top: -15px">
+                    <p class="text-center">Verifions si vous n'êtes pas un robot</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>

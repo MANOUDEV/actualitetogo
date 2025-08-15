@@ -1,361 +1,3 @@
-<script setup>
-import { ref, computed, onMounted } from 'vue';
-import { useStore } from 'vuex';
-import Swal from 'sweetalert2';
-
-const store = useStore(); 
-const loadingVerifyEmail = ref(false); 
-const loadingNewPass = ref(false);
-const loadingResendOtp = ref(false); 
-const loadingVerifyOtp = ref(false);  
-const email = ref(null);
-const otp = ref(null);
-const password = ref(null);
-const password_confirm = ref(null);
-const loginError = ref(false);
-const loading = ref(false);
-const errorFirst = ref(false);
-const errorTwo = ref(false);
-const errorThree = ref(false); 
-const errorsFirst = ref([]); 
-const errorsTwo = ref([]); 
-const errorsThree = ref([]); 
-const dataReady = ref(0); 
-const step = ref(1); 
-const meProfileRoleName = ref(null);
-const remember_me = ref(false); 
-const showPsw = ref(false); 
-const showPswC = ref(false);  
-
-// Fonction pour afficher/masquer le mot de passe
-const showPassword = () => {
-  const x = document.getElementById('psw-input');
-  if (x.type === 'password') {
-    x.type = 'text';
-    showPsw.value = true;
-  } else {
-    x.type = 'password';
-    showPsw.value = false;
-  }
-};
-
-const showPasswordC = () => {
-  const x = document.getElementById('psw-input_c');
-  if (x.type === 'password') {
-    x.type = 'text';
-    showPswC.value = true;
-  } else {
-    x.type = 'password';
-    showPswC.value = false;
-  }
-};
-
-PreviousStep= () =>{
-    errorFirst.value = null
-    errorsFirst.value = []
-    errorTwo.value = null
-    errorsTwo.value = []
-    errorThree.value = null
-    errorsThree.value = []
-    step.value = 1
-};
-
-PreviousHStep= () =>{
-    errorFirst.value = null
-    errorsFirst.value = []
-    errorTwo.value = null
-    errorsTwo.value = []
-    errorThree.value = null
-    errorsThree.value = []
-    step.value = 2
-};
-
-const submitVerifyEmail = async () => {
-    loadingVerifyEmail.value = true
-    errorFirst.value = null
-    errorsFirst.value = []
-    
-    // Action de connexion
-    await store.dispatch('forgot_password/sendOtpForgotPassword',{email: email.value});
-
-    const getterSendOtpForgotPasswordStatus = store.getters['forgot_password/getSendOtpForgotPasswordStatus'];
-    const getterSendOtpForgotPasswordMessage = store.getters['forgot_password/getSendOtpForgotPasswordMessage'];
-    const getterSendOtpForgotPasswordErrors = store.getters['forgot_password/getSendOtpForgotPasswordErrors'];
-
-    if(getterSendOtpForgotPasswordStatus === 'success'){
-
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-
-        Toast.fire({
-            icon: 'success',
-            title: getterSendOtpForgotPasswordMessage
-        })
-
-        errorFirst.value = null
-        errorsFirst.value = []
-
-        loadingVerifyEmail.value = false
-
-        step.value = 2
-
-    }else if(getterSendOtpForgotPasswordStatus === 'failed'){
-
-        errorFirst.value = getterSendOtpForgotPasswordMessage
-
-        errorsFirst.value = []
-
-        loadingVerifyEmail.value = false
-
-    }else if(getterSendOtpForgotPasswordStatus === 'error'){
-
-        errorFirst.value = getterSendOtpForgotPasswordMessage
-
-        errorsFirst.value = getterSendOtpForgotPasswordErrors
-
-        loadingVerifyEmail.value = false
-    }
-
-    loadingVerifyEmail.value = false
-};
-
-const submitResendOtp = async () => {
-    loadingResendOtp.value = true
-    errorFirst.value = null
-    errorsFirst.value = []
-    
-    // Action de connexion
-    await store.dispatch('forgot_password/sendOtpForgotPassword',{email: email.value});
-
-    const getterSendOtpForgotPasswordStatus = store.getters['forgot_password/getSendOtpForgotPasswordStatus'];
-    const getterSendOtpForgotPasswordMessage = store.getters['forgot_password/getSendOtpForgotPasswordMessage'];
-    const getterSendOtpForgotPasswordErrors = store.getters['forgot_password/getSendOtpForgotPasswordErrors'];
-
-    if(getterSendOtpForgotPasswordStatus === 'success'){
-
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-
-        Toast.fire({
-            icon: 'success',
-            title: getterSendOtpForgotPasswordMessage
-        })
-
-        errorFirst.value = null
-        errorsFirst.value = []
-
-        loadingResendOtp.value = false
-
-        step.value = 2
-
-    }else if(getterSendOtpForgotPasswordStatus === 'failed'){
-
-        errorFirst.value = getterSendOtpForgotPasswordMessage
-
-        errorsFirst.value = []
-
-        loadingResendOtp.value = false
-
-    }else if(getterSendOtpForgotPasswordStatus === 'error'){
-
-        errorFirst.value = getterSendOtpForgotPasswordMessage
-
-        errorsFirst.value = getterSendOtpForgotPasswordErrors
-
-        loadingResendOtp.value = false
-    }
-
-    loadingResendOtp.value = false
-}
-
-const submitVerifyOtp = async () => {
-    loadingVerifyOtp.value = true
-    errorTwo.value = null
-    errorsTwo.value = []
-    
-    // Action de connexion
-    await store.dispatch('forgot_password/checkOtpForgotPassword',{email: email.value, otp: otp.value});
-
-    const getterCheckOtpForgotPasswordStatus = store.getters['forgot_password/getCheckOtpForgotPasswordStatus'];
-    const getterCheckOtpForgotPasswordMessage = store.getters['forgot_password/getCheckOtpForgotPasswordMessage'];
-    const getterCheckOtpForgotPasswordErrors = store.getters['forgot_password/getCheckOtpForgotPasswordErrors'];
-
-    if(getterCheckOtpForgotPasswordStatus === 'success'){
-
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-
-        Toast.fire({
-            icon: 'success',
-            title: getterCheckOtpForgotPasswordMessage
-        })
-
-        errorTwo.value = null
-        errorsTwo.value = []
-
-        loadingVerifyOtp.value = false
-
-        step.value = 3
-
-    }else if(getterCheckOtpForgotPasswordStatus === 'failed'){
-
-        errorTwo.value = getterCheckOtpForgotPasswordMessage
-
-        errorsTwo.value = []
-
-        loadingVerifyOtp.value = false
-
-    }else if(getterCheckOtpForgotPasswordStatus === 'error'){
-
-        errorTwo.value = getterCheckOtpForgotPasswordMessage
-
-        errorsTwo.value = getterCheckOtpForgotPasswordErrors
-
-        loadingVerifyOtp.value = false
-    }
-
-    loadingVerifyOtp.value = false
-};
-
-const submitNewPass = async () => {
-    loadingNewPass.value = true
-    errorThree.value = null
-    errorsThree.value = []
-    
-    // Action de connexion
-    await store.dispatch('forgot_password/newPassOtpForgotPassword',{email: email.value, otp: otp.value, password: password.value, password_confirm: password_confirm.value});
-
-    const getterNewPassOtpForgotPasswordStatus = store.getters['forgot_password/getNewPassOtpForgotPasswordStatus'];
-    const getterNewPassOtpForgotPasswordMessage = store.getters['forgot_password/getNewPassOtpForgotPasswordMessage'];
-    const getterNewPassOtpForgotPasswordErrors = store.getters['forgot_password/getNewPassOtpForgotPasswordErrors'];
-
-    if(getterNewPassOtpForgotPasswordStatus === 'success'){
-
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-
-        Toast.fire({
-            icon: 'success',
-            title: getterNewPassOtpForgotPasswordMessage
-        })
-
-        errorThree.value = null
-        errorsThree.value = []
-
-        if(remember_me.value){
-
-            localStorage.setItem('password', password.value)
-
-            localStorage.setItem('remember_me', true)
-
-            window.location="/auth/login"
-
-
-        }else{
-
-            localStorage.setItem('remember_me', false)
-
-            window.location="/auth/login"
-        }
-
-    }else if(getterNewPassOtpForgotPasswordStatus === 'failed'){
-
-        errorThree.value = getterNewPassOtpForgotPasswordMessage
-
-        errorsThree.value = []
-
-        loadingNewPass.value = false
-
-    }else if(getterNewPassOtpForgotPasswordStatus === 'error'){
-
-        errorThree.value = getterNewPassOtpForgotPasswordMessage
-
-        errorsThree.value = getterNewPassOtpForgotPasswordErrors
-
-        loadingNewPass.value = false
-    }
-
-    loadingNewPass.value = false
-};
-
-const show = async () => {
-  if (localStorage.getItem('access_token') && localStorage.getItem('nbRsp')) {
-    await store.dispatch('meProfile/getMeProfile');
-    
-    const gettersMeProfileUserName =  store.getters['meProfile/getMeProfileUserName'];
-    const gettersMeProfileRoleName =  store.getters['meProfile/getMeProfileRoleName'];
-    const gettersMeProfileStatus =  store.getters['meProfile/getMeProfileStatus'];  
-
-    if (gettersMeProfileStatus === 'success') {
-      meProfileRoleName.value = gettersMeProfileRoleName;
-      meProfileUserName.value = gettersMeProfileUserName;
-      dataReady.value = 1;
-    } else if (gettersMeProfileStatus === 'failed') {
-      if (localStorage.getItem('remember_me') === 'true') {
-        username.value = localStorage.getItem('username');
-        password.value = localStorage.getItem('password');
-        remember_me.value = localStorage.getItem('remember_me');
-      }
-      dataReady.value = 3;
-    } else {
-      dataReady.value = 3;
-      if (localStorage.getItem('remember_me') === 'true') {
-        username.value = localStorage.getItem('username');
-        password.value = localStorage.getItem('password');
-        remember_me.value = localStorage.getItem('remember_me');
-      }
-    }
-  } else {
-    dataReady.value = 2;
-    if (localStorage.getItem('remember_me') === 'true') {
-      username.value = localStorage.getItem('username');
-      password.value = localStorage.getItem('password');
-      remember_me.value = localStorage.getItem('remember_me');
-    }
-  }
-};
-
-
-onMounted(() => {
-  show();
-});
-</script>
 <template>
     <!-- **************** MAIN CONTENT START **************** -->
     <main style="margin-top: -45px; margin-bottom: -35px;">
@@ -489,7 +131,7 @@ onMounted(() => {
                                         <div class="input-group">
                                             <input type="password" v-model="password_confirm" class="form-control fakepassword is-invalid"  name="password_confirm"  id="psw-input_c" placeholder="Veuillez confirmer le mot de passe">
                                             <span class="input-group-text p-0" @click="showPasswordC" style="cursor: pointer">
-                                                <i v-if="showPswC == false" class="fakepasswordicon far fa-eye cursor-pointer p-2 w-40px"></i>
+                                                <i v-if="showPsw == false" class="fakepasswordicon far fa-eye cursor-pointer p-2 w-40px"></i>
                                                 <i v-else class="fakepasswordicon far fa-eye-slash cursor-pointer p-2 w-40px"></i>
                                             </span>
                                         </div>
@@ -503,7 +145,7 @@ onMounted(() => {
                                         <div class="input-group">
                                             <input type="password" v-model="password_confirm" class="form-control fakepassword"  name="password_confirm"  id="psw-input_c" placeholder="Veuillez confirmer le mot de passe">
                                             <span class="input-group-text p-0" @click="showPasswordC" style="cursor: pointer">
-                                                <i v-if="showPswC == false" class="fakepasswordicon far fa-eye cursor-pointer p-2 w-40px"></i>
+                                                <i v-if="showPsw == false" class="fakepasswordicon far fa-eye cursor-pointer p-2 w-40px"></i>
                                                 <i v-else class="fakepasswordicon far fa-eye-slash cursor-pointer p-2 w-40px"></i>
                                             </span>
                                         </div>
@@ -599,3 +241,387 @@ onMounted(() => {
     </main>
     <!-- **************** MAIN CONTENT END **************** -->
 </template>
+<script>
+    import {mapActions, mapGetters} from 'vuex';
+    export default {
+        data(){
+            return{
+                loadingVerifyEmail: false,
+                loadingNewPass: false,
+                loadingResendOTP: false,
+                loadingVerifyOtp: false,
+                email:null,
+                otp:null,
+                password: null,
+                password_confirm: null,
+                loginError: false,
+                loading: false,
+                errorFirst: false,
+                errorTwo: false,
+                errorThree: false,
+                errorsFirst: [],
+                errorsTwo: [],
+                errorsThree: [],
+                dataReady: 0,
+                step:1,
+                meProfileRoleName: null,
+                remember_me:false,
+                showPsw: false,
+                showPswC: false
+            }
+        },
+        computed:{
+            ...mapGetters("meProfile",{
+                gettersProfileStatus:'getProfileStatus',
+                gettersMeProfileRoleName:"getMeProfileRoleName",
+            }),
+
+            ...mapGetters("forgot_password",{
+                gettersSendOtpForgotPasswordStatus:'getSendOtpForgotPasswordStatus',
+                gettersSendOtpForgotPasswordErrors:'getSendOtpForgotPasswordErrors',
+                gettersSendOtpForgotPasswordMessage:'getSendOtpForgotPasswordMessage',
+                gettersCheckOtpForgotPasswordStatus:'getCheckOtpForgotPasswordStatus',
+                gettersCheckOtpForgotPasswordErrors:'getCheckOtpForgotPasswordErrors',
+                gettersCheckOtpForgotPasswordMessage:'getCheckOtpForgotPasswordMessage',
+                gettersNewPassOtpForgotPasswordStatus:'getNewPassOtpForgotPasswordStatus',
+                gettersNewPassOtpForgotPasswordErrors:'getNewPassOtpForgotPasswordErrors',
+                gettersNewPassOtpForgotPasswordMessage:'getNewPassOtpForgotPasswordMessage',
+            }),
+        },
+        methods:{
+
+            ...mapActions("forgot_password",{
+                actionsSendOtpForgotPassword:'sendOtpForgotPassword',
+                actionsCheckOtpForgotPassword:'checkOtpForgotPassword',
+                actionsNewPassOtpForgotPassword:'newPassOtpForgotPassword'
+            }),
+
+            ...mapActions("meProfile",{
+                actionsGetMeProfile:'getMeProfile'
+            }),
+
+            showPassword(){
+                var x = document.getElementById("psw-input");
+                if (x.type === "password") {
+                    x.type = "text";
+                    this.showPsw = true
+                } else {
+                    x.type = "password";
+                    this.showPsw = false
+                }
+            },
+
+            showPasswordC(){
+                var x = document.getElementById("psw-input_c");
+                if (x.type === "password") {
+                    x.type = "text";
+                    this.showPsw = true
+                } else {
+                    x.type = "password";
+                    this.showPsw = false
+                }
+            },
+
+            async show(){
+
+                if(localStorage.getItem('access_token') && localStorage.getItem('nbRsp')){
+
+                    await this.actionsGetMeProfile();
+
+                    if(this.gettersProfileStatus === 'success'){
+
+                        this.meProfileRoleName = this.gettersMeProfileRoleName
+
+                        this.dataReady = 1
+
+
+                        if(localStorage.getItem('remember_me') == "true" &&  localStorage.getItem('username') && localStorage.getItem('password')){
+
+                            this.username = localStorage.getItem('username')
+
+                            this.password = localStorage.getItem('password')
+
+                            this.remember_me = localStorage.getItem('remember_me')
+
+                        }
+
+                    }else if(this.gettersProfileStatus === 'failed'){
+
+                        this.dataReady = 2;
+
+                        if(localStorage.getItem('remember_me') == "true" && localStorage.getItem('username') && localStorage.getItem('password')){
+
+                            this.username = localStorage.getItem('username')
+
+                            this.password = localStorage.getItem('password')
+
+                            this.remember_me = localStorage.getItem('remember_me')
+
+                        }
+
+                    }
+
+                }else{
+
+                    this.dataReady = 2;
+
+                    if(localStorage.getItem('remember_me') == "true" && localStorage.getItem('username') && localStorage.getItem('password')){
+
+                        this.username = localStorage.getItem('username')
+
+                        this.password = localStorage.getItem('password')
+
+                        this.remember_me = localStorage.getItem('remember_me')
+
+                    }
+
+                }
+            },
+
+            async submitVerifyEmail(){
+                this.loadingVerifyEmail = true
+                this.errorFirst = null
+                this.errorsFirst = []
+                await this.actionsSendOtpForgotPassword({email:this.email});
+
+                if(this.gettersSendOtpForgotPasswordStatus === 'success'){
+
+                    const Toast = this.$swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', this.$swal.stopTimer)
+                            toast.addEventListener('mouseleave', this.$swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        icon: 'success',
+                        title: this.gettersSendOtpForgotPasswordMessage
+                    })
+
+                    this.errorFirst = null
+                    this.errorsFirst = []
+
+                    this.loadingVerifyEmail = false
+
+                    this.step = 2
+
+                }else if(this.gettersSendOtpForgotPasswordStatus === 'failed'){
+
+                    this.errorFirst = this.gettersSendOtpForgotPasswordMessage
+
+                    this.errorsFirst = []
+
+                    this.loadingVerifyEmail = false
+
+                }else if(this.gettersSendOtpForgotPasswordStatus === 'error'){
+
+                    this.errorFirst = this.gettersSendOtpForgotPasswordMessage
+
+                    this.errorsFirst = this.gettersSendOtpForgotPasswordErrors
+
+                    this.loadingVerifyEmail = false
+                }
+
+                this.loadingVerifyEmail = false
+            },
+
+            async submitResendOtp(){
+                this.loadingResendOTP = true
+                this.errorFirst = null
+                this.errorsFirst = []
+                await this.actionsSendOtpForgotPassword({email:this.email});
+
+                if(this.gettersSendOtpForgotPasswordStatus === 'success'){
+
+                    const Toast = this.$swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', this.$swal.stopTimer)
+                            toast.addEventListener('mouseleave', this.$swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        icon: 'success',
+                        title: this.gettersSendOtpForgotPasswordMessage
+                    })
+
+                    this.errorFirst = null
+                    this.errorsFirst = []
+
+                    this.loadingResendOTP = false
+
+                    this.step = 2
+
+                }else if(this.gettersSendOtpForgotPasswordStatus === 'failed'){
+
+                    this.errorFirst = this.gettersSendOtpForgotPasswordMessage
+
+                    this.errorsFirst = []
+
+                    this.loadingResendOTP = false
+
+                }else if(this.gettersSendOtpForgotPasswordStatus === 'error'){
+
+                    this.errorFirst = this.gettersSendOtpForgotPasswordMessage
+
+                    this.errorsFirst = this.gettersSendOtpForgotPasswordErrors
+
+                    this.loadingResendOTP = false
+                }
+
+                this.loadingResendOTP = false
+            },
+
+            async submitVerifyOtp(){
+
+                this.loadingVerifyOtp = true
+                this.errorTwo = null
+                this.errorsTwo = []
+                await this.actionsCheckOtpForgotPassword({email:this.email, otp :this.otp });
+
+                if(this.gettersCheckOtpForgotPasswordStatus === 'success'){
+
+                    const Toast = this.$swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', this.$swal.stopTimer)
+                            toast.addEventListener('mouseleave', this.$swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        icon: 'success',
+                        title: this.gettersCheckOtpForgotPasswordMessage
+                    })
+
+                    this.errorTwo = null
+                    this.errorsTwo = []
+
+                    this.loadingVerifyOtp = false
+
+                    this.step = 3
+
+                }else if(this.gettersCheckOtpForgotPasswordStatus === 'failed'){
+
+                    this.errorTwo = this.gettersCheckOtpForgotPasswordMessage
+
+                    this.errorsTwo = []
+
+                    this.loadingVerifyOtp = false
+
+                }else if(this.gettersCheckOtpForgotPasswordStatus === 'error'){
+
+                    this.errorTwo = this.gettersCheckOtpForgotPasswordMessage
+
+                    this.errorsTwo = this.gettersCheckOtpForgotPasswordErrors
+
+                    this.loadingVerifyOtp = false
+                }
+                this.loadingVerifyOtp = false
+            },
+
+            async submitNewPass(){
+                this.loadingNewPass = true
+                this.errorThree = null
+                this.errorsThree = []
+                await this.actionsNewPassOtpForgotPassword({email:this.email, otp :this.otp, password :this.password ,password_confirm :this.password_confirm});
+
+                if(this.gettersNewPassOtpForgotPasswordStatus === 'success'){
+
+                    const Toast = this.$swal.mixin({
+                            toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', this.$swal.stopTimer)
+                            toast.addEventListener('mouseleave', this.$swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        icon: 'success',
+                        title: this.gettersNewPassOtpForgotPasswordMessage
+                    })
+
+                    this.errorThree = null
+                    this.errorsThree = []
+
+                    if(this.remember_me){
+
+                        localStorage.setItem('password', this.password)
+
+                        localStorage.setItem('remember_me', true)
+
+                         window.location="/auth/login"
+
+
+                    }else{
+
+                        localStorage.setItem('remember_me', false)
+
+                         window.location="/auth/login"
+                    }
+
+
+                }else if(this.gettersNewPassOtpForgotPasswordStatus === 'failed'){
+
+                    this.errorThree = this.gettersNewPassOtpForgotPasswordMessage
+
+                    this.errorsThree = []
+
+                    this.loadingNewPass = false
+
+                }else if(this.gettersNewPassOtpForgotPasswordStatus === 'error'){
+
+                    this.errorThree = this.gettersNewPassOtpForgotPasswordMessage
+
+                    this.errorsThree = this.gettersNewPassOtpForgotPasswordErrors
+
+                    this.loadingNewPass = false
+                }
+                this.loadingNewPass = false
+
+            },
+
+            PreviousStep(){
+                this.errorFirst = null
+                this.errorsFirst = []
+                this.errorTwo = null
+                this.errorsTwo = []
+                this.errorThree = null
+                this.errorsThree = []
+                this.step = 1
+            },
+
+            PreviousHStep(){
+                this.errorFirst = null
+                this.errorsFirst = []
+                this.errorTwo = null
+                this.errorsTwo = []
+                this.errorThree = null
+                this.errorsThree = []
+                this.step = 2
+            }
+
+        },
+        mounted(){
+            this.show();
+        }
+    };
+</script>

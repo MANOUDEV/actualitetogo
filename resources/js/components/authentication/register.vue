@@ -1,441 +1,3 @@
-<script setup>
-import { ref, computed, onMounted } from 'vue';
-import { useStore } from 'vuex';
-import Swal from 'sweetalert2';
-
-const store = useStore();
-const loadingVerifyEmail = ref(false); 
-const loadingNewPass = ref(false);
-const loadingNewInfo = ref(false);
-const loadingResendOtp = ref(false); 
-const loadingVerifyOtp = ref(false);  
-const email = ref(null);
-const otp = ref(null);
-const password = ref(null);
-const nom = ref(null);
-const prenoms = ref(null);
-const username = ref(null);
-const password_confirm = ref(null);
-const loginError = ref(false);
-const loading = ref(false);
-const errorFirst = ref(false);
-const errorTwo = ref(false);
-const errorThree = ref(false);
-const errorFour = ref(false);
-const errorsFirst = ref([]); 
-const errorsTwo = ref([]); 
-const errorsThree = ref([]); 
-const errorsFour = ref([]); 
-const dataReady = ref(0); 
-const step = ref(1); 
-const meProfileRoleName = ref(null);
-const remember_me = ref(false); 
-const showPsw = ref(false); 
-const showPswC = ref(false);
-
-
-// Fonction pour afficher/masquer le mot de passe
-const showPassword = () => {
-  const x = document.getElementById('psw-input');
-  if (x.type === 'password') {
-    x.type = 'text';
-    showPsw.value = true;
-  } else {
-    x.type = 'password';
-    showPsw.value = false;
-  }
-};
-
-const showPasswordC = () => {
-  const x = document.getElementById('psw-input_c');
-  if (x.type === 'password') {
-    x.type = 'text';
-    showPswC.value = true;
-  } else {
-    x.type = 'password';
-    showPswC.value = false;
-  }
-};
-
-
-PreviousStep= () =>{
-    errorFirst.value = null
-    errorsFirst.value = []
-    errorTwo.value = null
-    errorsTwo.value = []
-    errorThree.value = null
-    errorsThree.value = []
-    errorFour.value = null
-    errorsFour.value = []
-    step.value = 1
-};
-
-PreviousHStep= () =>{
-    errorFirst.value = null
-    errorsFirst.value = []
-    errorTwo.value = null
-    errorsTwo.value = []
-    errorThree.value = null
-    errorsThree.value = []
-    errorFour.value = null
-    errorsFour.value = []
-    step.value = 2
-};
-
-
-PreviousHHStep= () =>{
-    errorFirst.value = null
-    errorsFirst.value = []
-    errorTwo.value = null
-    errorsTwo.value = []
-    errorThree.value = null
-    errorsThree.value = []
-    errorFour.value = null
-    errorsFour.value = []
-    step.value = 3
-};
-const submitVerifyEmail = async () => {
-    loadingVerifyEmail.value = true
-    errorFirst.value = null
-    errorsFirst.value = []
-    
-    // Action de connexion
-    await store.dispatch('register/sendOtpRegister',{email: email.value});
-
-    const getterSendOtpRegisterStatus = store.getters['register/getSendOtpRegisterStatus'];
-    const getterSendOtpRegisterMessage = store.getters['register/getSendOtpRegisterMessage'];
-    const getterSendOtpRegisterErrors = store.getters['register/getSendOtpRegisterErrors'];
-
-    if(getterSendOtpRegisterStatus === 'success'){
-
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-
-        Toast.fire({
-            icon: 'success',
-            title: getterSendOtpRegisterMessage
-        })
-
-        errorFirst.value = null
-        errorsFirst.value = []
-
-        loadingVerifyEmail.value = false
-
-        step.value = 2
-
-    }else if(getterSendOtpRegisterStatus === 'failed'){
-
-        errorFirst.value = getterSendOtpRegisterMessage
-
-        errorsFirst.value = []
-
-        loadingVerifyEmail.value = false
-
-    }else if(getterSendOtpRegisterStatus === 'error'){
-
-        errorFirst.value = getterSendOtpRegisterMessage
-
-        errorsFirst.value = getterSendOtpRegisterErrors
-
-        loadingVerifyEmail.value = false
-    }
-
-    loadingVerifyEmail.value = false
-};
-
-const submitResendOtp = async () => {
-    loadingResendOtp.value = true
-    errorFirst.value = null
-    errorsFirst.value = []
-    
-    // Action de connexion
-    await store.dispatch('register/sendOtpRegister',{email: email.value});
-
-    const getterSendOtpRegisterStatus = store.getters['register/getSendOtpRegisterStatus'];
-    const getterSendOtpRegisterMessage = store.getters['register/getSendOtpRegisterMessage'];
-    const getterSendOtpRegisterErrors = store.getters['register/getSendOtpRegisterErrors'];
-
-    if(getterSendOtpRegisterStatus === 'success'){
-
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-
-        Toast.fire({
-            icon: 'success',
-            title: getterSendOtpRegisterMessage
-        })
-
-        errorFirst.value = null
-        errorsFirst.value = []
-
-        loadingResendOtp.value = false
-
-        step.value = 2
-
-    }else if(getterSendOtpRegisterStatus === 'failed'){
-
-        errorFirst.value = getterSendOtpRegisterMessage
-
-        errorsFirst.value = []
-
-        loadingResendOtp.value = false
-
-    }else if(getterSendOtpRegisterStatus === 'error'){
-
-        errorFirst.value = getterSendOtpRegisterMessage
-
-        errorsFirst.value = getterSendOtpRegisterErrors
-
-        loadingResendOtp.value = false
-    }
-
-    loadingResendOtp.value = false
-}
-
-const submitVerifyOtp = async () => {
-    loadingVerifyOtp.value = true
-    errorTwo.value = null
-    errorsTwo.value = []
-    
-    // Action de connexion
-    await store.dispatch('register/checkOtpRegister',{email: email.value, otp: otp.value});
-
-    const getterCheckOtpRegisterStatus = store.getters['register/getCheckOtpRegisterStatus'];
-    const getterCheckOtpRegisterMessage = store.getters['register/getCheckOtpRegisterMessage'];
-    const getterCheckOtpRegisterErrors = store.getters['register/getCheckOtpRegisterErrors'];
-
-    if(getterCheckOtpRegisterStatus === 'success'){
-
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-
-        Toast.fire({
-            icon: 'success',
-            title: getterCheckOtpRegisterMessage
-        })
-
-        errorTwo.value = null
-        errorsTwo.value = []
-
-        loadingVerifyOtp.value = false
-
-        step.value = 3
-
-    }else if(getterCheckOtpRegisterStatus === 'failed'){
-
-        errorTwo.value = getterCheckOtpRegisterMessage
-
-        errorsTwo.value = []
-
-        loadingVerifyOtp.value = false
-
-    }else if(getterCheckOtpRegisterStatus === 'error'){
-
-        errorTwo.value = getterCheckOtpRegisterMessage
-
-        errorsTwo.value = getterCheckOtpRegisterErrors
-
-        loadingVerifyOtp.value = false
-    }
-
-    loadingVerifyOtp.value = false
-};
-
-const submitNewInfo = async () => {
-    loadingNewInfo.value = true
-    errorFour.value = null
-    errorsFour.value = []
-    
-    // Action de connexion
-    await store.dispatch('register/newInfoOtpRegister',{email: email.value, otp: otp.value, nom: nom.value, prenoms :prenoms.value, username: username.value});
-
-    const getterNewInfoOtpRegisterStatus = store.getters['register/getNewInfoOtpRegisterStatus'];
-    const getterNewInfoOtpRegisterMessage = store.getters['register/getNewInfoOtpRegisterMessage'];
-    const getterNewInfoOtpRegisterErrors = store.getters['register/getNewInfoOtpRegisterErrors'];
-
-    if(getterNewInfoOtpRegisterStatus === 'success'){
-
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-
-        Toast.fire({
-            icon: 'success',
-            title: getterNewInfoOtpRegisterMessage
-        })
-
-        errorFour.value = null
-        errorsFour.value = []
-
-        step.value =  4
-
-    }else if(getterNewInfoOtpRegisterStatus === 'failed'){
-
-        errorFour.value = getterNewInfoOtpRegisterMessage
-
-        errorsFour.value = []
-
-        loadingNewInfo.value = false
-
-    }else if(getterNewInfoOtpRegisterStatus === 'error'){
-
-        errorFour.value = getterNewInfoOtpRegisterMessage
-
-        errorsFour.value = getterNewInfoOtpRegisterErrors
-
-        loadingNewInfo.value = false
-    }
-
-    loadingNewInfo.value = false
-};
-
-const submitNewPass = async () => {
-    loadingNewPass.value = true
-    errorThree.value = null
-    errorsThree.value = []
-    
-    // Action de connexion
-    await store.dispatch('register/newPassOtpRegister',{email: email.value, otp: otp.value, nom: nom.value, prenoms :prenoms.value, username: username.value ,password: password.value, password_confirm: password_confirm.value});
-
-    const getterNewPassOtpRegisterStatus = store.getters['register/getNewPassOtpRegisterStatus'];
-    const getterNewPassOtpRegisterMessage = store.getters['register/getNewPassOtpRegisterMessage'];
-    const getterNewPassOtpRegisterErrors = store.getters['register/getNewPassOtpRegisterErrors'];
-
-    if(getterNewPassOtpRegisterStatus === 'success'){
-
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-
-        Toast.fire({
-            icon: 'success',
-            title: getterNewPassOtpRegisterMessage
-        })
-
-        errorThree.value = null
-        errorsThree.value = []
-
-        if(remember_me.value){
-
-            localStorage.setItem('password', password.value)
-
-            localStorage.setItem('remember_me', true)
-
-            window.location="/auth/login"
-
-
-        }else{
-
-            localStorage.setItem('remember_me', false)
-
-            window.location="/auth/login"
-        }
-
-    }else if(getterNewPassOtpRegisterStatus === 'failed'){
-
-        errorThree.value = getterNewPassOtpRegisterMessage
-
-        errorsThree.value = []
-
-        loadingNewPass.value = false
-
-    }else if(getterNewPassOtpRegisterStatus === 'error'){
-
-        errorThree.value = getterNewPassOtpRegisterMessage
-
-        errorsThree.value = getterNewPassOtpRegisterErrors
-
-        loadingNewPass.value = false
-    }
-
-    loadingNewPass.value = false
-};
-
-const show = async () => {
-  if (localStorage.getItem('access_token') && localStorage.getItem('nbRsp')) {
-    await store.dispatch('meProfile/getMeProfile');
-    
-    const gettersMeProfileUserName =  store.getters['meProfile/getMeProfileUserName'];
-    const gettersMeProfileRoleName =  store.getters['meProfile/getMeProfileRoleName'];
-    const gettersMeProfileStatus =  store.getters['meProfile/getMeProfileStatus'];  
-
-    if (gettersMeProfileStatus === 'success') {
-      meProfileRoleName.value = gettersMeProfileRoleName;
-      meProfileUserName.value = gettersMeProfileUserName;
-      dataReady.value = 1;
-    } else if (gettersMeProfileStatus === 'failed') {
-      if (localStorage.getItem('remember_me') === 'true') {
-        username.value = localStorage.getItem('username');
-        password.value = localStorage.getItem('password');
-        remember_me.value = localStorage.getItem('remember_me');
-      }
-      dataReady.value = 3;
-    } else {
-      dataReady.value = 3;
-      if (localStorage.getItem('remember_me') === 'true') {
-        username.value = localStorage.getItem('username');
-        password.value = localStorage.getItem('password');
-        remember_me.value = localStorage.getItem('remember_me');
-      }
-    }
-  } else {
-    dataReady.value = 2;
-    if (localStorage.getItem('remember_me') === 'true') {
-      username.value = localStorage.getItem('username');
-      password.value = localStorage.getItem('password');
-      remember_me.value = localStorage.getItem('remember_me');
-    }
-  }
-};
-
-
-onMounted(() => {
-  show();
-});
-</script>
 <template>
     <!-- **************** MAIN CONTENT START **************** -->
     <main style="margin-top: -45px; margin-bottom: -35px;">
@@ -630,7 +192,7 @@ onMounted(() => {
                                         <div class="input-group">
                                             <input type="password" v-model="password_confirm" class="form-control fakepassword is-invalid"  name="password_confirm"  id="psw-input_c" placeholder="Veuillez confirmer le mot de passe">
                                             <span class="input-group-text p-0" @click="showPasswordC" style="cursor: pointer">
-                                                <i v-if="showPswC == false" class="fakepasswordicon far fa-eye cursor-pointer p-2 w-40px"></i>
+                                                <i v-if="showPsw == false" class="fakepasswordicon far fa-eye cursor-pointer p-2 w-40px"></i>
                                                 <i v-else class="fakepasswordicon far fa-eye-slash cursor-pointer p-2 w-40px"></i>
                                             </span>
                                         </div>
@@ -644,7 +206,7 @@ onMounted(() => {
                                         <div class="input-group">
                                             <input type="password" v-model="password_confirm" class="form-control fakepassword"  name="password_confirm"  id="psw-input_c" placeholder="Veuillez confirmer le mot de passe">
                                             <span class="input-group-text p-0" @click="showPasswordC" style="cursor: pointer">
-                                                <i v-if="showPswC == false" class="fakepasswordicon far fa-eye cursor-pointer p-2 w-40px"></i>
+                                                <i v-if="showPsw == false" class="fakepasswordicon far fa-eye cursor-pointer p-2 w-40px"></i>
                                                 <i v-else class="fakepasswordicon far fa-eye-slash cursor-pointer p-2 w-40px"></i>
                                             </span>
                                         </div>
@@ -743,4 +305,475 @@ onMounted(() => {
         <!-- =======================Inner intro END -->
     </main>
     <!-- **************** MAIN CONTENT END **************** -->
-</template> 
+</template>
+<script>
+    import {mapActions, mapGetters} from 'vuex';
+    export default {
+        data(){
+            return{
+                loadingVerifyEmail: false,
+                loadingNewPass: false,
+                loadingNewInfo: false,
+                loadingResendOTP: false,
+                loadingVerifyOtp: false,
+                email:null,
+                otp:null,
+                nom: null,
+                prenoms: null,
+                username: null,
+                password: null,
+                password_confirm: null,
+                loginError: false,
+                loading: false,
+                errorFirst: false,
+                errorTwo: false,
+                errorThree: false,
+                errorFour: false,
+                errorsFirst: [],
+                errorsTwo: [],
+                errorsThree: [],
+                errorsFour: [],
+                dataReady: 0,
+                step:1,
+                meProfileRoleName: null,
+                remember_me: false,
+                showPsw: false,
+                showPswC: false
+            }
+        },
+        computed:{
+            ...mapGetters("meProfile",{
+                gettersMeProfileStatus:'getMeProfileStatus',
+                gettersMeProfileRoleName:"getMeProfileRoleName",
+            }),
+
+            ...mapGetters("register",{
+                gettersSendOtpRegisterStatus:'getSendOtpRegisterStatus',
+                gettersSendOtpRegisterErrors:'getSendOtpRegisterErrors',
+                gettersSendOtpRegisterMessage:'getSendOtpRegisterMessage',
+                gettersCheckOtpRegisterStatus:'getCheckOtpRegisterStatus',
+                gettersCheckOtpRegisterErrors:'getCheckOtpRegisterErrors',
+                gettersCheckOtpRegisterMessage:'getCheckOtpRegisterMessage',
+                gettersNewInfoOtpRegisterStatus:'getNewInfoOtpRegisterStatus',
+                gettersNewInfoOtpRegisterErrors:'getNewInfoOtpRegisterErrors',
+                gettersNewInfoOtpRegisterMessage:'getNewInfoOtpRegisterMessage',
+                gettersNewPassOtpRegisterStatus:'getNewPassOtpRegisterStatus',
+                gettersNewPassOtpRegisterErrors:'getNewPassOtpRegisterErrors',
+                gettersNewPassOtpRegisterMessage:'getNewPassOtpRegisterMessage',
+                getterLoginStatus:'getLoginStatus',
+                getterLoginMessage:'getLoginMessage',
+            }),
+        },
+        methods:{
+
+            ...mapActions("register",{
+                actionsSendOtpRegister:'sendOtpRegister',
+                actionsCheckOtpRegister:'checkOtpRegister',
+                actionsNewInfoOtpRegister:'newInfoOtpRegister',
+                actionsNewPassOtpRegister:'newPassOtpRegister'
+            }),
+
+            ...mapActions("meProfile",{
+                actionsGetMeProfile:'getMeProfile'
+            }),
+
+            showPassword(){
+                var x = document.getElementById("psw-input");
+                if (x.type === "password") {
+                    x.type = "text";
+                    this.showPsw = true
+                } else {
+                    x.type = "password";
+                    this.showPsw = false
+                }
+            },
+
+            showPasswordC(){
+                var x = document.getElementById("psw-input_c");
+                if (x.type === "password") {
+                    x.type = "text";
+                    this.showPsw = true
+                } else {
+                    x.type = "password";
+                    this.showPsw = false
+                }
+            },
+
+           async show(){
+
+                if(localStorage.getItem('access_token') && localStorage.getItem('nbRsp')){
+
+                    await this.actionsGetMeProfile();
+
+                    if(this.gettersMeProfileStatus === 'success'){
+
+                        this.meProfileRoleName = this.gettersMeProfileRoleName
+
+                        this.dataReady = 1
+
+
+                         if(localStorage.getItem('remember_me') == "true" &&  localStorage.getItem('username') && localStorage.getItem('password')){
+
+                            this.username = localStorage.getItem('username')
+
+                            this.password = localStorage.getItem('password')
+
+                            this.remember_me = localStorage.getItem('remember_me')
+
+                        }
+
+                    }else if(this.gettersMeProfileStatus === 'failed'){
+
+                        this.dataReady = 2;
+
+                         if(localStorage.getItem('remember_me') == "true" && localStorage.getItem('username') && localStorage.getItem('password')){
+
+                            this.username = localStorage.getItem('username')
+
+                            this.password = localStorage.getItem('password')
+
+                            this.remember_me = localStorage.getItem('remember_me')
+
+                        }
+
+                    }
+
+                }else{
+
+                    
+                    if(localStorage.getItem('remember_me') == "true" && localStorage.getItem('username') && localStorage.getItem('password')){
+
+                        this.username = localStorage.getItem('username')
+
+                        this.password = localStorage.getItem('password')
+
+                        this.remember_me = localStorage.getItem('remember_me')
+
+                    }
+
+                    this.dataReady = 2;
+
+                }
+            },
+
+            async submitVerifyEmail(){
+                this.loadingVerifyEmail = true
+                this.errorFirst = null
+                this.errorsFirst = []
+                await this.actionsSendOtpRegister({email:this.email});
+
+                if(this.gettersSendOtpRegisterStatus === 'success'){
+
+                    const Toast = this.$swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', this.$swal.stopTimer)
+                            toast.addEventListener('mouseleave', this.$swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        icon: 'success',
+                        title: this.gettersSendOtpRegisterMessage
+                    })
+
+                    this.errorFirst = null
+                    this.errorsFirst = []
+
+                    this.loadingVerifyEmail = false
+
+                    this.step = 2
+
+                }else if(this.gettersSendOtpRegisterStatus === 'failed'){
+
+                    this.errorFirst = this.gettersSendOtpRegisterMessage
+
+                    this.errorsFirst = []
+
+                    this.loadingVerifyEmail = false
+
+                }else if(this.gettersSendOtpRegisterStatus === 'error'){
+
+                    this.errorFirst = this.gettersSendOtpRegisterMessage
+
+                    this.errorsFirst = this.gettersSendOtpRegisterErrors
+
+                    this.loadingVerifyEmail = false
+                }
+
+                this.loadingVerifyEmail = false
+            },
+
+            async submitResendOtp(){
+                this.loadingResendOTP = true
+                this.errorFirst = null
+                this.errorsFirst = []
+                await this.actionsSendOtpRegister({email:this.email});
+
+                if(this.gettersSendOtpRegisterStatus === 'success'){
+
+                    const Toast = this.$swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', this.$swal.stopTimer)
+                            toast.addEventListener('mouseleave', this.$swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        icon: 'success',
+                        title: this.gettersSendOtpRegisterMessage
+                    })
+
+                    this.errorFirst = null
+                    this.errorsFirst = []
+
+                    this.loadingResendOTP = false
+
+                    this.step = 2
+
+                }else if(this.gettersSendOtpRegisterStatus === 'failed'){
+
+                    this.errorFirst = this.gettersSendOtpRegisterMessage
+
+                    this.errorsFirst = []
+
+                    this.loadingResendOTP = false
+
+                }else if(this.gettersSendOtpRegisterStatus === 'error'){
+
+                    this.errorFirst = this.gettersSendOtpRegisterMessage
+
+                    this.errorsFirst = this.gettersSendOtpRegisterErrors
+
+                    this.loadingResendOTP = false
+                }
+
+                this.loadingResendOTP = false
+            },
+
+            async submitVerifyOtp(){
+
+                this.loadingVerifyOtp = true
+                this.errorTwo = null
+                this.errorsTwo = []
+
+                await this.actionsCheckOtpRegister({email:this.email, otp :this.otp });
+
+                if(this.gettersCheckOtpRegisterStatus === 'success'){
+
+                    const Toast = this.$swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', this.$swal.stopTimer)
+                            toast.addEventListener('mouseleave', this.$swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        icon: 'success',
+                        title: this.gettersCheckOtpRegisterMessage
+                    })
+
+                    this.errorTwo = null
+                    this.errorsTwo = []
+
+                    this.loadingVerifyOtp = false
+
+                    this.step = 4
+
+                }else if(this.gettersCheckOtpRegisterStatus === 'failed'){
+
+                    this.errorTwo = this.gettersCheckOtpRegisterMessage
+
+                    this.errorsTwo = []
+
+                    this.loadingVerifyOtp = false
+
+                }else if(this.gettersCheckOtpRegisterStatus === 'error'){
+
+                    this.errorTwo = this.gettersCheckOtpRegisterMessage
+
+                    this.errorsTwo = this.gettersCheckOtpRegisterErrors
+
+                    this.loadingVerifyOtp = false
+                }
+                this.loadingVerifyOtp = false
+            },
+
+            async submitNewInfo(){
+                this.loadingNewInfo = true
+                this.errorFour = null
+                this.errorsFour = []
+
+                await this.actionsNewInfoOtpRegister({email:this.email, otp :this.otp, nom:this.nom , prenoms:this.prenoms, username: this.username});
+
+                if(this.gettersNewInfoOtpRegisterStatus === 'success'){
+
+                    const Toast = this.$swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', this.$swal.stopTimer)
+                                toast.addEventListener('mouseleave', this.$swal.resumeTimer)
+                            }
+                        })
+
+                        Toast.fire({
+                            icon: 'success',
+                            title: this.gettersNewInfoOtpRegisterMessage
+                        })
+
+                        this.errorFour = null
+                        this.errorsFour = []
+
+                       this.step = 3
+
+                }else if(this.gettersNewInfoOtpRegisterStatus === 'failed'){
+
+                    this.errorFour = this.gettersNewInfoOtpRegisterMessage
+
+                    this.errorsFour = []
+
+                    this.loadingNewInfo = false
+
+                }else if(this.gettersNewInfoOtpRegisterStatus === 'error'){
+
+                    this.errorFour = this.gettersNewInfoOtpRegisterMessage
+
+                    this.errorsFour = this.gettersNewInfoOtpRegisterErrors
+
+                    this.loadingNewInfo = false
+                }
+                this.loadingNewInfo = false
+
+            },
+
+            async submitNewPass(){
+                this.loadingNewPass = true
+                this.errorThree = null
+                this.errorsThree = []
+
+                await this.actionsNewPassOtpRegister({email:this.email, otp :this.otp, password :this.password ,password_confirm :this.password_confirm});
+
+                if(this.gettersNewPassOtpRegisterStatus === 'success'){
+
+                    const Toast = this.$swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', this.$swal.stopTimer)
+                                toast.addEventListener('mouseleave', this.$swal.resumeTimer)
+                            }
+                        })
+
+                        Toast.fire({
+                            icon: 'success',
+                            title: this.gettersNewPassOtpRegisterMessage
+                        })
+
+                        this.errorThree = null
+                        this.errorsThree = []
+
+                        if(this.remember_me){
+
+                            localStorage.setItem('username', this.username)
+
+                            localStorage.setItem('password', this.password)
+
+                            localStorage.setItem('remember_me', true)
+
+                            window.location="/"
+
+
+                        }else{
+
+                            localStorage.setItem('remember_me', false)
+
+                            window.location="/"
+                        }
+
+                }else if(this.gettersNewPassOtpRegisterStatus === 'failed'){
+
+                    this.errorThree = this.gettersNewPassOtpRegisterMessage
+
+                    this.errorsThree = []
+
+                    this.loadingNewPass = false
+
+                }else if(this.gettersNewPassOtpRegisterStatus === 'error'){
+
+                    this.errorThree = this.gettersNewPassOtpRegisterMessage
+
+                    this.errorsThree = this.gettersNewPassOtpRegisterErrors
+
+                    this.loadingNewPass = false
+                }
+                this.loadingNewPass = false
+
+            },
+
+            PreviousStep(){
+
+                this.errorFirst = null
+                this.errorsFirst = []
+                this.errorTwo = null
+                this.errorsTwo = []
+                this.errorThree = null
+                this.errorsThree = []
+                this.errorFour = null
+                this.errorsFour = []
+                this.step = 1
+                
+            },
+
+            PreviousHStep(){
+               this.errorFirst = null
+                this.errorsFirst = []
+                this.errorTwo = null
+                this.errorsTwo = []
+                this.errorThree = null
+                this.errorsThree = []
+                this.errorFour = null
+                this.errorsFour = []
+                this.step = 2
+                
+            },
+
+            PreviousHHStep(){
+               this.errorFirst = null
+                this.errorsFirst = []
+                this.errorTwo = null
+                this.errorsTwo = []
+                this.errorThree = null
+                this.errorsThree = []
+                this.errorFour = null
+                this.errorsFour = []
+                this.step = 4
+                
+            }
+
+        },
+        mounted(){
+            this.show();
+        }
+    };
+</script>

@@ -7,7 +7,9 @@ const store = useStore();
 const loading = ref(true);
 const internationalData = ref({});
 const internationalMessage = ref(null);
-const internationalState = ref(true); 
+const internationalState = ref(true);
+const afriqueState = ref(false);
+const mondeState = ref(false);
 const empty = ref(2);
 
 const getResults = async () => { 
@@ -27,11 +29,50 @@ const getResults = async () => {
   loading.value = false;
 };
 
-const international = () => { 
+const international = () => {
+  mondeState.value= false
+  afriqueState.value= false
   internationalState.value= true
   getResults();
 }
- 
+const monde = async () => {
+  mondeState.value= true
+  afriqueState.value= false
+  internationalState.value= false 
+  await store.dispatch('international/mondeDataRequest', {});
+
+  const status = store.getters['international/getInfosMondeStatus'];
+  const message = store.getters['international/getInfosMondeMessage'];
+  const data = store.getters['international/getInfosMondeData'];
+
+  if (status === 'success') {
+    internationalData.value = data;
+    empty.value = 0;
+  } else {
+    internationalMessage.value = message;
+    empty.value = status === 'empty' ? 1 : 3;
+  } 
+};
+
+const afrique = async () => {
+  mondeState.value= false
+  afriqueState.value= true
+  internationalState.value= false 
+  await store.dispatch('international/afriqueDataRequest', {});
+
+  const status = store.getters['international/getInfosAfriqueStatus'];
+  const message = store.getters['international/getInfosAfriqueMessage'];
+  const data = store.getters['international/getInfosAfriqueData'];
+
+  if (status === 'success') {
+    internationalData.value = data;
+    empty.value = 0;
+  } else {
+    internationalMessage.value = message;
+    empty.value = status === 'empty' ? 1 : 3;
+  } 
+};
+
 const author = (slug) => {
   window.location = `/authors/${slug}`;
 };
@@ -65,7 +106,7 @@ onMounted(() => {
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                       <div style="position: relative; height: 250px;">
-                          <img :src="`/assets/images/empty.png`" style="width: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="empty">
+                          <img src="https://actualitetogo.com/assets/images/empty.png" style="width: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="empty">
                       </div>
                       <h5 style="text-align: center; margin-top: -50px"> {{ internationalMessage  }} </h5>
                     </div>
@@ -78,7 +119,7 @@ onMounted(() => {
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                       <div style="position: relative; height: 250px;">
-                          <img :src="`/assets/images/error.png`" style="width: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="empty">
+                          <img src="https://actualitetogo.com/assets/images/error.png" style="width: 100px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="empty">
                       </div>
                       <h5 style="text-align: center; margin-top: -50px"> {{ internationalMessage  }} </h5>
                     </div>
@@ -118,6 +159,25 @@ onMounted(() => {
                     </div>
                 </div>
             </div>
+
+            <div class="row px-3">
+                <div class="col-12">
+                    <ul class="list-inline mt-3">
+                        <li class="list-inline-item">
+                            <span style="cursor: pointer" v-if="internationalState" @click="international" class="btn btn-sm btn-success">International </span>
+                            <span style="cursor: pointer" v-else @click="international" class="btn btn-sm btn-primary-soft">International </span>
+                        </li>
+                        <li class="list-inline-item">
+                            <span style="cursor: pointer" v-if="afriqueState" @click="afrique" class="btn btn-sm btn-success">Afrique</span>
+                            <span style="cursor: pointer" v-else @click="afrique" class="btn btn-sm btn-primary-soft">Afrique</span>
+                        </li>
+                        <li class="list-inline-item">
+                            <span style="cursor: pointer" v-if="mondeState" @click="monde" class="btn btn-sm btn-success">Monde</span>
+                            <span style="cursor: pointer" v-else @click="monde" class="btn btn-sm btn-primary-soft">Monde</span>
+                        </li>
+                    </ul>
+                </div>
+            </div> <!-- Row END -->
         </div>
     </div>
 </template>

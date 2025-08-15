@@ -11,7 +11,7 @@
         <section>
             <div class="container">
                 
-                
+                @include('adsense.google-ads.ads-sections-second-header')
                 <div class="row">
                     <div class="col-12">
                         <div class="tiny-slider arrow-dark arrow-hover arrow-round rounded-3">
@@ -142,12 +142,12 @@
                             </div>
                         </div>
 
-                        
+                        @include('adsense.google-ads.ads-sections-second-header')
 
                         <p> {!! showPub($article->content, $categoriesH[0]->id, $article->id)  !!} </p>
 
                         
-                        
+                        @include('adsense.google-ads.ads-sections-second-header')
 
                         <!-- =======================Adv END -->
                         @if ($previous && $next)
@@ -165,7 +165,7 @@
                         @endif
                         <br>
                        
-                        
+                        @include('adsense.google-ads.ads-sections-second-header')
 
                         <div class="mt-2">
                             <h2 class="my-3"><i class="bi bi-symmetry-vertical me-2"></i>Voir aussi</h2>
@@ -209,7 +209,7 @@
                             </div> <!-- Slider END -->
                         </div>
 
-                        
+                        @include('adsense.google-ads.ads-sections-second-header')
                         <div id="comments"></div>
                     </div>
                     <div class="col-lg-3 mt-5 mt-lg-0">
@@ -329,7 +329,7 @@
                     </div>
                 </div>
                 
-                
+                @include('adsense.google-ads.ads-sections-second-header')
             </div>
         </section>
     </main>

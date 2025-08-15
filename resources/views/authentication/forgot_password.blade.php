@@ -6,7 +6,7 @@
 
     @include('includes.header')
 
-        <forgot-password></forgot-password>
+        <div id="forgot_password"></div>
 
     @include('includes.footer')
 

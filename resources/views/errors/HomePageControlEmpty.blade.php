@@ -3,7 +3,9 @@
 @section('title') Aucune publication @endsection
 
 @section('content')
- 
+
+    @include('includes.header')
+
     <main>
                 
         <section class="overflow-hidden">
@@ -48,6 +50,8 @@
         </section>
 
     </main>
- 
+
+    @include('includes.footer')
+
 @endsection
   

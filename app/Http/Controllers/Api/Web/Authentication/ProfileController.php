@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Routing\Controllers\Middleware; 
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\TwitterCard;
+use Artesaos\SEOTools\Facades\JsonLd;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends BaseController
@@ -23,7 +27,24 @@ class ProfileController extends BaseController
     }
 
     public function profile(){
- 
+
+        SEOMeta::setTitle('Editer son profil | Togo actualité');
+        SEOMeta::setDescription('Nous sommes Togo Actualité, l’information en temps réel sur le Togo et l’Afrique.');
+        SEOMeta::setCanonical('https://actualitetogo.com/auth/register');
+
+        OpenGraph::setDescription('Nous sommes Togo Actualité, l’information en temps réel sur le Togo et l’Afrique.');
+        OpenGraph::setTitle('Editer son profil | Togo actualité');
+        OpenGraph::setUrl('https://actualitetogo.com/auth/register');
+        OpenGraph::addProperty('type', 'articles');
+        OpenGraph::addImage("https://actualitetogo.com/assets/images/Icone.png");
+
+        TwitterCard::setTitle('Editer son profil | Togo actualité');
+        TwitterCard::setSite('@Togoactualite');
+
+        JsonLd::setTitle('Editer son profil | Togo actualité');
+        JsonLd::setDescription('Nous sommes Togo Actualité, l’information en temps réel sur le Togo et l’Afrique.');
+        JsonLd::addImage('https://actualitetogo.com/assets/images/Icone.png');
+
         return view('authentication.profile');
     }
 
@@ -165,7 +186,7 @@ class ProfileController extends BaseController
 
             $datas['slug'] = Str::slug($datas['username']);
     
-            $update_user = $user->update($datas); 
+            $update_user = $user->update($datas);
 
             if($author){
 
@@ -188,7 +209,7 @@ class ProfileController extends BaseController
 
             if($update_user){
                 $user = User::select('users.nom','users.prenoms', 'users.email','users.username', 'users.telephone', 'authors.address', 'authors.authorName', 'authors.description' ,'roles.name as role_name')
-                ->where('users.slug',  $datas['slug'])
+                ->where('users.slug', $update_user->slug)
                 ->where('users.status', 1)
                 ->leftJoin('roles', 'roles.id', '=', 'users.role_id')
                 ->leftJoin('authors', 'authors.id', '=', 'users.author_id')
@@ -196,7 +217,7 @@ class ProfileController extends BaseController
 
                 return $this->sendResponse([
                     'status' => 200,
-                    'user' => $datas
+                    'user' => $user
                 ], "Profile modifé");
             }else{
 

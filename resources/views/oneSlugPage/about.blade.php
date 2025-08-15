@@ -13,7 +13,7 @@
                 
                 <div class="row">
                     <div class="col-md-9 mx-auto text-center">
-                        
+                        @include('adsense.google-ads.ads-sections-home-page')
                         <h1 class="display-4">A propos</h1>
                         <!-- breadcrumb -->
                         <nav class="d-flex justify-content-center" aria-label="breadcrumb">
@@ -33,7 +33,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 mx-auto">
-                        
+                        @include('adsense.google-ads.ads-sections-home-page')
                         <h2>Nous sommes Togo Actualité, l’information en temps réel sur le Togo et l’Afrique.</h2>
 
                         <h3 class="mt-4">Les raisons de la création du site togoactualite sont plusieurs :</h3> <br>
@@ -44,7 +44,7 @@
                             <li>Faire mieux connaître notre Togo à travers des débats, vidéos, nos cultures, etc…</li>
                             <li>Permettre à nos abonnés de nous suivre et d’animer des débats dans le respect.</li>
                         </ul>
-                        
+                        @include('adsense.google-ads.ads-sections-home-page')
                         <!-- Team START -->
                         <h3 class="mb-3 mt-5">Notre Groupe</h3>
                         <div class="row g-4">
@@ -77,7 +77,7 @@
                             </div>
                             <!-- Service END -->
                         </div> 
-                         <br> <br>
+                        @include('adsense.google-ads.ads-sections-home-page') <br> <br>
                         <!-- Service END -->
                     </div>  <!-- Col END -->
                 </div>

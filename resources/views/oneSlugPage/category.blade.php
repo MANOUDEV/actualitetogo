@@ -13,6 +13,7 @@
             <!-- =======================Inner intro START -->
             <section class="pt-4">
                 <div class="container">
+                    @include('adsense.google-ads.ads-sections-home-page')  
                     <div class="row">
                         <div class="col-12">
                             <div class="bg-primary bg-opacity-10 p-4 p-md-5 rounded-3 text-center">
@@ -26,6 +27,7 @@
                             </div>
                         </div>
                     </div>
+                    @include('adsense.google-ads.ads-sections-home-page')  
                 </div>
             </section>
             <!-- =======================
@@ -36,7 +38,7 @@
             <!-- =======================Main content START -->
         <section class="position-relative pt-0">
                 <div class="container" data-sticky-container>
-
+                     
                     @if (count($articles) == 0)
 
                         <section class="overflow-hidden">
@@ -84,37 +86,56 @@
                             <div class="col-lg-9">
                                 <div class="row gy-4">
                                     @foreach ($articles as $result )
+                                        @if($result->image_cover_url)
+                                            <!-- Card item START -->
+                                            <div class="col-sm-6 col-lg-6 grid-item business-category">
+                                                <div class="card">
+                                                    <!-- Card img -->
+                                                    <div class="position-relative">
+                                                        <img class="card-img" src="{{$result->image_cover_url}}" style="height: 260px; width: 550px ; object-fit: cover" alt="{{ $result->title }}">
 
-                                        <div class="col-sm-6 col-lg-6 grid-item business-category">
-                                            <div class="card">
-                                                <!-- Card img -->
-                                                <div class="position-relative">
-                                                    <img class="card-img" src="{{$result->image_cover_url}}" style="height: 260px; width: 550px ; object-fit: cover" alt="{{ $result->title }}">
-
-                                                </div>
-                                                <div class="card-body px-0 pt-3">
-                                                    <h5 class="card-title"><a href="/{{$result->slug}}" class="btn-link text-reset fw-bold"> {!! $result->title !!} </a></h5>                                        <!-- Card info -->
-                                                    <div>
-                                                        <div>{!! $result->truncate_content !!}</div>
                                                     </div>
-                                                    <ul class="nav nav-divider align-items-center  d-sm-inline-block">
-                                                        <li class="nav-item">
-                                                            <div class="nav-link">
-                                                                <div class="d-flex align-items-center position-relative">
-                                                                    <div class="avatar avatar-xs">
-                                                                        <div class="avatar-img rounded-circle bg-success">
-                                                                            <span class="text-light position-absolute top-50 start-50 translate-middle fw-bold">{{ strtoupper($result->author_name[0].''.$result->author_name[1]) }}</span>
+                                                    <div class="card-body px-0 pt-3">
+                                                        <h5 class="card-title"><a href="/{{$result->slug}}" class="btn-link text-reset fw-bold"> {!! $result->title !!} </a></h5>                                        <!-- Card info -->
+                                                        <div>
+                                                            <div>{!! $result->truncate_content !!}</div>
+                                                        </div>
+                                                        <ul class="nav nav-divider align-items-center  d-sm-inline-block">
+                                                            <li class="nav-item">
+                                                                <div class="nav-link">
+                                                                    <div class="d-flex align-items-center position-relative">
+                                                                        <div class="avatar avatar-xs">
+                                                                            <div class="avatar-img rounded-circle bg-success">
+                                                                                <span class="text-light position-absolute top-50 start-50 translate-middle fw-bold">{{ strtoupper($result->author_name[0].''.$result->author_name[1]) }}</span>
+                                                                            </div>
                                                                         </div>
+                                                                        <span class="ms-3">par  <a href="/authors/{{$result->author_slug}}" class="stretched-link text-reset btn-link">{{ $result->author_name }}</a></span>
                                                                     </div>
-                                                                    <span class="ms-3">par  <a href="/authors/{{$result->author_slug}}" class="stretched-link text-reset btn-link">{{ $result->author_name }}</a></span>
                                                                 </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="nav-item">{{ date('d/m/Y', strtotime($result->date_publish) )}}</li>
-                                                    </ul>
+                                                            </li>
+                                                            <li class="nav-item">{{ date('d/m/Y', strtotime($result->date_publish) )}}</li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            <!-- Card item END -->
+                                        @else
+                                            <div class="col-sm-6 col-lg-6 grid-item business-category">
+                                                <!-- Card item START -->
+                                                <div class="card mb-4">
+                                                    <div class="card-body border rounded-3">
+                                                        <h6 class="card-title"><a href="/{{ $result->slug }}" class="btn-link text-reset stretched-link fw-bold"> {!! $result->title !!} </a></h6>
+                                                        <p class="card-text"> {!! $result->truncate_content_max !!}</p>
+                                                        <!-- Card info -->
+                                                        <ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
+                                                            <li class="nav-item">{{ date('d/m/Y', strtotime($result->date_publish)) }}</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+
+
                                     @endforeach
                                 </div>
                                 <br> <br>
@@ -126,50 +147,49 @@
                                     <!-- Categories -->
                                     <div class="row g-2">
                                         <h5>Autres catégories</h5>
- 
                                         @for ($i=0; $i<= count($otherCategory) - 1; $i++ )
 
                                             @if ( $i == 4)
 
                                                 <div class="d-flex justify-content-between align-items-center bg-warning bg-opacity-15 rounded p-2 position-relative">
                                                     <h6 class="m-0 text-warning">{{$otherCategory[$i]['name']}}</h6>
-                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-warning text-dark stretched-link">{{$otherCategory[$i]['count_publications']}}</a>
+                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-warning text-dark stretched-link">{{$otherCategory[$i]['count']}}</a>
                                                 </div>
 
                                             @endif
 
                                             @if ( $i == 10)
 
-                                                <div class="d-flex justify-content-between align-items-center bg-success bg-opacity-10 rounded p-2 position-relative">
-                                                    <h6 class="m-0 text-success">{{$otherCategory[$i]['name']}}</h6>
-                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-success stretched-link">{{$otherCategory[$i]['count_publications']}}</a>
+                                                <div class="d-flex justify-content-between align-items-center bg-success bg-opacity-15 rounded p-2 position-relative">
+                                                    <h6 class="m-0 text-light">{{$otherCategory[$i]['name']}}</h6>
+                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-success text-light stretched-link">{{$otherCategory[$i]['count']}}</a>
                                                 </div>
 
                                             @endif
 
                                             @if ( $i == 9)
 
-                                            <div class="d-flex justify-content-between align-items-center bg-info bg-opacity-10 rounded p-2 position-relative">
-                                                <h6 class="m-0 text-info">{{$otherCategory[$i]['name']}}</h6>
-                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-info stretched-link">{{$otherCategory[$i]['count_publications']}}</a>
+                                                <div class="d-flex justify-content-between align-items-center bg-primary bg-opacity-15 rounded p-2 position-relative">
+                                                    <h6 class="m-0 text-primary">{{$otherCategory[$i]['name']}}</h6>
+                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-primary text-light stretched-link">{{$otherCategory[$i]['count']}}</a>
                                                 </div>
 
                                             @endif
 
                                             @if ( $i == 19)
 
-                                                <div class="d-flex justify-content-between align-items-center bg-primary bg-opacity-10 rounded p-2 position-relative">
-                                                    <h6 class="m-0 text-primary">{{$otherCategory[$i]['name']}}</h6>
-                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-primary stretched-link">{{$otherCategory[$i]['count_publications']}}</a>
+                                                <div class="d-flex justify-content-between align-items-center bg-linkedin bg-opacity-15 rounded p-2 position-relative">
+                                                    <h6 class="m-0 text-light">{{$otherCategory[$i]['name']}}</h6>
+                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-linkedin text-light stretched-link">{{$otherCategory[$i]['count']}}</a>
                                                 </div>
 
                                             @endif
 
                                             @if ( $i == 20)
 
-                                                <div class="d-flex justify-content-between align-items-center bg-danger bg-opacity-10 rounded p-2 position-relative">
+                                                <div class="d-flex justify-content-between align-items-center bg-danger bg-opacity-15 rounded p-2 position-relative">
                                                     <h6 class="m-0 text-danger">{{$otherCategory[$i]['name']}}</h6>
-                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-danger stretched-link">{{$otherCategory[$i]['count_publications']}}</a>
+                                                    <a href="/{{ $otherCategory[$i]['slug'] }}" class="badge bg-danger text-light stretched-link">{{$otherCategory[$i]['count']}}</a>
                                                 </div>
 
                                             @endif
@@ -195,25 +215,38 @@
                                                     data-items="1">
 
                                                     @foreach ($alireaussi as  $result)
+                                                        @if($result->image_cover_url)
+                                                            <!-- Card item START -->
+                                                            <div class="card">
+                                                                <!-- Card img -->
+                                                                <div class="position-relative">
+                                                                    <img class="card-img" src="{{ $result->image_cover_url }}" style="height: 230px; width: 550px ; object-fit: cover" alt="{{ $result->title }}">
+                                                                    <div class="card-img-overlay d-flex align-items-start flex-column p-3">
 
-                                                        <!-- Card item START -->
-                                                    <div class="card">
-                                                        <!-- Card img -->
-                                                        <div class="position-relative">
-                                                            <img class="card-img" src="{{ $result->image_cover_url }}" style="height: 230px; width: 550px ; object-fit: cover" alt="{{ $result->title }}">
-                                                            <div class="card-img-overlay d-flex align-items-start flex-column p-3">
-
-                                                                <!-- Card overlay bottom -->
-                                                                <div class="w-100 mt-auto">
-                                                                    <a href="/{{$result->category_slug}}" class="badge text-bg-info mb-2"><i class="fas fa-circle me-2 small fw-bold"></i>{{$result->category_name}}</a>
+                                                                        <!-- Card overlay bottom -->
+                                                                        <div class="w-100 mt-auto">
+                                                                            <a href="/{{$result->category_slug}}" class="badge text-bg-info mb-2"><i class="fas fa-circle me-2 small fw-bold"></i>{{$result->category_name}}</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-body p-0 pt-3">
+                                                                    <h6 class="card-title"><a href="/{{$result->slug}}" class="btn-link text-reset fw-bold">{!! $result->title !!}</a></h6>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="card-body p-0 pt-3">
-                                                            <h6 class="card-title"><a href="/{{$result->slug}}" class="btn-link text-reset fw-bold">{!! $result->title !!}</a></h6>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Card item END -->
+                                                            <!-- Card item END -->
+                                                        @else
+                                                            <!-- Card item START -->
+                                                            <div class="card mb-4">
+                                                                <div class="card-body border rounded-3">
+                                                                    <h6 class="card-title"><a href="/{{ $result->slug }}" class="btn-link text-reset stretched-link fw-bold"> {!! $result->title !!} </a></h6>
+                                                                    <p class="card-text"> {!! $result->truncate_content !!}</p>
+                                                                    <!-- Card info -->
+                                                                    <ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
+                                                                        <li class="nav-item">{{ date('d/m/Y', strtotime($result->date_publish)) }}</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        @endif
 
                                                     @endforeach
 
@@ -221,20 +254,15 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <!-- Advertisement -->
-                                        <div class="mt-4">
-                                            <a href="#" class="d-block card-img-flash">
-                                                <img src="assets/images/adv.png" alt="">
-                                            </a>
-                                        </div>
-
+                                        @include('adsense.google-ads.ads-sections-home-page')
                                         <!-- Right sidebar END -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     @endif
+                    
+                    @include('adsense.google-ads.ads-sections-home-page')
 
                 </div>
         </section>

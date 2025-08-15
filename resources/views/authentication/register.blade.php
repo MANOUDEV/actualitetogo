@@ -6,7 +6,7 @@
 
     @include('includes.header')
 
-        <register></register>
+        <div id="register"></div>
    
     @include('includes.footer')
 
