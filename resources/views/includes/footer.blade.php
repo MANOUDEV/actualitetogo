@@ -65,7 +65,7 @@
             <div class="row align-items-center justify-content-md-between py-4">
                 <div class="col-md-6">
                     <!-- Copyright -->
-                    <div class="text-center text-md-start text-primary-hover text-muted">©2024 <a href="https://www.togoactualite.com/" class="text-reset btn-link" target="_blank">Togo actualité</a>. Tous droits reservés.
+                    <div class="text-center text-md-start text-primary-hover text-muted">©2025 <a href="https://www.togoactualite.com/" class="text-reset btn-link" target="_blank">Togo actualité</a>. Tous droits reservés.
                     </div>
                 </div>
                 <div class="col-md-6 d-sm-flex align-items-center justify-content-center justify-content-md-end">
