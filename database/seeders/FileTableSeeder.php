@@ -61,7 +61,7 @@ class FileTableSeeder extends Seeder
 
             for($i = 1; $i <= $page; $i++){
 
-                $medias = Http::get('https://www.togoactualite.com/wp-json/wp/v2/media?media_type=$media_type&page='.$i.'&per_page=100')->json();
+                $medias = Http::get('https://www.togoactualite.com/wp-json/wp/v2/media?media_type='.$media_type.'&page='.$i.'&per_page=100')->json();
 
             
                 foreach( $medias as $media ){ 
@@ -89,7 +89,7 @@ class FileTableSeeder extends Seeder
                         }
 
                         $fichier_original = File::create([
-                            'file_url' => str_replace('https://togoactualite.com/wp-content/uploads', 'https://togoactualite.com/storage', $link),
+                            'file_url' => str_replace('https://togoactualite.com/wp-content/uploads', 'https://news228.com/storage/uploads', $link),
                             'date_name' => $date_name,
                             'file_name' => $media['title']['rendered'],
                             'caption' => $media['caption']['rendered'] ? strip_tags($media['caption']['rendered']) : null,
