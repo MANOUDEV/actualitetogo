@@ -8,6 +8,8 @@ import DashboardAdmin from '../components/backoffice/administrateur/pages/Dashbo
 
 import TypesPublicationsAdmin from '../components/backoffice/administrateur/pages/publications/typesPublicationsComponent.vue';
 
+import TypesPublicationsSlugAdmin from '../components/backoffice/administrateur/pages/publications/typePublicationSlugComponent.vue';
+
 import PublicationsAdmin from '../components/backoffice/administrateur/pages/publications/publicationsComponent.vue';
 
 import BrouillonsAdmin from '../components/backoffice/administrateur/pages/publications/brouillonsComponent.vue';
@@ -42,9 +44,11 @@ const routes =[
 
   {path:'/admin/publications/create',component: TypesPublicationsAdmin, name: 'admin.publications.create.types_publications' ,meta: { requiredAuth: true }},
   
+  {path:'/admin/publications/:slug/create',component: TypesPublicationsSlugAdmin, name: 'admin.publications.create.types_publications.slug' ,meta: { requiredAuth: true }},
+  
   {path:'/admin/publications',component: PublicationsAdmin, name: 'admin.publications' ,meta: { requiredAuth: true }},
 
-  {path:'/admin/brouillons',component: TypesPublicationsAdmin, name: 'admin.brouillons' ,meta: { requiredAuth: true }},
+  {path:'/admin/brouillons',component: BrouillonsAdmin, name: 'admin.brouillons' ,meta: { requiredAuth: true }},
 
   //Auteurs
 

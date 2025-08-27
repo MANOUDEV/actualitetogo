@@ -198,7 +198,7 @@
                     <!-- Nav right START -->
                     <div class="nav flex-nowrap align-items-center me-2">
 
-                        <in-second-menu class="nav-item" style="margin-top: 7px"></in-second-menu>
+                        <in-second-menu class="nav-item" style="margin-top: -7px"></in-second-menu>
 
                         <!-- Nav Search -->
                         <div class="nav-item dropdown nav-search dropdown-toggle-icon-none">

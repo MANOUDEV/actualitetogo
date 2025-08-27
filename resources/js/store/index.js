@@ -40,6 +40,12 @@ import forgot_passwordModule from './modules/auth/forgot_password';
 
 import roleModule from './modules/backoffice/role'
 
+//Importation des modules gérant les données de la partie administrative
+
+import typePublicationAdminModule from './modules/backoffice/admin/typePublication'
+
+import  publicationAdminModule from './modules/backoffice/admin/publications/publication'
+
 const store = createStore({
     modules:{
 
@@ -70,6 +76,11 @@ const store = createStore({
         //Déclaration des modules gérant les données du système de la securité su site
 
         roleSecurity: roleModule,
+
+        //Déclaration des modules gérant les données de la partie administrative
+        
+        typePublicationAdmin: typePublicationAdminModule,
+        publicationAdmin: publicationAdminModule,
     }
   });
 

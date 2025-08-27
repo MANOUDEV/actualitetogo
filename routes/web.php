@@ -42,6 +42,8 @@ Route::get('/admin/dashboard',[WebRouteController::class, 'administrateur']);
  
 Route::get('/admin/publications/create',[WebRouteController::class, 'administrateur']);
 
+Route::get('/admin/publications/{slug}/create',[WebRouteController::class, 'administrateur']);
+
 Route::get('/admin/publications',[WebRouteController::class, 'administrateur']);
 
 Route::get('/admin/brouillons',[WebRouteController::class, 'administrateur']);
@@ -52,7 +54,7 @@ Route::get('/admin/tags',[WebRouteController::class, 'administrateur']);
 
 Route::get('/admin/files',[WebRouteController::class, 'administrateur']);
 
-Route::get('/admin/files',[WebRouteController::class, 'administrateur']);
+Route::get('/admin/authors',[WebRouteController::class, 'administrateur']);
  
 //Les routes pour les publicateurs
 

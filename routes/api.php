@@ -5,8 +5,9 @@ use App\Http\Controllers\Api\Web\Authentication\RegisterController;
 use App\Http\Controllers\Api\Web\Authentication\ForgotPasswordController;
 use App\Http\Controllers\Api\Web\Authentication\LoginController;
 use App\Http\Controllers\Api\Web\Authentication\LogoutController;
-use App\Http\Controllers\Api\Web\Authentication\ProfileController; 
-
+use App\Http\Controllers\Api\Web\Authentication\ProfileController;
+use App\Http\Controllers\Api\Web\Backoffice\Admin\Publications\PublicationController;
+use App\Http\Controllers\Api\Web\Backoffice\Admin\TypePublicationController;
  
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -95,5 +96,23 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     Route::put('updateMePassword', [ProfileController::class, 'updateMePassword'])->middleware('auth:api');
 
     Route::get('role', [ProfileController::class, 'getRole'])->middleware('auth:api');
- 
+
+    //Gestion de la partie administrative
+
+        //Gestion des types de publications
+
+        Route::get('/backoffice/admin/type_publication_list', [TypePublicationController::class, 'index'])->middleware('auth:api');
+
+        Route::get('/backoffice/admin/{slug}/type_publication_show', [TypePublicationController::class, 'show'])->middleware('auth:api');
+
+        Route::post('/backoffice/admin/type_publication_store', [TypePublicationController::class, 'store'])->middleware('auth:api');
+
+        Route::put('/backoffice/admin/{slug}/type_publication_update', [TypePublicationController::class, 'update'])->middleware('auth:api');
+
+        Route::delete('/backoffice/admin/{slug}/type_publication_delete', [TypePublicationController::class, 'delete'])->middleware('auth:api');
+
+        //Gestion des publications
+
+        Route::get('/backoffice/admin/publications/create/{slug}/type_publications', [PublicationController::class, 'publicationCreateBySlugType'])->middleware('auth:api');
+
 });

@@ -10,6 +10,7 @@ const meProfileRoleName = ref(null);
 const meProfileEmail = ref(null);
 const loadingConnect = ref(false);
 const logoutCheck = ref(false);
+const remember_me = ref(false);
 
 const show = async () => {
   if (localStorage.getItem('access_token') && localStorage.getItem('nbRsp')) {
@@ -30,6 +31,41 @@ const show = async () => {
     }
   } else {
     dataReady.value = 2;
+  }
+};
+
+
+const loginClick = async () => {
+  if (localStorage.getItem('remember_me') === 'true' && localStorage.getItem('username') && localStorage.getItem('password')) {
+    loadingConnect.value = true;
+    remember_me.value = localStorage.getItem('remember_me');
+
+    await store.dispatch('login/login', {
+      username: localStorage.getItem('username'),
+      password: localStorage.getItem('password'),
+      remember_me: localStorage.getItem('remember_me')
+    });
+
+    const getterLoginStatus =  store.getters['login/getLoginStatus'];
+    const getterLoginMessage =  store.getters['login/getLoginMessage'];
+
+    if (getterLoginStatus.includes('success')) {
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'success',
+        title: getterLoginMessage,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+      });
+      const redirectPath = getterLoginStatus.includes('admin') ? '/admin/dashboard' : getterLoginStatus.includes('pub') ? '/pub/dashboard' : '/';
+      window.location = redirectPath;
+    } else {
+      window.location = '/auth/login';
+    }
+  } else {
+    window.location = '/auth/login';
   }
 };
 
@@ -60,11 +96,16 @@ onMounted(() => {
 <template>
   <div v-if="dataReady === 0 || dataReady === 2">
     <div class="nav-item ms-2 ms-md-3">
-      <a class="avatar avatar-xs">
-        <div class="btn btn-primary-soft btn-round mb-0 ">
+      <span class="avatar avatar-xs" v-if="!loadingConnect" @click="loginClick" style="cursor: pointer">
+        <div class="btn btn-primary btn-round mb-0 ">
           <i class="bi bi-person" ></i>
         </div> 
-      </a>
+      </span>
+      <span class="avatar avatar-xs" v-else>
+        <div class="btn btn-primary btn-round mb-0 ">
+          <i  style="color: #fff" class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span> 
+        </div> 
+      </span>
     </div>
   </div> 
   <div class="nav-item ms-2 ms-md-3 dropdown" v-else-if="dataReady === 1">
