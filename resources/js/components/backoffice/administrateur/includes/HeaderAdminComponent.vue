@@ -128,18 +128,18 @@ onMounted(() => {
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" style="font-size: 0.9375rem" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-pencil me-1"></i>Mes publications</a>
                             <ul class="dropdown-menu" aria-labelledby="pagesMenu">
-                                <li> <router-link class="dropdown-item" to="#">Mes catégories</router-link></li>
-                                <li> <router-link class="dropdown-item" to="#">Mes Tags</router-link></li>
-                                <li> <router-link class="dropdown-item"   to="#">Toutes mes publications</router-link></li>
-                                <li> <a class="dropdown-item" href="#">Brouillons</a></li>
-                                <li> <router-link class="dropdown-item" to="#">Créer une publication</router-link></li>
+                                <li> <router-link class="dropdown-item" :to="{name: 'admin.category'}">Mes catégories</router-link></li>
+                                <li> <router-link class="dropdown-item" :to="{name: 'admin.tags'}">Mes Tags</router-link></li>
+                                <li> <router-link class="dropdown-item"  :to="{name: 'admin.publications'}">Toutes mes publications</router-link></li>
+                                <li> <router-link class="dropdown-item" :to="{name: 'admin.brouillons'}">Brouillons</router-link></li>
+                                <li> <router-link class="dropdown-item" :to="{name: 'admin.publications.create.types_publications'}">Créer une publication</router-link></li>
                             </ul>
 
                         </li>
 
-                        <li class="nav-item"><router-link class="nav-link" style="font-size: 0.9375rem" to="#"><i class="bi bi-image me-1"></i>Mes fichiers</router-link></li>
+                        <li class="nav-item"><router-link class="nav-link" style="font-size: 0.9375rem" :to="{name: 'admin.files'}"><i class="bi bi-image me-1"></i>Mes fichiers</router-link></li>
 
-                        <li class="nav-item"><router-link class="nav-link" style="font-size: 0.9375rem" to="#"><i class="bi bi-people-fill me-1"></i>Mes auteurs</router-link></li>
+                        <li class="nav-item"><router-link class="nav-link" style="font-size: 0.9375rem" :to="{name: 'admin.authors'}"><i class="bi bi-people-fill me-1"></i>Mes auteurs</router-link></li>
 
 
 

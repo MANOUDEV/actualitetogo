@@ -40,7 +40,19 @@ Route::get('/auth/forgot_password', [ForgotPasswordController::class, 'forgot_pa
 
 Route::get('/admin/dashboard',[WebRouteController::class, 'administrateur']);
  
-Route::get('/admin/profile',[WebRouteController::class, 'administrateur']);
+Route::get('/admin/publications/create',[WebRouteController::class, 'administrateur']);
+
+Route::get('/admin/publications',[WebRouteController::class, 'administrateur']);
+
+Route::get('/admin/brouillons',[WebRouteController::class, 'administrateur']);
+
+Route::get('/admin/category',[WebRouteController::class, 'administrateur']);
+
+Route::get('/admin/tags',[WebRouteController::class, 'administrateur']);
+
+Route::get('/admin/files',[WebRouteController::class, 'administrateur']);
+
+Route::get('/admin/files',[WebRouteController::class, 'administrateur']);
  
 //Les routes pour les publicateurs
 
