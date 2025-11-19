@@ -28,9 +28,11 @@
 					<a class="nav-link" href="/contact">Contactez Nous</a>
 				</li>
 				<li class="nav-item h5">
-                    <off-canvas></off-canvas>
+                    <span id="off_canvas"></span>
                 </li>
-                
+                <li class="nav-item">
+                    <span id="changeProgram"></span>
+                </li>
 			</ul>
 			<!-- Nav END -->
 		</div>

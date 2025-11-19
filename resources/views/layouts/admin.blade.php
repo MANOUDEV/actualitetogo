@@ -27,9 +27,11 @@
 
 <body>
 
-   <div id="admin">
-		@yield('content')
-	</div>
+    @yield('content')
+
+
+    <!-- Core JS -->
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Back to top -->
     <div class="back-top"><i class="bi bi-arrow-up-short"></i></div>

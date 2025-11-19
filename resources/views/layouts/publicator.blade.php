@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,9 +27,7 @@
 
 <body>
 
-    <div id="pub">
-		@yield('content')
-	</div>
+    @yield('content')
 
     <!-- Back to top -->
     <div class="back-top"><i class="bi bi-arrow-up-short"></i></div>
