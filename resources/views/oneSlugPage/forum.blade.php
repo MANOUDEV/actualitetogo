@@ -10,6 +10,7 @@
         <section class="position-relative">
             <div class="container" data-sticky-container>
                 
+                @include('adsense.google-ads.ads-sections-home-page')
                 <div class="row">
                     <div class="col-lg-9">
                         <div class="mb-4">
@@ -18,6 +19,7 @@
                     </div>
 
                 </div>
+                @include('adsense.google-ads.ads-sections-home-page')
             </div>
         </section>
     </main>

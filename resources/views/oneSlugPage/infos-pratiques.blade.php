@@ -10,7 +10,7 @@
         <section class="position-relative">
             <div class="container" data-sticky-container>
                 
-                
+                @include('adsense.google-ads.ads-sections-home-page')
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="mb-4">
@@ -23,7 +23,7 @@
                             </nav>
                         </div>
                     </div>
-                    
+                    @include('adsense.google-ads.ads-sections-home-page')
                     <hr/>
                     <div class="col-lg-12">
                         <div class="mb-3 mt-3">
@@ -165,7 +165,7 @@
                         </div>
                     </div>
                     <hr />
-                    
+                    @include('adsense.google-ads.ads-sections-home-page')
                     <div class="col-lg-12">
                         <div class="mb-3 mt-3">
                             <h5>COMMISSARIAT DE POLICE DE TCHAMBA (REGION CENTRALE)</h5>
@@ -217,7 +217,7 @@
 
                     <hr>
 
-                    
+                    @include('adsense.google-ads.ads-sections-home-page')
                     <div class="col-lg-12">
                         <div class="mb-3 mt-3">
                             <h3 class="text-primary"> 29 AMBASSADES ET CONSULATS AU TOGO</h6>
@@ -392,7 +392,7 @@
                         </div>
                     </div>
                     <hr>
-                    
+                    @include('adsense.google-ads.ads-sections-home-page')
                     <div class="col-lg-12">
                         <div class="mb-3 mt-3">
                             <h5>AMBASSADE DU NIGERIA AU TOGO</h5>
@@ -414,7 +414,7 @@
                         </div>
                     </div>
                     <hr>
-                    
+                    @include('adsense.google-ads.ads-sections-home-page')
                     <div class="col-lg-12">
                         <div class="mb-3 mt-3">
                             <h5>CONSULAT D’AUTRICHE</h5>
@@ -573,7 +573,7 @@
                         </div>
                     </div>
                     <hr>    
-                    
+                    @include('adsense.google-ads.ads-sections-home-page')
 
                     <div class="col-lg-12">
                         <div class="mb-3 mt-3">
@@ -623,7 +623,7 @@
                         </div>
                     </div>
                     <hr>
-                    
+                    @include('adsense.google-ads.ads-sections-home-page')
                     <div class="col-lg-12">
                         <div class="mb-3 mt-3">
                             <h5>CONSULAT DU NIGER</h5>
@@ -732,7 +732,7 @@
                         </div>
                     </div>
                     <hr>
-                    
+                    @include('adsense.google-ads.ads-sections-home-page')
                     <div class="col-lg-12">
                         <div class="mb-3 mt-3">
                             <h5>MINISTERE DE LA VOIE AU TOGO</h5>
@@ -773,7 +773,7 @@
                         </div>
                     </div>
                     <hr>
-                    
+                    @include('adsense.google-ads.ads-sections-home-page')
                 </div>
             </div>
         </section>
