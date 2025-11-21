@@ -20,6 +20,10 @@
 
             @include('adsense.google-ads.ads-sections-home-page-publications')
 
+            @include('sectionHomePage.economie.economie')
+
+            @include('adsense.google-ads.ads-sections-home-page-publications')
+
             @include('sectionHomePage.aNePasManquerTogo.aNePasManquerTogo')
 
             @include('adsense.google-ads.ads-sections-home-page-publications')

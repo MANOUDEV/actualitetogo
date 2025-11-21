@@ -7,7 +7,44 @@ import '@splidejs/vue-splide/css';
 const store = useStore();
 const loading = ref(true);
 const importantData = ref({});
-const optionsOneimportant = ref({ type : 'loop',
+const optionsOneInternationalFenetreSurLAfriqueSports = ref({ type : 'loop',
+    autoplay: true,
+    interval: 3000,
+    perPage:2,
+    pagination: false,
+    breakpoints: {
+        640: {
+            perPage: 1,
+            pagination:false
+        },
+
+    }});
+ 
+const optionsOneFenetreSurLAfrique = ref({type : 'loop',
+    autoplay: true,
+    interval: 3000,
+    breakpoints: {
+        640: {
+            perPage: 1,
+            pagination:false
+        },
+
+    }});
+const optionsOneSports= ref( {
+    type : 'loop',
+    autoplay: true,
+    interval: 3000,
+    perPage:4,
+    pagination: false,
+    breakpoints: {
+        640: {
+            perPage: 1,
+            pagination:false
+        },
+
+    },
+});
+const optionsOneImportant = ref({ type : 'loop',
     autoplay: true,
     interval: 3000,
     breakpoints: {
@@ -65,8 +102,8 @@ onMounted(() => {
                     </div>
                     <div>&nbsp; &nbsp; &nbsp;</div>
                     <div>
-                        <h2 class="text-success m-0 alaune_title">IMPORTANT</h2>
-                        <p>Suivez nos actualités importantes.</p>
+                        <h2 class="text-success m-0 alaune_title">EDUCATION</h2>
+                        <p>Suivez nos actualités sur l'éducation.</p>
                     </div>
                 </div>
                 <div class="row">
@@ -119,6 +156,213 @@ onMounted(() => {
                     </div>
 
                 </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <!-- Main Post START -->
+            <div class="col-lg-8">
+                <!-- Entertainment START -->
+                <div class="col-md-12 ">
+                    <div class="d-flex mb-2">
+                        <div>
+                            <img src="https://togoactu.com/assets/images/Icones_formes/Icones-TAAsset-87.png" class="alaune_logo" alt="Icones-TAAsset-87.png">
+                        </div>
+                        <div>&nbsp; &nbsp; &nbsp;</div>
+                        <div>
+                            <h2 class="text-success m-0 alaune_title">Conseils des ministres</h2>
+                            <p>Suivez nos actualités le conseil des ministres .</p>
+                        </div>
+                    </div>
+                    <!-- Card item START -->
+
+                    <div class="card border rounded-3 up-hover p-4 mt-2 mb-2"  v-for="result in importantData.conseilTwo" :key="result.id">
+                        <div class="row g-3">
+                            <div class="col-sm-8">
+                                <!-- Title -->
+                                <h5 class="card-title">
+                                    <span @click="article(result.slug)" style="cursor: pointer" class="btn-link text-reset stretched-link" v-html="result.title"></span>
+                                </h5>
+
+                                <div v-html="result.truncate_content_max">
+
+                                </div>
+                                <!-- Card info -->
+                                <ul class="nav nav-divider align-items-center text-uppercase d-sm-inline-block" style="font-size: 12px">
+                                    <li class="nav-item">
+                                        <div class="nav-link">
+                                            <div class="d-flex align-items-center position-relative">
+
+                                                <span class="ms-3">  <span @click="author(result.author_slug)" style="cursor: pointer" class="stretched-link text-reset btn-link">{{ result.author_name }}</span></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">{{ moment(result.date_publish).format("DD/MM/YYYY") }}</li>
+
+                                </ul>
+                            </div>
+                            <!-- Image -->
+                            <div class="col-sm-4">
+                                <img class="rounded-3" :src='getImage(result.image_cover_url)' style="height: 220px; width: 700px ;object-fit:cover" :alt='result.title'>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="border-bottom border-primary border-2 opacity-1 my-2"></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Title -->
+                            <Splide :options="optionsOneInternationalFenetreSurLAfriqueSports" aria-label="My Favorite Images">
+
+                                <SplideSlide v-for="result in importantData.conseilFirst" :key="result.id">
+                                    <div  style="margin: 5px">
+                                        <div class="card card-overlay-bottom card-img-scale">
+                                            <!-- Card Image -->
+                                            <img class="card-img international_first_section_img_responsive" :src='getImage(result.image_cover_url)' :alt='result.title'>
+                                            <!-- Card Image overlay -->
+                                            <div class="card-img-overlay d-flex flex-column ">
+                                                <div class="w-100 mt-auto">
+
+                                                    <!-- Card title -->
+                                                    <h5 class="text-white"><span @click="article(result.slug)" style="cursor: pointer" class="btn-link text-reset stretched-link" v-html="result.title"></span></h5>
+                                                    <!-- Card info -->
+                                                    <ul class="nav nav-divider align-items-center text-white-force text-uppercase d-sm-inline-block" style="font-size: 11px">
+                                                        <li class="nav-item">
+                                                            <div class="nav-link">
+                                                                <div class="d-flex align-items-center position-relative">
+
+                                                                    <span class="ms-3">  <span @click="author(result.author_slug)" style="cursor: pointer" class="stretched-link text-reset btn-link">{{ result.author_name }}</span></span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="nav-item">{{ moment(result.date_publish).format("DD/MM/YYYY") }}</li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </SplideSlide>
+                            </Splide>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+
+                    <!-- Main Post START -->
+                    <div class="col-lg-12">
+                        <div class="col-md-12 ">
+                            <div class="d-flex mb-2">
+                                <div>
+                                    <img src="https://togoactu.com/assets/images/Icones_formes/Icones-TAAsset-79.png" class="alaune_logo" alt="Icones-TAAsset-79.png">
+                                </div>
+                                <div>&nbsp; &nbsp; &nbsp;</div>
+                                <div>
+                                    <h4 class="text-success m-0 alaune_title">CHRONIQUES</h4>
+                                    <p>Suivez nos actualités sur les chroniques.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <!-- Title -->
+                                <Splide :options="optionsOneFenetreSurLAfrique" aria-label="My Favorite Images">
+
+                                    <SplideSlide v-for="result in importantData.chroniques" :key="result.id">
+                                        <div  style="margin: 5px">
+                                            <div class="card card-overlay-bottom card-img-scale">
+                                                <!-- Card Image -->
+                                                <img class="card-img international_first_section_img_responsive" :src='getImage(result.image_cover_url)' :alt='result.title'>
+                                                <!-- Card Image overlay -->
+                                                <div class="card-img-overlay d-flex flex-column ">
+                                                    <div class="w-100 mt-auto">
+
+                                                        <!-- Card title -->
+                                                        <h6 class="text-white"><span @click="article(result.slug)" style="cursor: pointer" class="btn-link text-reset stretched-link" v-html="result.title"></span></h6>
+                                                        <!-- Card info -->
+                                                        <ul class="nav nav-divider align-items-center text-white-force text-uppercase d-sm-inline-block" style="font-size: 11px">
+                                                            <li class="nav-item">
+                                                                <div class="nav-link">
+                                                                    <div class="d-flex align-items-center position-relative">
+
+                                                                        <span class="ms-3">  <span @click="author(result.author_slug)" style="cursor: pointer" class="stretched-link text-reset btn-link">{{ result.author_name }}</span></span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="nav-item">{{ moment(result.date_publish).format("DD/MM/YYYY") }}</li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </SplideSlide>
+                                </Splide>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+ 
+
+            <div class="col-lg-12">
+
+                <div class="row">
+                    <!-- Main Post START -->
+                    <div class="col-lg-12 mt-4">
+                        <div class="col-md-12 ">
+                            <div class="d-flex mb-2">
+                                <div>
+                                    <img src="https://togoactu.com/assets/images/Icones_formes/Icones-TAAsset-89.png" class="alaune_logo" alt="Icones-TAAsset-89.png">
+                                </div>
+                                <div>&nbsp; &nbsp; &nbsp;</div>
+                                <div>
+                                    <h2 class="text-success m-0 alaune_title">FENETRE SUR L'AFRIQUE</h2>
+                                    <p>Suivez nos actualités sur l'Afrique.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Title -->
+                                <Splide :options="optionsOneSports" aria-label="My Favorite Images">
+
+                                    <SplideSlide v-for="result in importantData.afrique" :key="result.id">
+
+                                        <div style="margin: 5px">
+                                            <div class="card card-fold bg-light">
+                                                <div class="card-body p-4">
+                                                    <ul class="nav nav-divider align-items-center text-uppercase d-sm-inline-block" style="font-size: 12px">
+                                                        <li class="nav-item">
+                                                            <div class="nav-link">
+                                                                <div class="d-flex align-items-center position-relative">
+
+                                                                    <span class="ms-3"> <span @click="author(result.author_slug)" style="cursor: pointer" class="stretched-link text-reset btn-link">{{ result.author_name }}</span></span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="nav-item">{{ moment(result.date_publish).format("DD/MM/YYYY") }}</li>
+
+                                                    </ul>
+                                                    <h6 class="card-title"><span @click="article(result.slug)" style="cursor: pointer" class="stretched-link text-reset" v-html="result.title_truncate"></span></h6>
+                                                    <p class="m-0" v-html="result.truncate_content"></p>
+                                                </div>
+                                                <img class="card-img-bottom international_first_section_img_responsive" :src='getImage(result.image_cover_url)' alt="Card image">
+                                            </div>
+                                        </div>
+                                    </SplideSlide>
+                                </Splide>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

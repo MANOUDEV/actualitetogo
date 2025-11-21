@@ -24,7 +24,14 @@ class HomeController extends BaseController
 
             $alaUne =  Publication::where('status', 1)->where("publications.type_publication_id", 1)->where("publications.deja_citer", 0)->orderBy('date_publish', 'desc')->take(13)->get();
 
-            return view('welcome', ['annonces' => $annonces, 'tendances' => $tendances, 'alaUne' => $alaUne]);
+            $economie = Publication::where("status", 1)
+            ->where("publications.type_publication_id", 1)
+            ->where("category_id", 12)
+            ->orderBy('date_publish', 'desc')
+            ->take(8)
+            ->get();
+            
+            return view('welcome', ['annonces' => $annonces, 'tendances' => $tendances, 'alaUne' => $alaUne, 'economie' => $economie]);
 
         }
     }
@@ -33,14 +40,14 @@ class HomeController extends BaseController
 
         $politiqueFirst = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->where("category_id", 26)
+        ->where("category_id", 27)
         ->orderBy('date_publish', 'desc')
         ->take(8)
         ->get();
 
         $politiqueTwo = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->where("category_id", 26)
+        ->where("category_id", 27)
         ->where("id", '!=',$politiqueFirst[0]->id)
         ->where("id", '!=',$politiqueFirst[1]->id)
         ->where("id", '!=',$politiqueFirst[2]->id)
@@ -55,7 +62,7 @@ class HomeController extends BaseController
 
         $politiqueThree = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->where("category_id", 26)
+        ->where("category_id", 27)
         ->where("id", '!=',$politiqueFirst[0]->id)
         ->where("id", '!=',$politiqueFirst[1]->id)
         ->where("id", '!=',$politiqueFirst[2]->id)
@@ -71,7 +78,7 @@ class HomeController extends BaseController
 
         $populars = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->whereDate('date_publish', '>', '2022-12-31')
+        ->whereDate('date_publish', '>', '2024-12-31')
         ->orderBy('views_count', 'desc')
         ->take(3)
         ->get();
@@ -96,14 +103,14 @@ class HomeController extends BaseController
 
         $internationalFirst = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->where("category_id", 19)
+        ->where("category_id", 20)
         ->orderBy('date_publish', 'desc')
         ->take(8)
         ->get();
 
         $internationalTwo = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->where("category_id", 19)
+        ->where("category_id", 20)
         ->where("id", '!=',$internationalFirst[0]->id)
         ->where("id", '!=',$internationalFirst[1]->id)
         ->where("id", '!=',$internationalFirst[2]->id)
@@ -120,7 +127,14 @@ class HomeController extends BaseController
 
         $afrique = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->where("category_id", 15)
+        ->where("category_id", 3)
+        ->orderBy('date_publish', 'desc')
+        ->take(5)
+        ->get();
+
+        $important = Publication::where("status", 1)
+        ->where("publications.type_publication_id", 1)
+        ->where("category_id", 19)
         ->orderBy('date_publish', 'desc')
         ->take(5)
         ->get();
@@ -139,7 +153,7 @@ class HomeController extends BaseController
             'internationalTwo' =>  $internationalTwo,
             'sports' =>  $sports,
             'afrique' =>  $afrique,
-            'afriqueH' =>  $afriqueH,
+            'important' =>  $important,
             'status' => 200
         ], 'Liste des articles publiés sur international.');
 
@@ -168,14 +182,14 @@ class HomeController extends BaseController
 
         $societe = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->where("category_id", "=", 29)
+        ->where("category_id", "=", 30)
         ->orderBy('date_publish', 'desc')
         ->take(6)
         ->get();
 
         $societeLoad = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->where("category_id", "=", 29)
+        ->where("category_id", "=", 30)
         ->where("id", '!=',$societe[0]->id)
         ->where("id", '!=',$societe[1]->id)
         ->where("id", '!=',$societe[2]->id)
@@ -188,7 +202,7 @@ class HomeController extends BaseController
 
         $populars = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->whereDate('date_publish', '>', '2022-12-31')
+        ->whereDate('date_publish', '>', '2024-12-31')
         ->orderBy('likes_count', 'desc')
         ->take(5)
         ->get();
@@ -210,14 +224,28 @@ class HomeController extends BaseController
 
         $opinion = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->where("category_id", 25)
+        ->where("category_id", 26)
         ->orderBy('date_publish', 'desc')
         ->take(8)
         ->get();
 
         $faitsDivers = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->where("category_id", 14)
+        ->where("category_id", 15)
+        ->orderBy('date_publish', 'desc')
+        ->take(8)
+        ->get();
+
+        $necrologie = Publication::where("status", 1)
+        ->where("publications.type_publication_id", 1)
+        ->where("category_id", 25)
+        ->orderBy('date_publish', 'desc')
+        ->take(8)
+        ->get();
+
+        $culture = Publication::where("status", 1)
+        ->where("publications.type_publication_id", 1)
+        ->where("category_id", 9)
         ->orderBy('date_publish', 'desc')
         ->take(8)
         ->get();
@@ -225,6 +253,8 @@ class HomeController extends BaseController
         return $this->sendResponse([
             'opinion' =>  $opinion,
             'faitsDivers' =>  $faitsDivers,
+            'necrologie' =>  $necrologie,
+            'culture' =>  $culture,
             'status' => 200
         ], 'Liste des articles publiés sur les opinions et faits divers.');
 
@@ -234,7 +264,7 @@ class HomeController extends BaseController
 
         $importantFirst = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->where("category_id", "=", 18)
+        ->where("category_id", "=", 14)
         ->orderBy('date_publish', 'desc')
         ->take(4)
         ->get();
@@ -245,15 +275,55 @@ class HomeController extends BaseController
         ->where("id", '!=',$importantFirst[1]->id)
         ->where("id", '!=',$importantFirst[2]->id)
         ->where("id", '!=',$importantFirst[3]->id)
-        ->where("category_id", "=", 18)
+        ->where("category_id", "=", 14)
         ->orderBy('date_publish', 'desc')
         ->take(4)
+        ->get();
+
+         $conseilFirst = Publication::where("status", 1)
+        ->where("publications.type_publication_id", 1)
+        ->where("category_id", 20)
+        ->orderBy('date_publish', 'desc')
+        ->take(5)
+        ->get();
+
+        $conseilTwo = Publication::where("status", 1)
+        ->where("publications.type_publication_id", 1)
+        ->where("category_id", 20)
+        ->where("id", '!=',$conseilFirst[0]->id)
+        ->where("id", '!=',$conseilFirst[1]->id)
+        ->where("id", '!=',$conseilFirst[2]->id)
+        ->where("id", '!=',$conseilFirst[3]->id)
+        ->where("id", '!=',$conseilFirst[4]->id) 
+        ->orderBy('date_publish', 'desc')
+        ->take(1)
+        ->get();
+
+
+
+        $chroniques = Publication::where("status", 1)
+        ->where("publications.type_publication_id", 1)
+        ->where("category_id", 5)
+        ->orderBy('date_publish', 'desc')
+        ->take(5)
+        ->get();
+
+        
+        $afrique = Publication::where("status", 1)
+        ->where("publications.type_publication_id", 1)
+        ->where("category_id", 16)
+        ->orderBy('date_publish', 'desc')
+        ->take(8)
         ->get();
 
         return $this->sendResponse([
             'status' => 200,
             'importantFirst' => $importantFirst,
             'importantTwo' => $importantTwo,
+            'conseilFirst' => $conseilFirst,
+            'conseilTwo' => $conseilTwo,
+            'chroniques' => $chroniques,
+            'afrique' => $afrique,
         ], 'Les articles publiés sur Important');
 
     }
