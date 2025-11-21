@@ -337,6 +337,7 @@ onMounted(() => {
 
                                         <div style="margin: 5px">
                                             <div class="card card-fold bg-light">
+                                                <img class="card-img-top international_first_section_img_responsive" :src='getImage(result.image_cover_url)' alt="Card image">
                                                 <div class="card-body p-4">
                                                     <ul class="nav nav-divider align-items-center text-uppercase d-sm-inline-block" style="font-size: 12px">
                                                         <li class="nav-item">
@@ -353,7 +354,7 @@ onMounted(() => {
                                                     <h6 class="card-title"><span @click="article(result.slug)" style="cursor: pointer" class="stretched-link text-reset" v-html="result.title_truncate"></span></h6>
                                                     <p class="m-0" v-html="result.truncate_content"></p>
                                                 </div>
-                                                <img class="card-img-bottom international_first_section_img_responsive" :src='getImage(result.image_cover_url)' alt="Card image">
+                                                
                                             </div>
                                         </div>
                                     </SplideSlide>
