@@ -105,22 +105,15 @@ class HomeController extends BaseController
         ->where("publications.type_publication_id", 1)
         ->where("category_id", 20)
         ->orderBy('date_publish', 'desc')
-        ->take(8)
+        ->take(1)
         ->get();
 
         $internationalTwo = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
         ->where("category_id", 20)
         ->where("id", '!=',$internationalFirst[0]->id)
-        ->where("id", '!=',$internationalFirst[1]->id)
-        ->where("id", '!=',$internationalFirst[2]->id)
-        ->where("id", '!=',$internationalFirst[3]->id)
-        ->where("id", '!=',$internationalFirst[4]->id)
-        ->where("id", '!=',$internationalFirst[5]->id)
-        ->where("id", '!=',$internationalFirst[6]->id)
-        ->where("id", '!=',$internationalFirst[7]->id)
         ->orderBy('date_publish', 'desc')
-        ->take(1)
+        ->take(4)
         ->get();
 
 
@@ -280,23 +273,19 @@ class HomeController extends BaseController
         ->take(4)
         ->get();
 
-         $conseilFirst = Publication::where("status", 1)
+        $conseilFirst = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->where("category_id", 7)
+        ->where("category_id", 20)
         ->orderBy('date_publish', 'desc')
-        ->take(5)
+        ->take(1)
         ->get();
 
         $conseilTwo = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->where("category_id", 7)
+        ->where("category_id", 20)
         ->where("id", '!=',$conseilFirst[0]->id)
-        ->where("id", '!=',$conseilFirst[1]->id)
-        ->where("id", '!=',$conseilFirst[2]->id)
-        ->where("id", '!=',$conseilFirst[3]->id)
-        ->where("id", '!=',$conseilFirst[4]->id) 
         ->orderBy('date_publish', 'desc')
-        ->take(1)
+        ->take(4)
         ->get();
 
 

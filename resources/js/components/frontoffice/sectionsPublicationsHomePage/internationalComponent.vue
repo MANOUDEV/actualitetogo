@@ -111,15 +111,15 @@ onMounted(() => {
                     </div>
                     <!-- Card item START -->
 
-                    <div class="card border rounded-3 up-hover p-4 mt-2 mb-2"  v-for="result in internationalFenetreSurLAfriqueSportsData.internationalTwo" :key="result.id">
+                    <div class="card border rounded-3 up-hover p-4 mt-2 mb-2"  v-for="result in internationalFenetreSurLAfriqueSportsData.internationalFirst" :key="result.id">
                         <div class="row g-3">
-                            <div class="col-sm-8">
+                            <div class="col-sm-6">
                                 <!-- Title -->
                                 <h5 class="card-title">
                                     <span @click="article(result.slug)" style="cursor: pointer" class="btn-link text-reset stretched-link" v-html="result.title"></span>
                                 </h5>
 
-                                <div v-html="result.truncate_content_max">
+                                <div v-html="result.truncate_content">
 
                                 </div>
                                 <!-- Card info -->
@@ -137,7 +137,7 @@ onMounted(() => {
                                 </ul>
                             </div>
                             <!-- Image -->
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <img class="rounded-3" :src='getImage(result.image_cover_url)' style="height: 220px; width: 700px ;object-fit:cover" :alt='result.title'>
                             </div>
                         </div>
@@ -150,7 +150,7 @@ onMounted(() => {
                             <!-- Title -->
                             <Splide :options="optionsOneInternationalFenetreSurLAfriqueSports" aria-label="My Favorite Images">
 
-                                <SplideSlide v-for="result in internationalFenetreSurLAfriqueSportsData.internationalFirst" :key="result.id">
+                                <SplideSlide v-for="result in internationalFenetreSurLAfriqueSportsData.internationalTwo" :key="result.id">
                                     <div  style="margin: 5px">
                                         <div class="card card-overlay-bottom card-img-scale">
                                             <!-- Card Image -->
@@ -335,6 +335,7 @@ onMounted(() => {
 
                                         <div style="margin: 5px">
                                             <div class="card card-fold bg-light">
+                                                <img class="card-img-top international_first_section_img_responsive" :src='getImage(result.image_cover_url)' alt="Card image">
                                                 <div class="card-body p-4">
                                                     <ul class="nav nav-divider align-items-center text-uppercase d-sm-inline-block" style="font-size: 12px">
                                                         <li class="nav-item">
@@ -351,7 +352,7 @@ onMounted(() => {
                                                     <h6 class="card-title"><span @click="article(result.slug)" style="cursor: pointer" class="stretched-link text-reset" v-html="result.title_truncate"></span></h6>
                                                     <p class="m-0" v-html="result.truncate_content"></p>
                                                 </div>
-                                                <img class="card-img-bottom international_first_section_img_responsive" :src='getImage(result.image_cover_url)' alt="Card image">
+                                                
                                             </div>
                                         </div>
                                     </SplideSlide>

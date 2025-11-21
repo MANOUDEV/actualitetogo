@@ -175,7 +175,7 @@ onMounted(() => {
                     </div>
                     <!-- Card item START -->
 
-                    <div class="card border rounded-3 up-hover p-4 mt-2 mb-2"  v-for="result in importantData.conseilTwo" :key="result.id">
+                    <div class="card border rounded-3 up-hover p-4 mt-2 mb-2"  v-for="result in importantData.conseilFirst" :key="result.id">
                         <div class="row g-3">
                             <div class="col-sm-8">
                                 <!-- Title -->
@@ -214,7 +214,7 @@ onMounted(() => {
                             <!-- Title -->
                             <Splide :options="optionsOneInternationalFenetreSurLAfriqueSports" aria-label="My Favorite Images">
 
-                                <SplideSlide v-for="result in importantData.conseilFirst" :key="result.id">
+                                <SplideSlide v-for="result in importantData.conseilTwo" :key="result.id">
                                     <div  style="margin: 5px">
                                         <div class="card card-overlay-bottom card-img-scale">
                                             <!-- Card Image -->
@@ -260,8 +260,8 @@ onMounted(() => {
                                 </div>
                                 <div>&nbsp; &nbsp; &nbsp;</div>
                                 <div>
-                                    <h4 class="text-success m-0 alaune_title">CHRONIQUES</h4>
-                                    <p>Suivez nos actualités sur les chroniques.</p>
+                                    <h4 class="text-success m-0 alaune_title">Fenetre sur l'afrique</h4>
+                                    <p>Suivez nos actualités sur l'afrique.</p>
                                 </div>
                             </div>
                         </div>
@@ -271,7 +271,7 @@ onMounted(() => {
                                 <!-- Title -->
                                 <Splide :options="optionsOneFenetreSurLAfrique" aria-label="My Favorite Images">
 
-                                    <SplideSlide v-for="result in importantData.chroniques" :key="result.id">
+                                    <SplideSlide v-for="result in importantData.afrique" :key="result.id">
                                         <div  style="margin: 5px">
                                             <div class="card card-overlay-bottom card-img-scale">
                                                 <!-- Card Image -->
@@ -323,8 +323,8 @@ onMounted(() => {
                                 </div>
                                 <div>&nbsp; &nbsp; &nbsp;</div>
                                 <div>
-                                    <h2 class="text-success m-0 alaune_title">FENETRE SUR L'AFRIQUE</h2>
-                                    <p>Suivez nos actualités sur l'Afrique.</p>
+                                    <h2 class="text-success m-0 alaune_title">CHRONIQUES</h2>
+                                    <p>Suivez nos actualités sur chroniques.</p>
                                 </div>
                             </div>
                         </div>
@@ -333,7 +333,7 @@ onMounted(() => {
                                 <!-- Title -->
                                 <Splide :options="optionsOneSports" aria-label="My Favorite Images">
 
-                                    <SplideSlide v-for="result in importantData.afrique" :key="result.id">
+                                    <SplideSlide v-for="result in importantData.chroniques" :key="result.id">
 
                                         <div style="margin: 5px">
                                             <div class="card card-fold bg-light">
