@@ -282,14 +282,14 @@ class HomeController extends BaseController
 
          $conseilFirst = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->where("category_id", 20)
+        ->where("category_id", 7)
         ->orderBy('date_publish', 'desc')
         ->take(5)
         ->get();
 
         $conseilTwo = Publication::where("status", 1)
         ->where("publications.type_publication_id", 1)
-        ->where("category_id", 20)
+        ->where("category_id", 7)
         ->where("id", '!=',$conseilFirst[0]->id)
         ->where("id", '!=',$conseilFirst[1]->id)
         ->where("id", '!=',$conseilFirst[2]->id)
