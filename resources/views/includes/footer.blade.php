@@ -1,5 +1,5 @@
 <footer class="tg-footer">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row gy-5">
 
       <!-- Brand / Newsletter -->
@@ -50,12 +50,12 @@
         <h5 class="tg-title">Contact</h5>
         <ul class="tg-contact">
           <li><i class="bi bi-geo-alt"></i> Lomé, Togo</li>
-          <li><i class="bi bi-envelope"></i> contact@togoactualite.com</li> 
+          <li><i class="bi bi-envelope"></i>contact@togoactualite.com</li> 
         </ul>
 
         <div class="tg-social">
           <a href="#"><i class="bi bi-facebook"></i></a>
-          <a href="#"><i class="bi bi-twitter-x"></i></a>
+          <a href="#"><i class="bi bi-twitter"></i></a>
           <a href="#"><i class="bi bi-linkedin"></i></a> 
         </div>
 

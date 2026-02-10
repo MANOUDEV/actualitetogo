@@ -37,14 +37,6 @@ onMounted(() => {
 </script>
 <template>
     <!-- Hot topics START -->
-        <div class="d-flex justify-content-center" v-if="loading">
-            <div class="spinner-border text-light"  role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <div v-else>
-            <li class="nav-item text-white"><a href="#" style="cursor: pointer; color: #fff" @click="category(info.slug)" v-for="info in categoryPopularsData.FirstSectionCategory" :key="info.id"> {{ info.name.toUpperCase() }} </a></li>
-        </div>
- 
+    <li v-for="info in categoryPopularsData.FirstSectionCategory" :key="info.id" v-if="!loading" ><a href="#" style="cursor: pointer" @click="category(info.slug)" > {{ info.name.toUpperCase() }} </a></li>
 </template>
  
