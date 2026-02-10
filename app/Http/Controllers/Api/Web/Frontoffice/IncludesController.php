@@ -575,7 +575,7 @@ class IncludesController extends BaseController
      */
     public function tagsRequestData()
     {
-       $tags = Tag::orderBy('tags.count_publications', 'desc')->take(2)->get();
+       $tags = Tag::orderBy('tags.count_publications', 'desc')->take(4)->get();
 
        return $this->sendResponse(['tagsPopularsData' => $tags, 'status' => 200], 'les mots clés populaires');
 
@@ -628,7 +628,7 @@ class IncludesController extends BaseController
      */
     public function publicationsRequestData(){
 
-        $publications = Publication::where('status', 1)->where("type_publication_id", 1)->whereDate('date_publish', '>', '2022-12-31')->orderBy('views_count', 'desc')->take(3)->get();
+        $publications = Publication::where('status', 1)->where("type_publication_id", 1)->orderBy('date_publish', 'desc')->take(3)->get();
 
         return $this->sendResponse(['publicationsPopularsData' => $publications, 'status' => 200], 'les publications populaires');
 
