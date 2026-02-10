@@ -42,22 +42,9 @@ onMounted(() => {
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
-
-        <div class="row" v-else>
-            <div class="col-6">
-                <ul class="nav flex-column text-primary-hover">
-                    <li class="nav-item text-white"><span class="nav-link pt-0" style="cursor: pointer; color: #fff" @click="category(info.slug)" v-for="info in categoryPopularsData.FirstSectionCategory" :key="info.id"> {{ info.name.toUpperCase() }} </span></li>
-                </ul>
-            </div>
-                <div class="col-6">
-                <ul class="nav flex-column text-primary-hover">
-                    <li class="nav-item text-white"><span class="nav-link pt-0" style="cursor: pointer; color: #fff" @click="category(info.slug)" v-for="info in categoryPopularsData.TwoSectionCategory" :key="info.id"> {{ info.name.toUpperCase() }} </span></li>
-                    <li class="nav-item text-white"><span class="nav-link pt-0" style="cursor: pointer; color: #fff" @click="category('events')">EVENEMENTS</span></li>
-                    <li class="nav-item text-white"><span class="nav-link pt-0" style="cursor: pointer; color: #fff" @click="category('videos')">VIDEOS</span></li>
-                </ul>
-            </div>
+        <div v-else>
+            <li class="nav-item text-white"><a href="#" style="cursor: pointer; color: #fff" @click="category(info.slug)" v-for="info in categoryPopularsData.FirstSectionCategory" :key="info.id"> {{ info.name.toUpperCase() }} </a></li>
         </div>
-
-		<!-- Hot topics END -->
+ 
 </template>
  

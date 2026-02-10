@@ -97,15 +97,26 @@ const verifyCaptchaModalOpen =  () => {
 };
 </script>
 <template>
-    <form class="input-group mt-2" >
-        <input v-if="newsLettersErrors.email" required type="email" name="email" v-model="data.email" class="form-control is-invalid" placeholder="Entrez votre email " />
-        <input v-else required type="email" name="email" v-model="data.email" class="form-control " placeholder="Entrez votre email " />
-        <button type="submit"  class="btn btn-primary m-0" @click.prevent="verifyCaptchaModalOpen"  v-if="!loading"><i class="bi bi-send"></i></button>
-        <button type="button"  class="btn btn-primary m-0" v-else>
-            <i  style="color: #fff" class="fa fa-spinner fa-1x fa-spin fa-fw"></i>
-            <span class="sr-only">Loading...</span>
-        </button>
-    </form>
+    <div class="tg-newsletter">
+        <h6>Recevez l'actualité en avant-première</h6>
+        <div class="newsletter-box">
+            <input type="email" placeholder="Votre adresse email">
+            <button><i class="bi bi-send"></i></button>
+        </div>
+    </div>
+    <div class="tg-newsletter">
+        <h6>Recevez l'actualité en avant-première</h6>
+        <div class="newsletter-box">
+
+            <input v-if="newsLettersErrors.email" required type="email" name="email" v-model="data.email" class="form-control is-invalid" placeholder="Entrez votre email " />
+            <input v-else required type="email" name="email" v-model="data.email" class="form-control " placeholder="Entrez votre email " />
+            <button  @click.prevent="verifyCaptchaModalOpen"  v-if="!loading"><i class="bi bi-send"></i></button>
+            <button type="button" v-else>
+                <i  style="color: #fff" class="fa fa-spinner fa-1x fa-spin fa-fw"></i>
+                <span class="sr-only">Loading...</span>
+            </button>
+        </div>
+    </div>
     <div v-if="newsLettersErrors.email">
         <div v-for="errorEmail in newsLettersErrors.email" :key="errorEmail" class="form-text mt-2 text-white">
             {{ errorEmail }}

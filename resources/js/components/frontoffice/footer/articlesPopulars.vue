@@ -35,6 +35,9 @@ const author = (slug) => {
   window.location = `/authors/${slug}`;
 };
 
+
+const getImage = (slug) => slug;
+
 onMounted(() => {
   getResults();
 });
@@ -45,16 +48,13 @@ onMounted(() => {
             <span class="sr-only">Loading...</span>
         </div>
     </div>
-    <div v-else class="mb-4 position-relative" v-for="info in publicationsPopularsData" :key="info.id">
-        <div><span @click="category(info.category_slug)" style="cursor: pointer"  class="badge text-bg-danger mb-2"><i class="fas fa-circle me-2 small fw-bold"></i> {{ info.category_name }} </span></div>
-        <span @click="article(info.slug)" style="cursor: pointer" class="btn-link text-white fw-normal" v-html="info.title"></span>
-        <ul class="nav nav-divider align-items-center small mt-2 text-muted">
-            <li class="nav-item position-relative">
-                <div class="nav-link">par <span @click="author(info.author_slug)" style="cursor: pointer" class="stretched-link text-reset btn-link"> {{ info.author_name }} </span>
-                </div>
-            </li>
-            <li class="nav-item">{{ moment(info.date_publish).format("DD/MM/YYYY") }}</li>
-        </ul>
+    <div class="tg-post" v-else v-for="info in publicationsPopularsData" :key="info.id">
+      <img :src='getImage(info.image_cover_url)' :alt='info.title'>
+      <div>
+        <span @click="category(info.category_slug)" style="cursor: pointer" class="tag">{{ info.category_name }}</span>
+        <h6 @click="article(info.slug)" style="cursor: pointer" class="btn-link text-white fw-normal" v-html="info.title"></h6>
+        <small><span @click="author(info.author_slug)" style="cursor: pointer" class="stretched-link text-reset btn-link"> {{ info.author_name }} </span> • {{ moment(info.date_publish).format("DD/MM/YYYY") }}</small>
+      </div>
     </div>
     <!-- Item -->
 
