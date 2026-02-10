@@ -575,7 +575,7 @@ class IncludesController extends BaseController
      */
     public function tagsRequestData()
     {
-       $tags = Tag::orderBy('tags.count_publications', 'desc')->take(20)->get();
+       $tags = Tag::orderBy('tags.count_publications', 'desc')->take(2)->get();
 
        return $this->sendResponse(['tagsPopularsData' => $tags, 'status' => 200], 'les mots clés populaires');
 
@@ -611,7 +611,7 @@ class IncludesController extends BaseController
             ->where('id', '!=', 31 )
             ->take(14)->get();
 
-            $FirstSectionCategory = [$category[12], $category[1], $category[2], $category[3], $category[4], $category[5], $category[6]];
+            $FirstSectionCategory = [$category[3], $category[4], $category[5], $category[6]];
 
             $TwoSectionCategory = [$category[7], $category[8], $category[9],$category[11], $category[13]];
 

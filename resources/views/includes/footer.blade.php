@@ -63,6 +63,10 @@
           <a href="#" class="android"><i class="bi bi-google-play"></i> Android</a>
           <a href="#" class="ios"><i class="bi bi-apple"></i> iOS</a>
         </div>
+        <h5 class="tg-title mt-2">Tags Populaires</h5>
+        <ul class="tg-links">
+            <tags-populars></tags-populars>
+        </ul>
       </div>
 
     </div>
