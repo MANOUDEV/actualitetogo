@@ -25,6 +25,8 @@
 
         <articles-populars></articles-populars>
 
+      </div>
+
 
       <!-- Navigation / Categories / Tags -->
       <div class="col-xl-2 col-lg-2">

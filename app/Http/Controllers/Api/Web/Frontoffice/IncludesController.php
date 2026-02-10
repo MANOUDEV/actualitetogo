@@ -628,7 +628,7 @@ class IncludesController extends BaseController
      */
     public function publicationsRequestData(){
 
-        $publications = Publication::where('status', 1)->where("type_publication_id", 1)->whereDate('date_publish', '>', '2022-12-31')->orderBy('views_count', 'desc')->take(2)->get();
+        $publications = Publication::where('status', 1)->where("type_publication_id", 1)->whereDate('date_publish', '>', '2022-12-31')->orderBy('views_count', 'desc')->take()->get();
 
         return $this->sendResponse(['publicationsPopularsData' => $publications, 'status' => 200], 'les publications populaires');
 
