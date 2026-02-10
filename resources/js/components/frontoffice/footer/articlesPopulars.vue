@@ -53,7 +53,7 @@ onMounted(() => {
       <div>
         <span @click="category(info.category_slug)" style="cursor: pointer" class="tag">{{ info.category_name }}</span>
         <h6 @click="article(info.slug)" style="cursor: pointer" class="btn-link text-white fw-normal" v-html="info.title"></h6>
-        <small><span @click="author(info.author_slug)" style="cursor: pointer" class="stretched-link text-reset btn-link"> {{ info.author_name }} </span> • {{ moment(info.date_publish).format("DD/MM/YYYY") }}</small>
+        <small><span @click="author(info.author_slug)" style="cursor: pointer" > {{ info.author_name }} </span> • {{ moment(info.date_publish).format("DD/MM/YYYY") }}</small>
       </div>
     </div>
     <!-- Item -->

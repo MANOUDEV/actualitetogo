@@ -100,13 +100,6 @@ const verifyCaptchaModalOpen =  () => {
     <div class="tg-newsletter">
         <h6>Recevez l'actualité en avant-première</h6>
         <div class="newsletter-box">
-            <input type="email" placeholder="Votre adresse email">
-            <button><i class="bi bi-send"></i></button>
-        </div>
-    </div>
-    <div class="tg-newsletter">
-        <h6>Recevez l'actualité en avant-première</h6>
-        <div class="newsletter-box">
 
             <input v-if="newsLettersErrors.email" required type="email" name="email" v-model="data.email" class="form-control is-invalid" placeholder="Entrez votre email " />
             <input v-else required type="email" name="email" v-model="data.email" class="form-control " placeholder="Entrez votre email " />
@@ -125,23 +118,5 @@ const verifyCaptchaModalOpen =  () => {
     <div v-else class="form-text mt-2 text-white">
         En vous abonnant, vous acceptez notre politique de confidentialité.
     </div>
-    <div class="modal fade" id="verifyCaptchaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Verification CAPTCHA</h5>
-                    <button type="button" class="btn-close" @click="verifyCaptchaModalClose" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div> 
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    
-                </div>
-                <div style="margin-top: -15px">
-                    <p class="text-center"><span style="cursor: pointer;" @click="verifyCaptchaModalClose">Annuler</span></p>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </template>
